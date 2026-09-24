@@ -1,0 +1,2948 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>MUnique.OpenMU.Network</name>
+    </assembly>
+    <members>
+        <member name="T:MUnique.OpenMU.Network.ArrayExtensions">
+            <summary>
+            Extensions for arrays.
+            </summary>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.ArrayExtensions.ExtractString(System.Byte[],System.Int32,System.Int32,System.Text.Encoding)">
+            <summary>
+            Extracts a string of an byte array with the specified encoding.
+            </summary>
+            <param name="array">The byte array.</param>
+            <param name="startIndex">The start index.</param>
+            <param name="maximumBytes">The maximum length.</param>
+            <param name="encoding">The encoding.</param>
+            <returns>The resulting string.</returns>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.ArrayExtensions.AsString(System.Byte[])">
+            <summary>
+            Converts the byte array into a readable HEX string.
+            </summary>
+            <param name="bytes">The bytes.</param>
+            <returns>The HEX string.</returns>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.ArrayExtensions.MakeDwordBigEndian(System.Span{System.Byte},System.Int32)">
+            <summary>
+            Converts bytes of an array to an 32bit unsigned Integer, big endian.
+            </summary>
+            <param name="array">Byte array.</param>
+            <param name="startIndex">Starting index. The array needs 3 more elements.</param>
+            <returns>An unsigned integer.</returns>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.ArrayExtensions.MakeDwordBigEndian(System.Byte[],System.Int32)">
+            <summary>
+            Converts bytes of an array to an 32bit unsigned Integer, big endian.
+            </summary>
+            <param name="array">Byte array.</param>
+            <param name="startIndex">Starting index. The array needs 3 more elements.</param>
+            <returns>An unsigned integer.</returns>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.ArrayExtensions.MakeDwordSmallEndian(System.Span{System.Byte},System.Int32)">
+            <summary>
+            Converts bytes of an array to an 32bit unsigned Integer, small endian.
+            </summary>
+            <param name="array">Byte array.</param>
+            <param name="startIndex">Starting index. The array needs 3 more elements.</param>
+            <returns>An unsigned integer.</returns>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.ArrayExtensions.MakeWordSmallEndian(System.Span{System.Byte},System.Int32)">
+            <summary>
+            Converts bytes of an array to an unsigned short, small endian.
+            </summary>
+            <param name="array">The array.</param>
+            <param name="startIndex">The start index.</param>
+            <returns>An unsigned short.</returns>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.ArrayExtensions.MakeWordBigEndian(System.Span{System.Byte},System.Int32)">
+            <summary>
+            Converts bytes of an array to an unsigned short, big endian.
+            </summary>
+            <param name="array">The array.</param>
+            <param name="startIndex">The start index.</param>
+            <returns>An unsigned short.</returns>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.ArrayExtensions.TryMakeWordBigEndian(System.Span{System.Byte},System.Int32)">
+            <summary>
+            Converts bytes of an array to an unsigned short, big endian.
+            If the array is not long enough, it returns 0.
+            </summary>
+            <param name="array">The array.</param>
+            <param name="startIndex">The start index.</param>
+            <returns>An unsigned short.</returns>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.ArrayExtensions.GetPacketHeaderSize(System.Byte[])">
+            <summary>
+            Gets the size of the packet header.
+            </summary>
+            <param name="packet">The packet.</param>
+            <returns>The size of the header.</returns>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.ArrayExtensions.GetPacketHeaderSize(System.Span{System.Byte})">
+            <summary>
+            Gets the size of the packet header.
+            </summary>
+            <param name="packet">The packet.</param>
+            <returns>The size of the header.</returns>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.ArrayExtensions.GetPacketHeaderSize(System.Byte)">
+            <summary>
+            Gets the size of the packet header.
+            </summary>
+            <param name="packetPrefix">The packet prefix.</param>
+            <returns>The size of the header.</returns>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.ArrayExtensions.GetPacketType(System.Span{System.Byte})">
+            <summary>
+            Gets the type of the packet. This only works when the packet type is not encrypted.
+            </summary>
+            <param name="packet">The packet.</param>
+            <returns>The type of the packet.</returns>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.ArrayExtensions.GetPacketSubType(System.Span{System.Byte})">
+            <summary>
+            Gets the sub type of the packet. This only works when the packet type is not encrypted.
+            </summary>
+            <param name="packet">The packet.</param>
+            <returns>The sub type of the packet.</returns>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.ArrayExtensions.GetPacketSize(System.Span{System.Byte})">
+            <summary>
+            Gets the size of a packet from its header.
+            C1 and C3 packets have a maximum length of 255, and the length defined in the second byte.
+            C2 and C4 packets have a maximum length of 65535, and the length defined in the second and third byte.
+            </summary>
+            <param name="packet">The packet.</param>
+            <returns>The size of a packet.</returns>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.ArrayExtensions.GetPacketSize(System.Byte[])">
+            <summary>
+            Gets the size of a packet from its header.
+            C1 and C3 packets have a maximum length of 255, and the length defined in the second byte.
+            C2 and C4 packets have a maximum length of 65535, and the length defined in the second and third byte.
+            </summary>
+            <param name="packet">The packet.</param>
+            <returns>The size of a packet.</returns>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.ArrayExtensions.SetPacketSize(System.Span{System.Byte})">
+            <summary>
+            Sets the size of the byte array as packet length in the corresponding indexes of the byte array.
+            </summary>
+            <param name="packet">The packet.</param>
+        </member>
+        <member name="T:MUnique.OpenMU.Network.PacketCapturedHandler">
+            <summary>
+            Handler for a captured data packet.
+            </summary>
+            <param name="packet">The complete data packet.</param>
+        </member>
+        <member name="T:MUnique.OpenMU.Network.CapturedPacketReader">
+            <summary>
+            Splits the captured outgoing data of a connection into data packets again.
+            </summary>
+            <remarks>
+            One write to a <see cref="T:System.IO.Pipelines.PipeWriter"/> is not necessarily one data packet: a bigger message
+            may be written in several chunks, and more than one packet may be written before the writer
+            gets flushed. The written data is therefore copied into an own pipe, which is read by this
+            class like any other packet source of the network layer.
+            </remarks>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.CapturedPacketReader.#ctor(MUnique.OpenMU.Network.PacketCapturedHandler,System.Action,Microsoft.Extensions.Logging.ILogger)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MUnique.OpenMU.Network.CapturedPacketReader"/> class.
+            </summary>
+            <param name="packetCaptured">The handler which is called for each complete data packet.</param>
+            <param name="completed">Is called when this reader stopped reading, e.g. because the
+            captured data was malformed. The caller should then stop writing into the <see cref="P:MUnique.OpenMU.Network.CapturedPacketReader.Writer"/>.</param>
+            <param name="logger">The logger.</param>
+        </member>
+        <member name="P:MUnique.OpenMU.Network.CapturedPacketReader.Writer">
+            <summary>
+            Gets the writer, into which the captured data is written.
+            </summary>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.CapturedPacketReader.Start">
+            <summary>
+            Starts reading the captured data.
+            </summary>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.CapturedPacketReader.Stop">
+            <summary>
+            Stops the reader by completing the <see cref="P:MUnique.OpenMU.Network.CapturedPacketReader.Writer"/>.
+            </summary>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.CapturedPacketReader.ReadPacketAsync(System.Buffers.ReadOnlySequence{System.Byte})">
+            <inheritdoc />
+        </member>
+        <member name="M:MUnique.OpenMU.Network.CapturedPacketReader.OnCompleteAsync(System.Exception)">
+            <inheritdoc />
+        </member>
+        <member name="T:MUnique.OpenMU.Network.ClientAcceptedEventArgs">
+            <summary>
+            Event args for <see cref="E:MUnique.OpenMU.Network.Listener.ClientAccepted"/> which contains the connection of the client.
+            </summary>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.ClientAcceptedEventArgs.#ctor(MUnique.OpenMU.Network.IConnection)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MUnique.OpenMU.Network.ClientAcceptedEventArgs"/> class.
+            </summary>
+            <param name="acceptedConnection">The accepted connection.</param>
+        </member>
+        <member name="P:MUnique.OpenMU.Network.ClientAcceptedEventArgs.AcceptedConnection">
+            <summary>
+            Gets the accepted connection.
+            </summary>
+        </member>
+        <member name="T:MUnique.OpenMU.Network.ClientAcceptingEventArgs">
+            <summary>
+            Event args for <see cref="E:MUnique.OpenMU.Network.Listener.ClientAccepting"/> which contains the connection of the client.
+            </summary>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.ClientAcceptingEventArgs.#ctor(System.Net.Sockets.Socket)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MUnique.OpenMU.Network.ClientAcceptingEventArgs"/> class.
+            </summary>
+            <param name="socket">The accepting socket.</param>
+        </member>
+        <member name="P:MUnique.OpenMU.Network.ClientAcceptingEventArgs.AcceptingSocket">
+            <summary>
+            Gets the accepted connection.
+            </summary>
+        </member>
+        <member name="T:MUnique.OpenMU.Network.ConfigurableIpResolver">
+            <summary>
+            A resolver, which can be re-configured during runtime.
+            </summary>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.ConfigurableIpResolver.#ctor(MUnique.OpenMU.Network.IpResolverType,System.String,Microsoft.Extensions.Logging.ILoggerFactory,System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MUnique.OpenMU.Network.ConfigurableIpResolver"/> class.
+            </summary>
+            <param name="resolverType">Type of the resolver.</param>
+            <param name="parameter">The parameter.</param>
+            <param name="loggerFactory">The logger factory.</param>
+            <param name="allowRuntimeReconfiguration">
+            If set to <c>false</c>, calls to <see cref="M:MUnique.OpenMU.Network.ConfigurableIpResolver.Configure(MUnique.OpenMU.Network.IpResolverType,System.String)"/> are ignored after construction.
+            </param>
+            <exception cref="T:System.ArgumentException">When using a custom resolver type, a parameter with an IP or host name is required. - parameter.</exception>
+        </member>
+        <member name="E:MUnique.OpenMU.Network.ConfigurableIpResolver.ConfigurationChanged">
+            <summary>
+            Occurs when the configuration has been changed.
+            </summary>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.ConfigurableIpResolver.ResolveIPv4Async">
+            <inheritdoc />
+        </member>
+        <member name="M:MUnique.OpenMU.Network.ConfigurableIpResolver.Configure(MUnique.OpenMU.Network.IpResolverType,System.String)">
+            <summary>
+            Configures this resolver.
+            </summary>
+            <param name="resolverType">Type of the resolver.</param>
+            <param name="parameter">The parameter.</param>
+        </member>
+        <member name="T:MUnique.OpenMU.Network.Connection">
+            <summary>
+            A connection which works on <see cref="T:System.IO.Pipelines.IDuplexPipe"/>.
+            </summary>
+            <seealso cref="T:MUnique.OpenMU.Network.PacketPipeReaderBase" />
+        </member>
+        <member name="F:MUnique.OpenMU.Network.Connection.RdpConnectionAttemptHeader">
+            <summary>
+            The start of an RDP connection attempt.
+            </summary>
+            <remarks>
+            Some hackers try to break into servers.
+            The packet mostly contains the content "Cookie: mstshash=Administr".
+            </remarks>
+        </member>
+        <member name="F:MUnique.OpenMU.Network.Connection._captureLifecycleLock">
+            <summary>
+            Lock for the lifecycle of the <see cref="F:MUnique.OpenMU.Network.Connection._outgoingCapture"/>. The sinks themselves are
+            lock-free; this one is just held when a capture is started or stopped, which is a rare
+            operation and never happens on the path of a data packet.
+            </summary>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.Connection.#ctor(System.IO.Pipelines.IDuplexPipe,MUnique.OpenMU.Network.IPipelinedDecryptor,MUnique.OpenMU.Network.IPipelinedEncryptor,Microsoft.Extensions.Logging.ILogger{MUnique.OpenMU.Network.Connection})">
+            <summary>
+            Initializes a new instance of the <see cref="T:MUnique.OpenMU.Network.Connection" /> class.
+            </summary>
+            <param name="duplexPipe">The duplex pipe of the (socket) connection.</param>
+            <param name="decryptionPipe">The decryption pipe.</param>
+            <param name="encryptionPipe">The encryption pipe.</param>
+            <param name="logger">The logger.</param>
+        </member>
+        <member name="E:MUnique.OpenMU.Network.Connection.PacketReceived">
+            <inheritdoc />
+        </member>
+        <member name="E:MUnique.OpenMU.Network.Connection.Disconnected">
+            <inheritdoc />
+        </member>
+        <member name="P:MUnique.OpenMU.Network.Connection.Id">
+            <inheritdoc />
+        </member>
+        <member name="P:MUnique.OpenMU.Network.Connection.Connected">
+            <inheritdoc />
+        </member>
+        <member name="P:MUnique.OpenMU.Network.Connection.EndPoint">
+            <inheritdoc />
+        </member>
+        <member name="P:MUnique.OpenMU.Network.Connection.LocalEndPoint">
+            <inheritdoc />
+        </member>
+        <member name="P:MUnique.OpenMU.Network.Connection.Output">
+            <inheritdoc />
+        </member>
+        <member name="P:MUnique.OpenMU.Network.Connection.OutputLock">
+            <inheritdoc />
+        </member>
+        <member name="P:MUnique.OpenMU.Network.Connection.MeterName">
+            <summary>
+            Gets the name of the meter.
+            </summary>
+        </member>
+        <member name="P:MUnique.OpenMU.Network.Connection.SocketConnection">
+            <summary>
+            Gets the socket connection, if the <see cref="F:MUnique.OpenMU.Network.Connection._duplexPipe"/> is an instance of <see cref="P:MUnique.OpenMU.Network.Connection.SocketConnection"/>. Otherwise, it returns null.
+            </summary>
+        </member>
+        <member name="P:MUnique.OpenMU.Network.Connection.OutputWriter">
+            <summary>
+            Gets the <see cref="T:MUnique.OpenMU.Network.ExtendedPipeWriter"/> of the <see cref="P:MUnique.OpenMU.Network.Connection.Output"/>, which is also
+            the place where the outgoing data packets are captured.
+            </summary>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.Connection.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.Connection.BeginReceiveAsync">
+            <inheritdoc/>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.Connection.DisconnectAsync">
+            <inheritdoc />
+        </member>
+        <member name="M:MUnique.OpenMU.Network.Connection.AddCaptureSink(MUnique.OpenMU.Network.IPacketCaptureSink)">
+            <inheritdoc />
+        </member>
+        <member name="M:MUnique.OpenMU.Network.Connection.RemoveCaptureSink(MUnique.OpenMU.Network.IPacketCaptureSink)">
+            <inheritdoc />
+        </member>
+        <member name="M:MUnique.OpenMU.Network.Connection.Dispose">
+            <inheritdoc/>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.Connection.OnCompleteAsync(System.Exception)">
+            <inheritdoc />
+        </member>
+        <member name="M:MUnique.OpenMU.Network.Connection.ReadPacketAsync(System.Buffers.ReadOnlySequence{System.Byte})">
+            <summary>
+            Reads the mu online packet by raising <see cref="E:MUnique.OpenMU.Network.Connection.PacketReceived" />.
+            </summary>
+            <param name="packet">The mu online packet.</param>
+            <returns><see langword="true" />, if the flush was successful or not required.<see langword="false" />, if the pipe reader is completed and no longer reading data.</returns>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.Connection.GetOrCreateOutputWriter(System.IO.Pipelines.IDuplexPipe)">
+            <summary>
+            Gets the <see cref="T:MUnique.OpenMU.Network.ExtendedPipeWriter"/>, or creates it, if it doesn't exist yet.
+            It's created atomically, so that the capturing is attached to the same instance which
+            is used by the <see cref="P:MUnique.OpenMU.Network.Connection.Output"/>.
+            </summary>
+            <param name="duplexPipe">The duplex pipe of the connection.</param>
+            <returns>The <see cref="T:MUnique.OpenMU.Network.ExtendedPipeWriter"/> of this connection.</returns>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.Connection.StartCapturingOutgoingData">
+            <summary>
+            Starts to capture the outgoing data packets, if it's not running yet. The incoming
+            packets don't need that, because they arrive as complete packets anyway.
+            </summary>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.Connection.StopCapturing">
+            <summary>
+            Stops the capturing of the outgoing data packets, so that nothing is copied anymore
+            when nobody is watching. The <see cref="T:MUnique.OpenMU.Network.ExtendedPipeWriter"/> applies this at the next
+            packet boundary, so a capture never starts or ends in the middle of a data packet.
+            </summary>
+        </member>
+        <member name="T:MUnique.OpenMU.Network.ConnectionExtensions">
+            <summary>
+            Extension methods for <see cref="T:MUnique.OpenMU.Network.IConnection"/>.
+            </summary>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.ConnectionExtensions.SendAsync(MUnique.OpenMU.Network.IConnection,System.Func{System.Int32})">
+            <summary>
+            Sends a message asynchronously.
+            </summary>
+            <param name="connection">The connection.</param>
+            <param name="packetBuilder">The packet builder which writes to the <see cref="P:MUnique.OpenMU.Network.IConnection.Output"/> and returns the length of the packet in bytes.</param>
+        </member>
+        <member name="T:MUnique.OpenMU.Network.Counter">
+            <summary>
+            Used as C3/C4 Packet Counter, and Skill Count.
+            When the maximum count is getting exceeded,
+            the counter will jump back to the minimum counter value.
+            </summary>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.Counter.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:MUnique.OpenMU.Network.Counter"/> class.
+            </summary>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.Counter.#ctor(System.Byte,System.Byte)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MUnique.OpenMU.Network.Counter"/> class.
+            </summary>
+            <param name="min">The minimum counter value.</param>
+            <param name="max">The maximum counter value.</param>
+        </member>
+        <member name="P:MUnique.OpenMU.Network.Counter.Count">
+            <summary>
+            Gets or sets the count.
+            </summary>
+            <value>
+            The count.
+            </value>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.Counter.Increase">
+            <summary>
+            Increases the counter value.
+            When the maximum count is getting exceeded,
+            the counter will jump back to the minimum counter value.
+            </summary>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.Counter.Reset">
+            <summary>
+            Resets the count to the minimum value.
+            </summary>
+        </member>
+        <member name="T:MUnique.OpenMU.Network.CustomIpResolver">
+            <summary>
+            Resolver which always returns the provided custom ip address.
+            </summary>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.CustomIpResolver.#ctor(System.Net.IPAddress)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MUnique.OpenMU.Network.CustomIpResolver"/> class.
+            </summary>
+            <param name="address">The address.</param>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.CustomIpResolver.ResolveIPv4Async">
+            <inheritdoc />
+        </member>
+        <member name="T:MUnique.OpenMU.Network.DuplexPipe">
+            <summary>
+            A simple implementation of a <see cref="T:System.IO.Pipelines.IDuplexPipe"/> which is helpful for testing.
+            It's pipes are configured to forward incoming data as soon as they are written.
+            </summary>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.DuplexPipe.#ctor(System.IO.Pipelines.PipeOptions)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MUnique.OpenMU.Network.DuplexPipe"/> class.
+            </summary>
+            <param name="options">The optional pipe options. If null, the default options are applied.</param>
+        </member>
+        <member name="P:MUnique.OpenMU.Network.DuplexPipe.SendPipe">
+            <summary>
+            Gets the send pipe.
+            </summary>
+        </member>
+        <member name="P:MUnique.OpenMU.Network.DuplexPipe.ReceivePipe">
+            <summary>
+            Gets the receive pipe.
+            </summary>
+        </member>
+        <member name="P:MUnique.OpenMU.Network.DuplexPipe.Input">
+            <summary>
+            Gets the input pipe reader. It's the reader of the <see cref="P:MUnique.OpenMU.Network.DuplexPipe.ReceivePipe"/>.
+            </summary>
+        </member>
+        <member name="P:MUnique.OpenMU.Network.DuplexPipe.Output">
+            <summary>
+            Gets the output pipe writer. It's the writer of the <see cref="P:MUnique.OpenMU.Network.DuplexPipe.SendPipe"/>.
+            </summary>
+        </member>
+        <member name="T:MUnique.OpenMU.Network.ExtendedPipeWriter">
+            <summary>
+            A wrapper for an existing <see cref="T:System.IO.Pipelines.PipeWriter"/>, which has metrics about the written bytes.
+            </summary>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.ExtendedPipeWriter.#ctor(System.IO.Pipelines.PipeWriter,System.Diagnostics.Metrics.Counter{System.Int64})">
+            <summary>
+            Initializes a new instance of the <see cref="T:MUnique.OpenMU.Network.ExtendedPipeWriter"/> class.
+            </summary>
+            <param name="target">The target <see cref="T:System.IO.Pipelines.PipeWriter"/>.</param>
+            <param name="writeCounter">A counter for the written bytes.</param>
+        </member>
+        <member name="P:MUnique.OpenMU.Network.ExtendedPipeWriter.PendingCaptureWriter">
+            <summary>
+            Gets or sets the writer of the packet capture, into which the written data should be
+            copied. If it's <see langword="null"/>, nothing should be captured.
+            </summary>
+            <remarks>
+            It's only applied at a packet boundary, because the capture would start or end in the
+            middle of a data packet otherwise. It can be set by any thread; the switch itself
+            happens on the thread which writes to this instance.
+            </remarks>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.ExtendedPipeWriter.Complete(System.Exception)">
+            <inheritdoc />
+        </member>
+        <member name="M:MUnique.OpenMU.Network.ExtendedPipeWriter.CancelPendingFlush">
+            <inheritdoc />
+        </member>
+        <member name="M:MUnique.OpenMU.Network.ExtendedPipeWriter.FlushAsync(System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:MUnique.OpenMU.Network.ExtendedPipeWriter.Advance(System.Int32)">
+            <inheritdoc />
+        </member>
+        <member name="M:MUnique.OpenMU.Network.ExtendedPipeWriter.GetMemory(System.Int32)">
+            <inheritdoc />
+        </member>
+        <member name="M:MUnique.OpenMU.Network.ExtendedPipeWriter.GetSpan(System.Int32)">
+            <inheritdoc />
+        </member>
+        <member name="M:MUnique.OpenMU.Network.ExtendedPipeWriter.ApplyPendingCaptureWriterAtPacketBoundary">
+            <summary>
+            Applies a requested change of the capture, when nothing is written to the target yet.
+            In that case we're at a packet boundary, so a starting capture doesn't begin in the
+            middle of a data packet.
+            </summary>
+        </member>
+        <member name="T:MUnique.OpenMU.Network.HostNameIpResolver">
+            <summary>
+            Resolves the ip address by resolving a host name to get the <see cref="T:System.Net.IPAddress"/> over DNS.
+            </summary>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.HostNameIpResolver.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MUnique.OpenMU.Network.HostNameIpResolver"/> class.
+            </summary>
+            <param name="hostName">Name of the host.</param>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.HostNameIpResolver.ResolveIPv4Async">
+            <inheritdoc />
+        </member>
+        <member name="M:MUnique.OpenMU.Network.HostNameIpResolver.ResolveAsync">
+            <summary>
+            Gets the resolved IPv4, if available.
+            </summary>
+            <returns>The resolved IPv4.</returns>
+        </member>
+        <member name="T:MUnique.OpenMU.Network.IConnection">
+            <summary>
+            Interface for a connection.
+            </summary>
+            <seealso cref="T:System.IDisposable" />
+        </member>
+        <member name="E:MUnique.OpenMU.Network.IConnection.PacketReceived">
+            <summary>
+            Occurs when a new packet got received.
+            </summary>
+            <remarks>
+            Remove and implement <see cref="T:System.IO.Pipelines.IDuplexPipe"/> instead?
+            </remarks>
+        </member>
+        <member name="E:MUnique.OpenMU.Network.IConnection.Disconnected">
+            <summary>
+            Occurs when the client disconnected.
+            </summary>
+        </member>
+        <member name="P:MUnique.OpenMU.Network.IConnection.Id">
+            <summary>
+            Gets the identifier of this connection, which is unique for the lifetime of the process.
+            </summary>
+        </member>
+        <member name="P:MUnique.OpenMU.Network.IConnection.Connected">
+            <summary>
+            Gets a value indicating whether this <see cref="T:MUnique.OpenMU.Network.IConnection"/> is connected.
+            </summary>
+            <value>
+              <c>true</c> if connected; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:MUnique.OpenMU.Network.IConnection.EndPoint">
+            <summary>
+            Gets the remote endpoint of the connection.
+            </summary>
+        </member>
+        <member name="P:MUnique.OpenMU.Network.IConnection.LocalEndPoint">
+            <summary>
+            Gets the local endpoint of the connection.
+            </summary>
+        </member>
+        <member name="P:MUnique.OpenMU.Network.IConnection.Output">
+            <summary>
+            Gets the pipe writer to send data.
+            </summary>
+            <value>
+            The pipe writer.
+            </value>
+        </member>
+        <member name="P:MUnique.OpenMU.Network.IConnection.OutputLock">
+            <summary>
+            Gets an <see cref="T:Nito.AsyncEx.AsyncLock"/> to synchronize writes to the <see cref="P:MUnique.OpenMU.Network.IConnection.Output"/>.
+            </summary>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.IConnection.BeginReceiveAsync">
+            <summary>
+            Begins receiving from the client.
+            </summary>
+            <returns>The async task.</returns>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.IConnection.DisconnectAsync">
+            <summary>
+            Disconnects this instance.
+            </summary>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.IConnection.AddCaptureSink(MUnique.OpenMU.Network.IPacketCaptureSink)">
+            <summary>
+            Adds a sink which gets all decrypted data packets of this connection, until it's
+            removed again by <see cref="M:MUnique.OpenMU.Network.IConnection.RemoveCaptureSink(MUnique.OpenMU.Network.IPacketCaptureSink)"/>.
+            </summary>
+            <param name="sink">The sink which should get the data packets.</param>
+            <remarks>
+            Adding the same sink more than once has no effect. As long as no sink is added, the
+            connection doesn't capture anything.
+            </remarks>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.IConnection.RemoveCaptureSink(MUnique.OpenMU.Network.IPacketCaptureSink)">
+            <summary>
+            Removes a previously added capture sink. When the last sink is removed, the connection
+            stops capturing.
+            </summary>
+            <param name="sink">The sink which should not get the data packets anymore.</param>
+        </member>
+        <member name="T:MUnique.OpenMU.Network.IIpAddressResolver">
+            <summary>
+            Interface for an <see cref="T:System.Net.IPAddress"/> resolver.
+            </summary>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.IIpAddressResolver.ResolveIPv4Async">
+            <summary>
+            Gets the resolved IPv4.
+            </summary>
+            <returns>The resolved IPv4.</returns>
+        </member>
+        <member name="T:MUnique.OpenMU.Network.InvalidPacketHeaderException">
+            <summary>
+            An exception which occurs when a packet header is invalid.
+            </summary>
+            <remarks>
+            This can be the case when:
+              * The first byte of the packet is not one of <c>0xC1</c>, <c>0xC2</c>, <c>0xC3</c>, <c>0xC4</c>.
+              * The length is defined as 0.
+            </remarks>
+            <seealso cref="T:System.Exception" />
+        </member>
+        <member name="F:MUnique.OpenMU.Network.InvalidPacketHeaderException._message">
+            <summary>
+            The message, if built yet.
+            </summary>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.InvalidPacketHeaderException.#ctor(System.Byte[],System.Buffers.ReadOnlySequence{System.Byte},System.SequencePosition)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MUnique.OpenMU.Network.InvalidPacketHeaderException"/> class.
+            </summary>
+            <param name="header">The header which is invalid.</param>
+            <param name="bufferContent">Content of the buffer when the header was read. With this information you can e.g. find out if a previous packet was malformed.</param>
+            <param name="position">The position of the <paramref name="header"/> in the <paramref name="bufferContent"/>.</param>
+        </member>
+        <member name="P:MUnique.OpenMU.Network.InvalidPacketHeaderException.Header">
+            <summary>
+            Gets the header which is invalid.
+            </summary>
+        </member>
+        <member name="P:MUnique.OpenMU.Network.InvalidPacketHeaderException.BufferContent">
+            <summary>
+            Gets the content of the buffer when the header was read. With this information you can e.g. find out if a previous packet was malformed.
+            </summary>
+        </member>
+        <member name="P:MUnique.OpenMU.Network.InvalidPacketHeaderException.Position">
+            <summary>
+            Gets the position of the <see cref="P:MUnique.OpenMU.Network.InvalidPacketHeaderException.Header"/> in the <see cref="P:MUnique.OpenMU.Network.InvalidPacketHeaderException.BufferContent"/>.
+            </summary>
+        </member>
+        <member name="P:MUnique.OpenMU.Network.InvalidPacketHeaderException.Message">
+            <summary>
+            Gets a message that describes the current exception.
+            </summary>
+        </member>
+        <member name="T:MUnique.OpenMU.Network.IPacketCaptureSink">
+            <summary>
+            A sink which gets the decrypted data packets of a connection, as long as it's registered
+            at <see cref="M:MUnique.OpenMU.Network.IConnection.AddCaptureSink(MUnique.OpenMU.Network.IPacketCaptureSink)"/>.
+            </summary>
+            <remarks>
+            This allows to watch the traffic of a connection without an external proxy, e.g. to show
+            it in the admin panel. As long as no sink is registered at a connection, it doesn't
+            capture anything.
+            </remarks>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.IPacketCaptureSink.PacketCaptured(System.ReadOnlySpan{System.Byte},System.Boolean)">
+            <summary>
+            Is called when a complete, decrypted data packet was received from or sent to the
+            remote endpoint of the connection.
+            </summary>
+            <param name="packet">The complete, decrypted data packet.</param>
+            <param name="sent"><see langword="true"/>, if the packet was sent to the remote endpoint;
+            <see langword="false"/>, if it was received from it.</param>
+            <remarks>
+            This is called on the network thread of the connection, so an implementation should
+            return as fast as possible. The <paramref name="packet"/> is only valid during the call,
+            so it must be copied if it's required afterwards.
+            </remarks>
+        </member>
+        <member name="T:MUnique.OpenMU.Network.IpAddressExtensions">
+            <summary>
+            Extensions for <see cref="T:System.Net.IPAddress"/>.
+            </summary>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.IpAddressExtensions.IsOnSameHost(System.Net.IPAddress)">
+            <summary>
+            Determines whether the address in on same (this) host.
+            </summary>
+            <param name="address">The next server address.</param>
+            <returns>
+              <c>true</c> if the specified address is on same host as this machine; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="T:MUnique.OpenMU.Network.IpAddressResolverFactory">
+            <summary>
+            Factory which creates an <see cref="T:MUnique.OpenMU.Network.IIpAddressResolver"/> depending on command line arguments.
+            </summary>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.IpAddressResolverFactory.CreateIpResolver(System.String[],System.Nullable{System.ValueTuple{MUnique.OpenMU.Network.IpResolverType,System.String}},Microsoft.Extensions.Logging.ILoggerFactory)">
+            <summary>
+            Determines the ip resolver based on command line arguments.
+            </summary>
+            <param name="args">The arguments.</param>
+            <param name="configuration">The configuration, if available.</param>
+            <param name="loggerFactory">The logger factory.</param>
+            <returns>The determined resolver.</returns>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.IpAddressResolverFactory.DetermineBestFittingResolver(System.String[],System.Nullable{System.ValueTuple{MUnique.OpenMU.Network.IpResolverType,System.String}})">
+            <summary>
+            Determines the best fitting ip resolver.
+            </summary>
+            <param name="args">The arguments.</param>
+            <param name="configuration">The configuration.</param>
+            <returns>The resolver type with its parameter.</returns>
+        </member>
+        <member name="T:MUnique.OpenMU.Network.IPipelinedDecryptor">
+            <summary>
+            Interface for a pipelined decryptor.
+            </summary>
+        </member>
+        <member name="P:MUnique.OpenMU.Network.IPipelinedDecryptor.Reader">
+            <summary>
+            Gets the reader of the decryptor which contains the decrypted data.
+            </summary>
+        </member>
+        <member name="T:MUnique.OpenMU.Network.IPipelinedEncryptor">
+            <summary>
+            Interface for a pipelined encryptor.
+            </summary>
+        </member>
+        <member name="P:MUnique.OpenMU.Network.IPipelinedEncryptor.Writer">
+            <summary>
+            Gets the writer of the encryptor which takes the decrypted data.
+            The implementation can decide to foward the data written to it
+            to another pipe.
+            </summary>
+        </member>
+        <member name="T:MUnique.OpenMU.Network.IpResolverType">
+            <summary>
+            Defines how the own IP should be resolved and reported to the game client.
+            </summary>
+        </member>
+        <member name="F:MUnique.OpenMU.Network.IpResolverType.Auto">
+            <summary>
+            The IP is detected automatically by considering the environment.
+            </summary>
+        </member>
+        <member name="F:MUnique.OpenMU.Network.IpResolverType.Public">
+            <summary>
+            The IP is detected by asking an external service. As a result, we resolve
+            to the public IP.
+            </summary>
+        </member>
+        <member name="F:MUnique.OpenMU.Network.IpResolverType.Local">
+            <summary>
+            The IP is detected by asking the DNS about the IP of the own host name.
+            </summary>
+        </member>
+        <member name="F:MUnique.OpenMU.Network.IpResolverType.Loopback">
+            <summary>
+            The IP is resolved as '127.127.127.127'.
+            </summary>
+        </member>
+        <member name="F:MUnique.OpenMU.Network.IpResolverType.Custom">
+            <summary>
+            The IP or a host name can be set manually.
+            </summary>
+        </member>
+        <member name="T:MUnique.OpenMU.Network.ISpanDecryptor">
+            <summary>
+            This interface specifies an decryptor, which decrypts span data packets in-place.
+            </summary>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.ISpanDecryptor.Decrypt(System.Span{System.Byte})">
+            <summary>
+            Decrypts the packet.
+            </summary>
+            <param name="packet">The encrypted data packet. The decrypted result will be written back to the same span.</param>
+        </member>
+        <member name="T:MUnique.OpenMU.Network.ISpanEncryptor">
+            <summary>
+            This interface specifies an encryptor, which encrypts span data packets in-place.
+            </summary>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.ISpanEncryptor.Encrypt(System.Span{System.Byte})">
+            <summary>
+            Encrypts the packet.
+            </summary>
+            <param name="packet">The decrypted data packet.</param>
+        </member>
+        <member name="T:MUnique.OpenMU.Network.Listener">
+            <summary>
+            A tcp listener which automatically creates instances of <see cref="T:MUnique.OpenMU.Network.Connection"/>s for accepted clients.
+            </summary>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.Listener.#ctor(System.Int32,System.Func{System.IO.Pipelines.PipeReader,MUnique.OpenMU.Network.IPipelinedDecryptor},System.Func{System.IO.Pipelines.PipeWriter,MUnique.OpenMU.Network.IPipelinedEncryptor},Microsoft.Extensions.Logging.ILoggerFactory)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MUnique.OpenMU.Network.Listener" /> class.
+            </summary>
+            <param name="port">The port on which the tcp listener should listen to.</param>
+            <param name="decryptorCreator">The decryptor creator function.</param>
+            <param name="encryptorCreator">The encryptor creator function.</param>
+            <param name="loggerFactory">The logger factory.</param>
+        </member>
+        <member name="E:MUnique.OpenMU.Network.Listener.ClientAccepted">
+            <summary>
+            Occurs when a client has been accepted by the tcp listener.
+            </summary>
+        </member>
+        <member name="E:MUnique.OpenMU.Network.Listener.ClientAccepting">
+            <summary>
+            Occurs when a client has been accepted by the tcp listener, but before a <see cref="T:MUnique.OpenMU.Network.Connection"/> is created.
+            </summary>
+        </member>
+        <member name="P:MUnique.OpenMU.Network.Listener.IsBound">
+            <summary>
+            Gets a value indicating whether this listener is bound to a specific local port.
+            </summary>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.Listener.Start(System.Int32)">
+            <summary>
+            Starts the tcp listener and begins to accept connections.
+            </summary>
+            <param name="backlog">The maximum length of the pending connections queue.</param>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.Listener.Stop">
+            <summary>
+            Stops the tcp listener.
+            </summary>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.Listener.CreateDecryptor(System.IO.Pipelines.PipeReader)">
+            <summary>
+            Creates the decryptor for the specified reader.
+            </summary>
+            <param name="reader">The reader.</param>
+            <returns>The created decryptor.</returns>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.Listener.CreateEncryptor(System.IO.Pipelines.PipeWriter)">
+            <summary>
+            Creates the encryptor for the specified writer.
+            </summary>
+            <param name="writer">The writer.</param>
+            <returns>The created encryptor.</returns>
+        </member>
+        <member name="T:MUnique.OpenMU.Network.LocalIpResolver">
+            <summary>
+            Resolves the own ip address by resolving the local host name to get the local <see cref="T:System.Net.IPAddress"/> over DNS.
+            </summary>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.LocalIpResolver.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:MUnique.OpenMU.Network.LocalIpResolver"/> class.
+            </summary>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.LocalIpResolver.ResolveIPv4Async">
+            <inheritdoc />
+        </member>
+        <member name="T:MUnique.OpenMU.Network.LoopbackIpResolver">
+            <summary>
+            Resolves the ip address as 127.127.127.127.
+            Usually only used at development time.
+            </summary>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.LoopbackIpResolver.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:MUnique.OpenMU.Network.LoopbackIpResolver"/> class.
+            </summary>
+        </member>
+        <member name="P:MUnique.OpenMU.Network.LoopbackIpResolver.LoopbackAddress">
+            <summary>
+            Gets the local address.
+            </summary>
+        </member>
+        <member name="T:MUnique.OpenMU.Network.Metrics">
+            <summary>
+            Provides information about the available metrics of this project.
+            </summary>
+        </member>
+        <member name="P:MUnique.OpenMU.Network.Metrics.Meters">
+            <summary>
+            Gets all available meters of this project.
+            </summary>
+        </member>
+        <member name="T:MUnique.OpenMU.Network.NumberConversionExtensions">
+            <summary>
+            Number conversion extensions.
+            </summary>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.NumberConversionExtensions.MakeDword(System.Byte,System.Byte,System.Byte,System.Byte)">
+            <summary>
+            Converts 4 bytes to an 32bit unsigned Integer.
+            </summary>
+            <param name="lowest">The lowest.</param>
+            <param name="lower">The lower.</param>
+            <param name="higher">The higher.</param>
+            <param name="highest">The highest.</param>
+            <returns>
+            The unsigned integer.
+            </returns>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.NumberConversionExtensions.MakeWord(System.Byte,System.Byte)">
+            <summary>
+            Converts 2 bytes to one 16bit unsigned short.
+            </summary>
+            <param name="lowByte">The low byte.</param>
+            <param name="highByte">The high byte.</param>
+            <returns>The unsigned short.</returns>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.NumberConversionExtensions.GetHighByte(System.UInt16)">
+            <summary>
+            Gets the high byte.
+            </summary>
+            <param name="value">The value.</param>
+            <returns>The high byte.</returns>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.NumberConversionExtensions.GetLowByte(System.UInt16)">
+            <summary>
+            Gets the low byte.
+            </summary>
+            <param name="value">The value.</param>
+            <returns>The low byte.</returns>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.NumberConversionExtensions.ToUnsigned(System.Int16)">
+            <summary>
+            Converts the signed short to an unsigned short.
+            </summary>
+            <param name="value">The signed value.</param>
+            <returns>The unsigned value.</returns>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.NumberConversionExtensions.ToSigned(System.UInt16)">
+            <summary>
+            Converts the unsigned short to a signed short.
+            </summary>
+            <param name="value">The usigned value.</param>
+            <returns>The signed value.</returns>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.NumberConversionExtensions.GetByte(System.UInt32,System.Int32)">
+            <summary>
+            Gets the byte of an integer at a specific index position.
+            </summary>
+            <param name="value">The value.</param>
+            <param name="index">The index.</param>
+            <returns>The byte of the integer at the specific index position.</returns>
+        </member>
+        <member name="T:MUnique.OpenMU.Network.PacketPipeReaderBase">
+            <summary>
+            Base class for all classes which read mu online data packets from a <see cref="T:System.IO.Pipelines.PipeReader"/>.
+            </summary>
+            <remarks>
+            Things to consider here:
+             * Do not call FlushAsync if the reader can't start until FlushAsync finishes, as that may cause a deadlock.
+             * Ensure that only one context "owns" a PipeReader or PipeWriter or accesses them. These types are not thread-safe.
+            </remarks>
+        </member>
+        <member name="P:MUnique.OpenMU.Network.PacketPipeReaderBase.Source">
+            <summary>
+            Gets or sets the <see cref="T:System.IO.Pipelines.PipeReader"/> from which the packets can be read from at <see cref="M:MUnique.OpenMU.Network.PacketPipeReaderBase.ReadSourceAsync"/>.
+            </summary>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketPipeReaderBase.ReadPacketAsync(System.Buffers.ReadOnlySequence{System.Byte})">
+            <summary>
+            Reads the mu online packet.
+            </summary>
+            <param name="packet">The mu online packet.</param>
+            <returns><see langword="true" />, if the flush was successful or not required.<see langword="false" />, if the pipe reader is completed and no longer reading data.</returns>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketPipeReaderBase.OnCompleteAsync(System.Exception)">
+            <summary>
+            Called when the <see cref="P:MUnique.OpenMU.Network.PacketPipeReaderBase.Source"/> completed.
+            </summary>
+            <param name="exception">The exception, if any occurred; Otherwise, <c>null</c>.</param>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketPipeReaderBase.ReadSourceAsync">
+            <summary>
+            Reads from the <see cref="P:MUnique.OpenMU.Network.PacketPipeReaderBase.Source"/> until it's completed or cancelled.
+            </summary>
+            <returns>The task.</returns>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketPipeReaderBase.TryFlushWriterAsync(System.IO.Pipelines.PipeWriter)">
+            <summary>
+            Tries to flush the writer.
+            </summary>
+            <param name="pipeWriter">The pipe writer.</param>
+            <returns>
+              <see langword="true" />, if the flush was successful or not required.<see langword="false" />, if the pipe reader is completed and no longer reading data.
+            </returns>
+        </member>
+        <member name="T:MUnique.OpenMU.Network.PacketTwister.IPacketTwister">
+            <summary>
+            Interface for a packet twister of a specific packet type.
+            </summary>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketTwister.IPacketTwister.Twist(System.Span{System.Byte})">
+            <summary>
+            Twists (encrypts) the specified data.
+            </summary>
+            <param name="data">The data.</param>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketTwister.IPacketTwister.Correct(System.Span{System.Byte})">
+            <summary>
+            Corrects (decrypts) the specified data.
+            </summary>
+            <param name="data">The data.</param>
+        </member>
+        <member name="T:MUnique.OpenMU.Network.PacketTwister.PacketTwister29">
+            <summary>
+            PacketTwister implementation for packets of an unknown type.
+            </summary>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketTwister.PacketTwister29.Twist(System.Span{System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketTwister.PacketTwister29.Correct(System.Span{System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="T:MUnique.OpenMU.Network.PacketTwister.PacketTwister30">
+            <summary>
+            PacketTwister implementation for packets of an unknown type.
+            </summary>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketTwister.PacketTwister30.Twist(System.Span{System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketTwister.PacketTwister30.Correct(System.Span{System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="T:MUnique.OpenMU.Network.PacketTwister.PacketTwister37">
+            <summary>
+            PacketTwister implementation for packets of an unknown type.
+            </summary>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketTwister.PacketTwister37.Twist(System.Span{System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketTwister.PacketTwister37.Correct(System.Span{System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="T:MUnique.OpenMU.Network.PacketTwister.PacketTwister41">
+            <summary>
+            PacketTwister implementation for packets of an unknown type.
+            </summary>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketTwister.PacketTwister41.Twist(System.Span{System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketTwister.PacketTwister41.Correct(System.Span{System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="T:MUnique.OpenMU.Network.PacketTwister.PacketTwister42">
+            <summary>
+            PacketTwister implementation for packets of an unknown type.
+            </summary>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketTwister.PacketTwister42.Twist(System.Span{System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketTwister.PacketTwister42.Correct(System.Span{System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="T:MUnique.OpenMU.Network.PacketTwister.PacketTwister47">
+            <summary>
+            PacketTwister implementation for packets of an unknown type.
+            </summary>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketTwister.PacketTwister47.Twist(System.Span{System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketTwister.PacketTwister47.Correct(System.Span{System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="T:MUnique.OpenMU.Network.PacketTwister.PacketTwister48">
+            <summary>
+            PacketTwister implementation for packets of an unknown type.
+            </summary>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketTwister.PacketTwister48.Twist(System.Span{System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketTwister.PacketTwister48.Correct(System.Span{System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="T:MUnique.OpenMU.Network.PacketTwister.PacketTwister5">
+            <summary>
+            PacketTwister implementation for packets of an unknown type.
+            </summary>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketTwister.PacketTwister5.Twist(System.Span{System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketTwister.PacketTwister5.Correct(System.Span{System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="T:MUnique.OpenMU.Network.PacketTwister.PacketTwister58">
+            <summary>
+            PacketTwister implementation for packets of an unknown type.
+            </summary>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketTwister.PacketTwister58.Twist(System.Span{System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketTwister.PacketTwister58.Correct(System.Span{System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="T:MUnique.OpenMU.Network.PacketTwister.PacketTwister59">
+            <summary>
+            PacketTwister implementation for packets of an unknown type.
+            </summary>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketTwister.PacketTwister59.Twist(System.Span{System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketTwister.PacketTwister59.Correct(System.Span{System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="T:MUnique.OpenMU.Network.PacketTwister.PacketTwister78">
+            <summary>
+            PacketTwister implementation for packets of an unknown type.
+            </summary>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketTwister.PacketTwister78.Twist(System.Span{System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketTwister.PacketTwister78.Correct(System.Span{System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="T:MUnique.OpenMU.Network.PacketTwister.PacketTwister79">
+            <summary>
+            PacketTwister implementation for packets of an unknown type.
+            </summary>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketTwister.PacketTwister79.Twist(System.Span{System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketTwister.PacketTwister79.Correct(System.Span{System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="T:MUnique.OpenMU.Network.PacketTwister.PacketTwister81">
+            <summary>
+            PacketTwister implementation for packets of an unknown type.
+            </summary>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketTwister.PacketTwister81.Twist(System.Span{System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketTwister.PacketTwister81.Correct(System.Span{System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="T:MUnique.OpenMU.Network.PacketTwister.PacketTwisterDevilSquareRemainingTime">
+            <summary>
+            PacketTwister implementation for packets of 'DevilSquareRemainingTime' type.
+            </summary>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketTwister.PacketTwisterDevilSquareRemainingTime.Twist(System.Span{System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketTwister.PacketTwisterDevilSquareRemainingTime.Correct(System.Span{System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="T:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfAllianceJoinRequest">
+            <summary>
+            PacketTwister implementation for packets of 'AllianceJoinRequest' type.
+            </summary>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfAllianceJoinRequest.Twist(System.Span{System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfAllianceJoinRequest.Correct(System.Span{System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="T:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfAnimation">
+            <summary>
+            PacketTwister implementation for packets of 'Animation' type.
+            </summary>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfAnimation.Twist(System.Span{System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfAnimation.Correct(System.Span{System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="T:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfBloodCastleEnterRequest">
+            <summary>
+            PacketTwister implementation for packets of 'BloodCastleEnterRequest' type.
+            </summary>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfBloodCastleEnterRequest.Twist(System.Span{System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfBloodCastleEnterRequest.Correct(System.Span{System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="T:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfBloodCastleInfoRequest">
+            <summary>
+            PacketTwister implementation for packets of 'BloodCastleInfoRequest' type.
+            </summary>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfBloodCastleInfoRequest.Twist(System.Span{System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfBloodCastleInfoRequest.Correct(System.Span{System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="T:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfCashShop">
+            <summary>
+            PacketTwister implementation for packets of 'CashShop' type.
+            </summary>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfCashShop.Twist(System.Span{System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfCashShop.Correct(System.Span{System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="T:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfCastleSiege">
+            <summary>
+            PacketTwister implementation for packets of 'CastleSiege' type.
+            </summary>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfCastleSiege.Twist(System.Span{System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfCastleSiege.Correct(System.Span{System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="T:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfCastleSiegeWeapon">
+            <summary>
+            PacketTwister implementation for packets of 'CastleSiegeWeapon' type.
+            </summary>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfCastleSiegeWeapon.Twist(System.Span{System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfCastleSiegeWeapon.Correct(System.Span{System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="T:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfChaosMachineClose">
+            <summary>
+            PacketTwister implementation for packets of 'ChaosMachineClose' type.
+            </summary>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfChaosMachineClose.Twist(System.Span{System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfChaosMachineClose.Correct(System.Span{System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="T:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfChaosMachineMix">
+            <summary>
+            PacketTwister implementation for packets of 'ChaosMachineMix' type.
+            </summary>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfChaosMachineMix.Twist(System.Span{System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfChaosMachineMix.Correct(System.Span{System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="T:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfCharacterManagement">
+            <summary>
+            PacketTwister implementation for packets of 'CharacterManagement' type.
+            </summary>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfCharacterManagement.Twist(System.Span{System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfCharacterManagement.Correct(System.Span{System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="T:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfChat">
+            <summary>
+            PacketTwister implementation for packets of 'Chat' type.
+            </summary>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfChat.Twist(System.Span{System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfChat.Correct(System.Span{System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="T:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfChatInvitationRequest">
+            <summary>
+            PacketTwister implementation for packets of 'ChatInvitationRequest' type.
+            </summary>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfChatInvitationRequest.Twist(System.Span{System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfChatInvitationRequest.Correct(System.Span{System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="T:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfChatRoomCreateRequest">
+            <summary>
+            PacketTwister implementation for packets of 'ChatRoomCreateRequest' type.
+            </summary>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfChatRoomCreateRequest.Twist(System.Span{System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfChatRoomCreateRequest.Correct(System.Span{System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="T:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfClientChecksum">
+            <summary>
+            PacketTwister implementation for packets of 'ClientChecksum' type.
+            </summary>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfClientChecksum.Twist(System.Span{System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfClientChecksum.Correct(System.Span{System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="T:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfCrywolf">
+            <summary>
+            PacketTwister implementation for packets of 'Crywolf' type.
+            </summary>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfCrywolf.Twist(System.Span{System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfCrywolf.Correct(System.Span{System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="T:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfDevilSquareEnter">
+            <summary>
+            PacketTwister implementation for packets of 'DevilSquareEnter' type.
+            </summary>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfDevilSquareEnter.Twist(System.Span{System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfDevilSquareEnter.Correct(System.Span{System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="T:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfEventChipRegistration">
+            <summary>
+            PacketTwister implementation for packets of 'EventChipRegistration' type.
+            </summary>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfEventChipRegistration.Twist(System.Span{System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfEventChipRegistration.Correct(System.Span{System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="T:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfFriendAddRequest">
+            <summary>
+            PacketTwister implementation for packets of 'FriendAddRequest' type.
+            </summary>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfFriendAddRequest.Twist(System.Span{System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfFriendAddRequest.Correct(System.Span{System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="T:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfFriendAddResponse">
+            <summary>
+            PacketTwister implementation for packets of 'FriendAddResponse' type.
+            </summary>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfFriendAddResponse.Twist(System.Span{System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfFriendAddResponse.Correct(System.Span{System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="T:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfFriendDeleteRequest">
+            <summary>
+            PacketTwister implementation for packets of 'FriendDeleteRequest' type.
+            </summary>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfFriendDeleteRequest.Twist(System.Span{System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfFriendDeleteRequest.Correct(System.Span{System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="T:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfFriendList">
+            <summary>
+            PacketTwister implementation for packets of 'FriendList' type.
+            </summary>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfFriendList.Twist(System.Span{System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfFriendList.Correct(System.Span{System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="T:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfFriendStateChange">
+            <summary>
+            PacketTwister implementation for packets of 'FriendStateChange' type.
+            </summary>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfFriendStateChange.Twist(System.Span{System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfFriendStateChange.Correct(System.Span{System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="T:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfGameGuardAuth">
+            <summary>
+            PacketTwister implementation for packets of 'GameGuardAuth' type.
+            </summary>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfGameGuardAuth.Twist(System.Span{System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfGameGuardAuth.Correct(System.Span{System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="T:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfGuildAssign">
+            <summary>
+            PacketTwister implementation for packets of 'GuildAssign' type.
+            </summary>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfGuildAssign.Twist(System.Span{System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfGuildAssign.Correct(System.Span{System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="T:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfGuildInfo">
+            <summary>
+            PacketTwister implementation for packets of 'GuildInfo' type.
+            </summary>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfGuildInfo.Twist(System.Span{System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfGuildInfo.Correct(System.Span{System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="T:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfGuildJoinRequest">
+            <summary>
+            PacketTwister implementation for packets of 'GuildJoinRequest' type.
+            </summary>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfGuildJoinRequest.Twist(System.Span{System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfGuildJoinRequest.Correct(System.Span{System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="T:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfGuildJoinResponse">
+            <summary>
+            PacketTwister implementation for packets of 'GuildJoinResponse' type.
+            </summary>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfGuildJoinResponse.Twist(System.Span{System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfGuildJoinResponse.Correct(System.Span{System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="T:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfGuildKick">
+            <summary>
+            PacketTwister implementation for packets of 'GuildKick' type.
+            </summary>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfGuildKick.Twist(System.Span{System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfGuildKick.Correct(System.Span{System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="T:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfGuildList">
+            <summary>
+            PacketTwister implementation for packets of 'GuildList' type.
+            </summary>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfGuildList.Twist(System.Span{System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfGuildList.Correct(System.Span{System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="T:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfGuildMasterInfo">
+            <summary>
+            PacketTwister implementation for packets of 'GuildMasterInfo' type.
+            </summary>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfGuildMasterInfo.Twist(System.Span{System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfGuildMasterInfo.Correct(System.Span{System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="T:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfGuildMasterResponse">
+            <summary>
+            PacketTwister implementation for packets of 'GuildMasterResponse' type.
+            </summary>
+            <remarks>This implementation seems to be wrong - Twist and Correct is the same code!.</remarks>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfGuildMasterResponse.Twist(System.Span{System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfGuildMasterResponse.Correct(System.Span{System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="T:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfGuildWarRequest">
+            <summary>
+            PacketTwister implementation for packets of 'GuildWarRequest' type.
+            </summary>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfGuildWarRequest.Twist(System.Span{System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfGuildWarRequest.Correct(System.Span{System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="T:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfItemConsume">
+            <summary>
+            PacketTwister implementation for packets of 'ItemConsume' type.
+            </summary>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfItemConsume.Twist(System.Span{System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfItemConsume.Correct(System.Span{System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="T:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfItemDrop">
+            <summary>
+            PacketTwister implementation for packets of 'ItemDrop' type.
+            </summary>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfItemDrop.Twist(System.Span{System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfItemDrop.Correct(System.Span{System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="T:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfItemMove">
+            <summary>
+            PacketTwister implementation for packets of 'ItemMove' type.
+            </summary>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfItemMove.Twist(System.Span{System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfItemMove.Correct(System.Span{System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="T:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfItemPickup">
+            <summary>
+            PacketTwister implementation for packets of 'ItemPickup' type.
+            </summary>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfItemPickup.Twist(System.Span{System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfItemPickup.Correct(System.Span{System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="T:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfItemRepairRequest">
+            <summary>
+            PacketTwister implementation for packets of 'ItemRepairRequest' type.
+            </summary>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfItemRepairRequest.Twist(System.Span{System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfItemRepairRequest.Correct(System.Span{System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="T:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfLetterDeleteRequest">
+            <summary>
+            PacketTwister implementation for packets of 'LetterDeleteRequest' type.
+            </summary>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfLetterDeleteRequest.Twist(System.Span{System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfLetterDeleteRequest.Correct(System.Span{System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="T:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfLetterListRequest">
+            <summary>
+            PacketTwister implementation for packets of 'LetterListRequest' type.
+            </summary>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfLetterListRequest.Twist(System.Span{System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfLetterListRequest.Correct(System.Span{System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="T:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfLetterReadRequest">
+            <summary>
+            PacketTwister implementation for packets of 'LetterReadRequest' type.
+            </summary>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfLetterReadRequest.Twist(System.Span{System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfLetterReadRequest.Correct(System.Span{System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="T:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfLetterSendRequest">
+            <summary>
+            PacketTwister implementation for packets of 'LetterSendRequest' type.
+            </summary>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfLetterSendRequest.Twist(System.Span{System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfLetterSendRequest.Correct(System.Span{System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="T:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfLoginLogout">
+            <summary>
+            PacketTwister implementation for packets of 'LoginLogout' type.
+            </summary>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfLoginLogout.Twist(System.Span{System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfLoginLogout.Correct(System.Span{System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="T:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfLottoRegistration">
+            <summary>
+            PacketTwister implementation for packets of 'LottoRegistration' type.
+            </summary>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfLottoRegistration.Twist(System.Span{System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfLottoRegistration.Correct(System.Span{System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="T:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfNpcDialogClose">
+            <summary>
+            PacketTwister implementation for packets of 'NpcDialogClose' type.
+            </summary>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfNpcDialogClose.Twist(System.Span{System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfNpcDialogClose.Correct(System.Span{System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="T:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfNpcItemBuyRequest">
+            <summary>
+            PacketTwister implementation for packets of 'NpcItemBuyRequest' type.
+            </summary>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfNpcItemBuyRequest.Twist(System.Span{System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfNpcItemBuyRequest.Correct(System.Span{System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="T:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfNpcItemSellRequest">
+            <summary>
+            PacketTwister implementation for packets of 'NpcItemSellRequest' type.
+            </summary>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfNpcItemSellRequest.Twist(System.Span{System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfNpcItemSellRequest.Correct(System.Span{System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="T:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfNpcTalkRequest">
+            <summary>
+            PacketTwister implementation for packets of 'NpcTalkRequest' type.
+            </summary>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfNpcTalkRequest.Twist(System.Span{System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfNpcTalkRequest.Correct(System.Span{System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="T:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfPartyKick">
+            <summary>
+            PacketTwister implementation for packets of 'PartyKick' type.
+            </summary>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfPartyKick.Twist(System.Span{System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfPartyKick.Correct(System.Span{System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="T:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfPartyList">
+            <summary>
+            PacketTwister implementation for packets of 'PartyList' type.
+            </summary>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfPartyList.Twist(System.Span{System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfPartyList.Correct(System.Span{System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="T:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfPartyRequest">
+            <summary>
+            PacketTwister implementation for packets of 'PartyRequest' type.
+            </summary>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfPartyRequest.Twist(System.Span{System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfPartyRequest.Correct(System.Span{System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="T:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfPartyRequestAnswer">
+            <summary>
+            PacketTwister implementation for packets of 'PartyRequestAnswer' type.
+            </summary>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfPartyRequestAnswer.Twist(System.Span{System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfPartyRequestAnswer.Correct(System.Span{System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="T:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfPersonalShop">
+            <summary>
+            PacketTwister implementation for packets of 'PersonalShop' type.
+            </summary>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfPersonalShop.Twist(System.Span{System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfPersonalShop.Correct(System.Span{System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="T:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfPetItemCommand">
+            <summary>
+            PacketTwister implementation for packets of 'PetItemCommand' type.
+            </summary>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfPetItemCommand.Twist(System.Span{System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfPetItemCommand.Correct(System.Span{System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="T:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfPetItemInfoRequest">
+            <summary>
+            PacketTwister implementation for packets of 'PetItemInfoRequest' type.
+            </summary>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfPetItemInfoRequest.Twist(System.Span{System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfPetItemInfoRequest.Correct(System.Span{System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="T:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfPing">
+            <summary>
+            PacketTwister implementation for packets of 'Ping' type.
+            </summary>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfPing.Twist(System.Span{System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfPing.Correct(System.Span{System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="T:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfQuestInfoRequest">
+            <summary>
+            PacketTwister implementation for packets of 'QuestInfoRequest' type.
+            </summary>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfQuestInfoRequest.Twist(System.Span{System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfQuestInfoRequest.Correct(System.Span{System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="T:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfQuestState">
+            <summary>
+            PacketTwister implementation for packets of 'QuestState' type.
+            </summary>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfQuestState.Twist(System.Span{System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfQuestState.Correct(System.Span{System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="T:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfSkill">
+            <summary>
+            PacketTwister implementation for packets of 'Skill' type.
+            </summary>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfSkill.Twist(System.Span{System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfSkill.Correct(System.Span{System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="T:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfTradeButton">
+            <summary>
+            PacketTwister implementation for packets of 'TradeButton' type.
+            </summary>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfTradeButton.Twist(System.Span{System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfTradeButton.Correct(System.Span{System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="T:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfTradeCancel">
+            <summary>
+            PacketTwister implementation for packets of 'TradeCancel' type.
+            </summary>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfTradeCancel.Twist(System.Span{System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfTradeCancel.Correct(System.Span{System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="T:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfTradeMoney">
+            <summary>
+            PacketTwister implementation for packets of 'TradeMoney' type.
+            </summary>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfTradeMoney.Twist(System.Span{System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfTradeMoney.Correct(System.Span{System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="T:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfTradeRequest">
+            <summary>
+            PacketTwister implementation for packets of 'TradeRequest' type.
+            </summary>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfTradeRequest.Twist(System.Span{System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfTradeRequest.Correct(System.Span{System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="T:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfTradeResponse">
+            <summary>
+            PacketTwister implementation for packets of 'TradeResponse' type.
+            </summary>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfTradeResponse.Twist(System.Span{System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfTradeResponse.Correct(System.Span{System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="T:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfVaultClose">
+            <summary>
+            PacketTwister implementation for packets of 'VaultClose' type.
+            </summary>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfVaultClose.Twist(System.Span{System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfVaultClose.Correct(System.Span{System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="T:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfVaultMoney">
+            <summary>
+            PacketTwister implementation for packets of 'VaultMoney' type.
+            </summary>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfVaultMoney.Twist(System.Span{System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfVaultMoney.Correct(System.Span{System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="T:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfVaultPassword">
+            <summary>
+            PacketTwister implementation for packets of 'VaultPassword' type.
+            </summary>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfVaultPassword.Twist(System.Span{System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfVaultPassword.Correct(System.Span{System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="T:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfWhisper">
+            <summary>
+            PacketTwister implementation for packets of 'Whisper' type.
+            </summary>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfWhisper.Twist(System.Span{System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketTwister.PacketTwisterOfWhisper.Correct(System.Span{System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="T:MUnique.OpenMU.Network.PacketTwister.PacketTwistRunner">
+            <summary>
+            The main entry point to decrypt packets with the packet twisting algorithm.
+            </summary>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketTwister.PacketTwistRunner.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:MUnique.OpenMU.Network.PacketTwister.PacketTwistRunner"/> class.
+            </summary>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketTwister.PacketTwistRunner.Encrypt(System.Span{System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PacketTwister.PacketTwistRunner.Decrypt(System.Span{System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="T:MUnique.OpenMU.Network.PipelinedDecryptor">
+            <summary>
+            Default server implementation of a <see cref="T:MUnique.OpenMU.Network.IPipelinedDecryptor"/> which decrypts incoming data packets.
+            It decrypts with the "simple modulus" algorithm first, and then with the 32 byte XOR-key.
+            </summary>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PipelinedDecryptor.#ctor(System.IO.Pipelines.PipeReader)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MUnique.OpenMU.Network.PipelinedDecryptor"/> class.
+            </summary>
+            <param name="source">The source.</param>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PipelinedDecryptor.#ctor(System.IO.Pipelines.PipeReader,MUnique.OpenMU.Network.SimpleModulus.SimpleModulusKeys,System.Byte[])">
+            <summary>
+            Initializes a new instance of the <see cref="T:MUnique.OpenMU.Network.PipelinedDecryptor"/> class.
+            </summary>
+            <param name="source">The source.</param>
+            <param name="decryptionKeys">The decryption keys.</param>
+            <param name="xor32Key">The xor32 key.</param>
+        </member>
+        <member name="T:MUnique.OpenMU.Network.PipelinedEncryptor">
+            <summary>
+            Default server implementation of a <see cref="T:MUnique.OpenMU.Network.IPipelinedEncryptor"/>.
+            It encrypts 0xC3 and 0xC4-packets with the "simple modulus" algorithm and writes through every other packet types.
+            </summary>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PipelinedEncryptor.#ctor(System.IO.Pipelines.PipeWriter)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MUnique.OpenMU.Network.PipelinedEncryptor"/> class.
+            </summary>
+            <param name="target">The target pipe writer.</param>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PipelinedEncryptor.#ctor(System.IO.Pipelines.PipeWriter,System.UInt32[])">
+            <summary>
+            Initializes a new instance of the <see cref="T:MUnique.OpenMU.Network.PipelinedEncryptor"/> class.
+            </summary>
+            <param name="target">The target pipe writer.</param>
+            <param name="encryptionKeys">The encryption keys.</param>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PipelinedEncryptor.#ctor(System.IO.Pipelines.PipeWriter,MUnique.OpenMU.Network.SimpleModulus.SimpleModulusKeys)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MUnique.OpenMU.Network.PipelinedEncryptor"/> class.
+            </summary>
+            <param name="target">The target pipe writer.</param>
+            <param name="encryptionKeys">The encryption keys.</param>
+        </member>
+        <member name="T:MUnique.OpenMU.Network.PipeWriterExtension">
+            <summary>
+            Extensions for <see cref="T:System.IO.Pipelines.PipeWriter"/>.
+            </summary>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PipeWriterExtension.AdvanceSafely(System.IO.Pipelines.PipeWriter,System.Int32)">
+            <summary>
+            Advances the <see cref="T:System.IO.Pipelines.PipeWriter"/> and catches possible errors.
+            </summary>
+            <param name="pipeWriter">The <see cref="T:System.IO.Pipelines.PipeWriter"/>.</param>
+            <param name="bytes">The number of data items written to the <see cref="T:System.Span`1" /> or <see cref="T:System.Memory`1" />.</param>
+        </member>
+        <member name="T:MUnique.OpenMU.Network.PlugIns.ClientLanguage">
+            <summary>
+            The language of the client.
+            Webzen released clients to different countries, with slightly different network protocol, mostly different header values.
+            </summary>
+        </member>
+        <member name="F:MUnique.OpenMU.Network.PlugIns.ClientLanguage.Invariant">
+            <summary>
+            Invariant client language. A plugin marked with this value is compatible with any client.
+            </summary>
+        </member>
+        <member name="F:MUnique.OpenMU.Network.PlugIns.ClientLanguage.English">
+            <summary>
+            The english client language. A plugin marked with this value is compatible only with the english (GMO) client.
+            </summary>
+        </member>
+        <member name="F:MUnique.OpenMU.Network.PlugIns.ClientLanguage.Japanese">
+            <summary>
+            The japanese client language. A plugin marked with this value is compatible only with the japanese client.
+            </summary>
+        </member>
+        <member name="F:MUnique.OpenMU.Network.PlugIns.ClientLanguage.Vietnamese">
+            <summary>
+            The vietnamese client language. A plugin marked with this value is compatible only with the vietnamese client.
+            </summary>
+        </member>
+        <member name="F:MUnique.OpenMU.Network.PlugIns.ClientLanguage.Filipino">
+            <summary>
+            The filipino client language. A plugin marked with this value is compatible only with the filipino client.
+            </summary>
+        </member>
+        <member name="F:MUnique.OpenMU.Network.PlugIns.ClientLanguage.Chinese">
+            <summary>
+            The chinese client language. A plugin marked with this value is compatible only with the chinese client.
+            </summary>
+        </member>
+        <member name="F:MUnique.OpenMU.Network.PlugIns.ClientLanguage.Korean">
+            <summary>
+            The korean client language. A plugin marked with this value is compatible only with the korean client.
+            </summary>
+        </member>
+        <member name="F:MUnique.OpenMU.Network.PlugIns.ClientLanguage.Thai">
+            <summary>
+            The thai client language. A plugin marked with this value is compatible only with the thai client.
+            </summary>
+        </member>
+        <member name="T:MUnique.OpenMU.Network.PlugIns.ClientVersion">
+            <summary>
+            A definition about a client version.
+            </summary>
+            <param name="Season">The season.</param>
+            <param name="Episode">The episode.</param>
+            <param name="Language">The language.</param>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PlugIns.ClientVersion.#ctor(System.Byte,System.Byte,MUnique.OpenMU.Network.PlugIns.ClientLanguage)">
+            <summary>
+            A definition about a client version.
+            </summary>
+            <param name="Season">The season.</param>
+            <param name="Episode">The episode.</param>
+            <param name="Language">The language.</param>
+        </member>
+        <member name="P:MUnique.OpenMU.Network.PlugIns.ClientVersion.Season">
+            <summary>The season.</summary>
+        </member>
+        <member name="P:MUnique.OpenMU.Network.PlugIns.ClientVersion.Episode">
+            <summary>The episode.</summary>
+        </member>
+        <member name="P:MUnique.OpenMU.Network.PlugIns.ClientVersion.Language">
+            <summary>The language.</summary>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PlugIns.ClientVersion.op_GreaterThan(MUnique.OpenMU.Network.PlugIns.ClientVersion,MUnique.OpenMU.Network.PlugIns.ClientVersion)">
+            <summary>
+            Implements the operator &gt;.
+            </summary>
+            <param name="left">The left.</param>
+            <param name="right">The right.</param>
+            <returns>
+            The result of the operator.
+            </returns>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PlugIns.ClientVersion.op_GreaterThanOrEqual(MUnique.OpenMU.Network.PlugIns.ClientVersion,MUnique.OpenMU.Network.PlugIns.ClientVersion)">
+            <summary>
+            Implements the operator &gt;=.
+            </summary>
+            <param name="left">The left.</param>
+            <param name="right">The right.</param>
+            <returns>
+            The result of the operator.
+            </returns>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PlugIns.ClientVersion.op_LessThan(MUnique.OpenMU.Network.PlugIns.ClientVersion,MUnique.OpenMU.Network.PlugIns.ClientVersion)">
+            <summary>
+            Implements the operator &lt;.
+            </summary>
+            <param name="left">The left.</param>
+            <param name="right">The right.</param>
+            <returns>
+            The result of the operator.
+            </returns>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PlugIns.ClientVersion.op_LessThanOrEqual(MUnique.OpenMU.Network.PlugIns.ClientVersion,MUnique.OpenMU.Network.PlugIns.ClientVersion)">
+            <summary>
+            Implements the operator &lt;=.
+            </summary>
+            <param name="left">The left.</param>
+            <param name="right">The right.</param>
+            <returns>
+            The result of the operator.
+            </returns>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PlugIns.ClientVersion.CompareTo(MUnique.OpenMU.Network.PlugIns.ClientVersion)">
+            <inheritdoc />
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PlugIns.ClientVersion.CompareTo(System.Object)">
+            <inheritdoc/>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PlugIns.ClientVersion.ToString">
+            <inheritdoc />
+        </member>
+        <member name="T:MUnique.OpenMU.Network.PlugIns.DataDirection">
+            <summary>
+            The direction of the data flow.
+            </summary>
+        </member>
+        <member name="F:MUnique.OpenMU.Network.PlugIns.DataDirection.ClientToServer">
+            <summary>
+            The data is sent from the client to the server.
+            </summary>
+        </member>
+        <member name="F:MUnique.OpenMU.Network.PlugIns.DataDirection.ServerToClient">
+            <summary>
+            The data is sent from the server to the client.
+            </summary>
+        </member>
+        <member name="T:MUnique.OpenMU.Network.PlugIns.INetworkEncryptionFactoryPlugIn">
+            <summary>
+            A strategy plugin interface for plugins which provide network packet encryptors and decryptors for a specific game client version.
+            </summary>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PlugIns.INetworkEncryptionFactoryPlugIn.CreateDecryptor(System.IO.Pipelines.PipeReader,MUnique.OpenMU.Network.PlugIns.DataDirection)">
+            <summary>
+            Creates a <see cref="T:MUnique.OpenMU.Network.IPipelinedDecryptor"/> for the specified source.
+            </summary>
+            <param name="source">The source.</param>
+            <param name="direction">The direction of the data flow.</param>
+            <returns>The created decryptor.</returns>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PlugIns.INetworkEncryptionFactoryPlugIn.CreateEncryptor(System.IO.Pipelines.PipeWriter,MUnique.OpenMU.Network.PlugIns.DataDirection)">
+            <summary>
+            Creates a <see cref="T:MUnique.OpenMU.Network.IPipelinedEncryptor"/> for the specified target.
+            </summary>
+            <param name="target">The target.</param>
+            /// <param name="direction">The direction of the data flow.</param>
+            <returns>The created encryptor.</returns>
+        </member>
+        <member name="T:MUnique.OpenMU.Network.PlugIns.OpenSourceClientNetworkEncryptionFactoryPlugIn">
+            <summary>
+            A plugin which provides network encryptors and decryptors for the english open source game clients of season 6 episode 3, version 2.04d.
+            </summary>
+        </member>
+        <member name="P:MUnique.OpenMU.Network.PlugIns.OpenSourceClientNetworkEncryptionFactoryPlugIn.Key">
+            <inheritdoc />
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PlugIns.OpenSourceClientNetworkEncryptionFactoryPlugIn.CreateEncryptor(System.IO.Pipelines.PipeWriter,MUnique.OpenMU.Network.PlugIns.DataDirection)">
+            <inheritdoc />
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PlugIns.OpenSourceClientNetworkEncryptionFactoryPlugIn.CreateDecryptor(System.IO.Pipelines.PipeReader,MUnique.OpenMU.Network.PlugIns.DataDirection)">
+            <inheritdoc />
+        </member>
+        <member name="T:MUnique.OpenMU.Network.PlugIns.PreSeason6NetworkEncryptionFactoryPlugIn">
+            <summary>
+            A plugin which provides network encryptors and decryptors for game clients before season 6.
+            </summary>
+            <remarks>
+            The simple modulus keys were never changed, so the default keys of season 6 work here without changes.
+            For the Xor32 key it's different. During season 6 on GMO, Webzen desperately changed them in a regular manner - sometimes
+            every weekly maintenance. Needless to say, calculating the new key was a matter of seconds and provided no protection from skilled hackers at all.
+            </remarks>
+        </member>
+        <member name="F:MUnique.OpenMU.Network.PlugIns.PreSeason6NetworkEncryptionFactoryPlugIn.Xor32Key">
+            <summary>
+            The xor32 key for all clients before season 6.
+            </summary>
+        </member>
+        <member name="P:MUnique.OpenMU.Network.PlugIns.PreSeason6NetworkEncryptionFactoryPlugIn.Key">
+            <inheritdoc />
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PlugIns.PreSeason6NetworkEncryptionFactoryPlugIn.CreateEncryptor(System.IO.Pipelines.PipeWriter,MUnique.OpenMU.Network.PlugIns.DataDirection)">
+            <inheritdoc />
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PlugIns.PreSeason6NetworkEncryptionFactoryPlugIn.CreateDecryptor(System.IO.Pipelines.PipeReader,MUnique.OpenMU.Network.PlugIns.DataDirection)">
+            <inheritdoc />
+        </member>
+        <member name="T:MUnique.OpenMU.Network.PlugIns.Season6Episode3NetworkEncryptionFactoryPlugIn">
+            <summary>
+            A plugin which provides network encryptors and decryptors for english game clients of season 6 episode 3, version 1.04d.
+            </summary>
+        </member>
+        <member name="P:MUnique.OpenMU.Network.PlugIns.Season6Episode3NetworkEncryptionFactoryPlugIn.Key">
+            <inheritdoc />
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PlugIns.Season6Episode3NetworkEncryptionFactoryPlugIn.CreateEncryptor(System.IO.Pipelines.PipeWriter,MUnique.OpenMU.Network.PlugIns.DataDirection)">
+            <inheritdoc />
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PlugIns.Season6Episode3NetworkEncryptionFactoryPlugIn.CreateDecryptor(System.IO.Pipelines.PipeReader,MUnique.OpenMU.Network.PlugIns.DataDirection)">
+            <inheritdoc />
+        </member>
+        <member name="T:MUnique.OpenMU.Network.PlugIns.Version075NetworkEncryptionFactoryPlugIn">
+            <summary>
+            A plugin which provides network encryptors and decryptors for game clients of version 0.75 (server version 0.65).
+            </summary>
+            <remarks>
+            This early and very old version doesn't seem to have xor 32 encryption yet.
+            However, it uses simple modulus with some other keys.
+            </remarks>
+        </member>
+        <member name="F:MUnique.OpenMU.Network.PlugIns.Version075NetworkEncryptionFactoryPlugIn.ClientToServerKeys">
+            <summary>
+            The simple modulus keys which are used to transfer data from client to server.
+            </summary>
+            <remarks>
+            Enc1.dat (client file):
+            Modulus: 102510, 92475, 128027, 81329, 70183, 106846, 85665, 114515, 212247, 82188, 154403, 71042, 122076, 157628, 74267, 110930
+            Crypt: 24347, 21878, 31058, 35010, 15375, 24555, 15976, 18344, 26249, 24973, 10565, 12143, 6481, 21283, 21147, 30327
+            XOR: 2573, 25253, 28177, 14604, 17198, 36180, 26560, 26251, 31434, 5415, 30023, 60392, 23094, 3763, 24151, 8640
+            Calculated Crypt Key: 33683, 33092, 21827, 3905, 1269, 2019, 27706, 35839, 10730, 34033, 22258, 32587, 29629, 25211, 2353, 6873.
+            </remarks>
+        </member>
+        <member name="F:MUnique.OpenMU.Network.PlugIns.Version075NetworkEncryptionFactoryPlugIn.ServerToClientKeys">
+            <summary>
+            The simple modulus keys which are used to transfer data from server to client.
+            </summary>
+            <remarks>
+            Dec2.dat (client file):
+            Modulus: 85408, 122071, 147588, 136442, 78598, 187476, 81823, 118486, 71788, 107340, 115009, 103863, 82682, 71536, 97053, 170379
+            Crypt: 32265, 27110, 8593, 9807, 46581, 19561, 30064, 13133, 20169, 24647, 7162, 28304, 40819, 44985, 19577, 1178
+            XOR: 31800, 64655, 7620, 59986, 36846, 57613, 50524, 22089, 23951, 62961, 18047, 1584, 53418, 60300, 54445, 2206
+            Calculated Crypt Key: 23289, 24896, 28597, 12911, 11889, 6661, 27698, 28699, 35789, 4403, 11032, 24164, 17661, 30793, 21347, 5930.
+            </remarks>
+        </member>
+        <member name="P:MUnique.OpenMU.Network.PlugIns.Version075NetworkEncryptionFactoryPlugIn.Key">
+            <inheritdoc />
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PlugIns.Version075NetworkEncryptionFactoryPlugIn.CreateEncryptor(System.IO.Pipelines.PipeWriter,MUnique.OpenMU.Network.PlugIns.DataDirection)">
+            <inheritdoc />
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PlugIns.Version075NetworkEncryptionFactoryPlugIn.CreateDecryptor(System.IO.Pipelines.PipeReader,MUnique.OpenMU.Network.PlugIns.DataDirection)">
+            <inheritdoc />
+        </member>
+        <member name="T:MUnique.OpenMU.Network.Properties.PlugInResources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:MUnique.OpenMU.Network.Properties.PlugInResources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:MUnique.OpenMU.Network.Properties.PlugInResources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:MUnique.OpenMU.Network.Properties.PlugInResources.OpenSourceClientNetworkEncryptionFactoryPlugIn_Description">
+            <summary>
+              Looks up a localized string similar to A plugin which provides network encryptors and decryptors for the english open source game clients of season 6 episode 3, version 2.04d.
+            </summary>
+        </member>
+        <member name="P:MUnique.OpenMU.Network.Properties.PlugInResources.OpenSourceClientNetworkEncryptionFactoryPlugIn_Name">
+            <summary>
+              Looks up a localized string similar to Network Encryption - Season 6 Episode 3, Open Source Client.
+            </summary>
+        </member>
+        <member name="P:MUnique.OpenMU.Network.Properties.PlugInResources.PreSeason6NetworkEncryptionFactoryPlugIn_Description">
+            <summary>
+              Looks up a localized string similar to A plugin which provides network encryptors and decryptors for game clients before season 6..
+            </summary>
+        </member>
+        <member name="P:MUnique.OpenMU.Network.Properties.PlugInResources.PreSeason6NetworkEncryptionFactoryPlugIn_Name">
+            <summary>
+              Looks up a localized string similar to Network Encryption - Before Season 6.
+            </summary>
+        </member>
+        <member name="P:MUnique.OpenMU.Network.Properties.PlugInResources.Season6Episode3NetworkEncryptionFactoryPlugIn_Description">
+            <summary>
+              Looks up a localized string similar to A plugin which provides network encryptors and decryptors for english game clients of season 6 episode 3, version 1.04d.
+            </summary>
+        </member>
+        <member name="P:MUnique.OpenMU.Network.Properties.PlugInResources.Season6Episode3NetworkEncryptionFactoryPlugIn_Name">
+            <summary>
+              Looks up a localized string similar to Network Encryption - Season 6 Episode 3, 1.04d, ENG.
+            </summary>
+        </member>
+        <member name="P:MUnique.OpenMU.Network.Properties.PlugInResources.Version075NetworkEncryptionFactoryPlugIn_Description">
+            <summary>
+              Looks up a localized string similar to A plugin which provides network encryptors and decryptors for game clients of version 0.75 (server version 0.65).
+            </summary>
+        </member>
+        <member name="P:MUnique.OpenMU.Network.Properties.PlugInResources.Version075NetworkEncryptionFactoryPlugIn_Name">
+            <summary>
+              Looks up a localized string similar to Network Encryption - 0.75.
+            </summary>
+        </member>
+        <member name="T:MUnique.OpenMU.Network.Properties.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:MUnique.OpenMU.Network.Properties.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:MUnique.OpenMU.Network.Properties.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:MUnique.OpenMU.Network.Properties.Resources.IpResolverType_Auto_Description">
+            <summary>
+              Looks up a localized string similar to The IP is detected automatically by considering the environment. No parameter required..
+            </summary>
+        </member>
+        <member name="P:MUnique.OpenMU.Network.Properties.Resources.IpResolverType_Auto_Name">
+            <summary>
+              Looks up a localized string similar to Automatic.
+            </summary>
+        </member>
+        <member name="P:MUnique.OpenMU.Network.Properties.Resources.IpResolverType_Custom_Description">
+            <summary>
+              Looks up a localized string similar to The IP or a host name can be set manually. Use this, if the other options don&apos;t work for you..
+            </summary>
+        </member>
+        <member name="P:MUnique.OpenMU.Network.Properties.Resources.IpResolverType_Custom_Name">
+            <summary>
+              Looks up a localized string similar to Custom.
+            </summary>
+        </member>
+        <member name="P:MUnique.OpenMU.Network.Properties.Resources.IpResolverType_Local_Description">
+            <summary>
+              Looks up a localized string similar to The IP is detected by asking the DNS about the IP of the own host name. The first IP is used. No parameter required. Use this, if you want to use the server within a local LAN, e.g. at home..
+            </summary>
+        </member>
+        <member name="P:MUnique.OpenMU.Network.Properties.Resources.IpResolverType_Local_Name">
+            <summary>
+              Looks up a localized string similar to Local.
+            </summary>
+        </member>
+        <member name="P:MUnique.OpenMU.Network.Properties.Resources.IpResolverType_Loopback_Description">
+            <summary>
+              Looks up a localized string similar to The IP is resolved as &apos;127.127.127.127&apos;. No parameter required. Use this, if you want to use the server and client just within your own computer, e.g. during development..
+            </summary>
+        </member>
+        <member name="P:MUnique.OpenMU.Network.Properties.Resources.IpResolverType_Loopback_Name">
+            <summary>
+              Looks up a localized string similar to Loopback.
+            </summary>
+        </member>
+        <member name="P:MUnique.OpenMU.Network.Properties.Resources.IpResolverType_Public_Description">
+            <summary>
+              Looks up a localized string similar to The IP is detected by asking an external service (https://www.ipify.org/) about the own IP. No parameter required. Use this, when the server is running on a server and should be reachable from the internet. Firewall is required to be opened for the ports of game, connect and chat servers..
+            </summary>
+        </member>
+        <member name="P:MUnique.OpenMU.Network.Properties.Resources.IpResolverType_Public_Name">
+            <summary>
+              Looks up a localized string similar to Public.
+            </summary>
+        </member>
+        <member name="T:MUnique.OpenMU.Network.PublicIpResolver">
+            <summary>
+            Resolves the own ip address by calling an external API to get the public <see cref="T:System.Net.IPAddress"/>.
+            </summary>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PublicIpResolver.#ctor(Microsoft.Extensions.Logging.ILogger{MUnique.OpenMU.Network.PublicIpResolver})">
+            <summary>
+            Initializes a new instance of the <see cref="T:MUnique.OpenMU.Network.PublicIpResolver"/> class.
+            </summary>
+            <param name="logger">The logger.</param>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.PublicIpResolver.ResolveIPv4Async">
+            <summary>
+            Gets the public IPv4 address with the help of the following api: https://www.ipify.org/.
+            </summary>
+            <returns>The public IPv4 address.</returns>
+        </member>
+        <member name="T:MUnique.OpenMU.Network.SimpleModulus.InvalidBlockChecksumException">
+            <summary>
+            Exception which occurs when a block contains an invalid checksum.
+            </summary>
+            <seealso cref="T:System.Exception" />
+        </member>
+        <member name="M:MUnique.OpenMU.Network.SimpleModulus.InvalidBlockChecksumException.#ctor(System.Byte,System.Byte)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MUnique.OpenMU.Network.SimpleModulus.InvalidBlockChecksumException"/> class.
+            </summary>
+            <param name="actualChecksum">The actual checksum.</param>
+            <param name="expectedChecksum">The expected checksum.</param>
+        </member>
+        <member name="T:MUnique.OpenMU.Network.SimpleModulus.InvalidBlockSizeException">
+            <summary>
+            Exception which occurs when a block contains an invalid size.
+            </summary>
+            <seealso cref="T:System.Exception" />
+        </member>
+        <member name="M:MUnique.OpenMU.Network.SimpleModulus.InvalidBlockSizeException.#ctor(System.Byte,System.Int32)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MUnique.OpenMU.Network.SimpleModulus.InvalidBlockSizeException"/> class.
+            </summary>
+            <param name="actualSize">The actual size found in the block.</param>
+            <param name="maximumSize">The expected maximum size.</param>
+        </member>
+        <member name="T:MUnique.OpenMU.Network.SimpleModulus.InvalidPacketCounterException">
+            <summary>
+            This exception occurs when the received packet counter (a value between 0 and 255) doesn't match the expectation of the <see cref="T:MUnique.OpenMU.Network.SimpleModulus.PipelinedSimpleModulusDecryptor"/>.
+            </summary>
+            <seealso cref="T:System.Exception" />
+        </member>
+        <member name="M:MUnique.OpenMU.Network.SimpleModulus.InvalidPacketCounterException.#ctor(System.Byte,System.Byte)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MUnique.OpenMU.Network.SimpleModulus.InvalidPacketCounterException"/> class.
+            </summary>
+            <param name="actual">The actual.</param>
+            <param name="expected">The expected.</param>
+        </member>
+        <member name="P:MUnique.OpenMU.Network.SimpleModulus.InvalidPacketCounterException.Message">
+            <inheritdoc />
+        </member>
+        <member name="T:MUnique.OpenMU.Network.SimpleModulus.PipelinedSimpleModulusBase">
+            <summary>
+            The base class for the "simple modulus" encryption.
+            </summary>
+        </member>
+        <member name="F:MUnique.OpenMU.Network.SimpleModulus.PipelinedSimpleModulusBase.BlockSizeXorKey">
+            <summary>
+            The xor key which is used as to 'encrypt' the size of each block.
+            </summary>
+        </member>
+        <member name="F:MUnique.OpenMU.Network.SimpleModulus.PipelinedSimpleModulusBase.BlockCheckSumXorKey">
+            <summary>
+            The xor key which is used as to 'encrypt' the checksum of each encrypted block.
+            </summary>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.SimpleModulus.PipelinedSimpleModulusBase.#ctor(MUnique.OpenMU.Network.SimpleModulus.PipelinedSimpleModulusBase.Variant)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MUnique.OpenMU.Network.SimpleModulus.PipelinedSimpleModulusBase"/> class.
+            </summary>
+            <param name="variant">Variant of the algorithm.</param>
+        </member>
+        <member name="T:MUnique.OpenMU.Network.SimpleModulus.PipelinedSimpleModulusBase.Variant">
+            <summary>
+            The variant of the algorithm.
+            </summary>
+        </member>
+        <member name="F:MUnique.OpenMU.Network.SimpleModulus.PipelinedSimpleModulusBase.Variant.New">
+            <summary>
+            The newer variant, where the unencrypted block size is 8 bytes, and encrypted is 11 bytes.
+            Uses a counter.
+            </summary>
+        </member>
+        <member name="F:MUnique.OpenMU.Network.SimpleModulus.PipelinedSimpleModulusBase.Variant.Old">
+            <summary>
+            The older variant, where the unencrypted block size is 32 bytes and encrypted is 38 bytes.
+            Doesn't use a counter.
+            </summary>
+        </member>
+        <member name="P:MUnique.OpenMU.Network.SimpleModulus.PipelinedSimpleModulusBase.DecryptedBlockSize">
+            <summary>
+            Gets the decrypted block size in bytes.
+            </summary>
+        </member>
+        <member name="P:MUnique.OpenMU.Network.SimpleModulus.PipelinedSimpleModulusBase.EncryptedBlockSize">
+            <summary>
+            Gets the encrypted block size in bytes.
+            It's bigger than the decrypted size, because it contains the length of the actual data of the block and a checksum.
+            Basically, you can calculate it by <see cref="P:MUnique.OpenMU.Network.SimpleModulus.PipelinedSimpleModulusBase.DecryptedBlockSize"/> / 8 bits * 10 bits + 2 bytes.
+            </summary>
+        </member>
+        <member name="P:MUnique.OpenMU.Network.SimpleModulus.PipelinedSimpleModulusBase.Counter">
+            <summary>
+            Gets the counter.
+            </summary>
+        </member>
+        <member name="P:MUnique.OpenMU.Network.SimpleModulus.PipelinedSimpleModulusBase.EncryptionResult">
+            <summary>
+            Gets the ring buffer.
+            </summary>
+        </member>
+        <member name="P:MUnique.OpenMU.Network.SimpleModulus.PipelinedSimpleModulusBase.HeaderBuffer">
+            <summary>
+            Gets the header buffer of the currently read packet.
+            </summary>
+        </member>
+        <member name="P:MUnique.OpenMU.Network.SimpleModulus.PipelinedSimpleModulusBase.Pipe">
+            <summary>
+            Gets the pipe which is either the target (for the encryptor) or source (for the decryptor) for or of the encrypted packets.
+            </summary>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.SimpleModulus.PipelinedSimpleModulusBase.Reset">
+            <summary>
+            Resets this instance.
+            </summary>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.SimpleModulus.PipelinedSimpleModulusBase.GetByteOffset(System.Int32)">
+            <summary>
+            Gets the byte offset in the encrypted block buffer based on the index of <see cref="P:MUnique.OpenMU.Network.SimpleModulus.PipelinedSimpleModulusBase.EncryptionResult"/>.
+            </summary>
+            <param name="resultIndex">Index of the <see cref="P:MUnique.OpenMU.Network.SimpleModulus.PipelinedSimpleModulusBase.EncryptionResult"/>.</param>
+            <returns>The byte offset in the encrypted block buffer based on the index of <see cref="P:MUnique.OpenMU.Network.SimpleModulus.PipelinedSimpleModulusBase.EncryptionResult"/>.</returns>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.SimpleModulus.PipelinedSimpleModulusBase.GetBitOffset(System.Int32)">
+            <summary>
+            Gets the bit offset in the encrypted block buffer based on the index of <see cref="P:MUnique.OpenMU.Network.SimpleModulus.PipelinedSimpleModulusBase.EncryptionResult"/>.
+            </summary>
+            <param name="resultIndex">Index of the <see cref="P:MUnique.OpenMU.Network.SimpleModulus.PipelinedSimpleModulusBase.EncryptionResult"/>.</param>
+            <returns>The bit offset in the encrypted block buffer based on the index of <see cref="P:MUnique.OpenMU.Network.SimpleModulus.PipelinedSimpleModulusBase.EncryptionResult"/>.</returns>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.SimpleModulus.PipelinedSimpleModulusBase.GetFirstBitMask(System.Int32)">
+            <summary>
+            Gets the bit mask of the first byte (at the index of <see cref="M:MUnique.OpenMU.Network.SimpleModulus.PipelinedSimpleModulusBase.GetByteOffset(System.Int32)"/>) in the encrypted block buffer based on the index of <see cref="P:MUnique.OpenMU.Network.SimpleModulus.PipelinedSimpleModulusBase.EncryptionResult"/>.
+            </summary>
+            <param name="resultIndex">Index of the <see cref="P:MUnique.OpenMU.Network.SimpleModulus.PipelinedSimpleModulusBase.EncryptionResult"/>.</param>
+            <returns>The the bit mask of the first byte (at the index of <see cref="M:MUnique.OpenMU.Network.SimpleModulus.PipelinedSimpleModulusBase.GetByteOffset(System.Int32)"/>) in the encrypted block buffer based on the index of <see cref="P:MUnique.OpenMU.Network.SimpleModulus.PipelinedSimpleModulusBase.EncryptionResult"/>.</returns>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.SimpleModulus.PipelinedSimpleModulusBase.GetRemainderBitMask(System.Int32)">
+            <summary>
+            Gets the bit mask of the last byte (at the index of <see cref="M:MUnique.OpenMU.Network.SimpleModulus.PipelinedSimpleModulusBase.GetByteOffset(System.Int32)"/>) in the encrypted block buffer based on the index of <see cref="P:MUnique.OpenMU.Network.SimpleModulus.PipelinedSimpleModulusBase.EncryptionResult"/>,
+            just for the last remainder of the encryption result value. The remainder is basically the first 2 bits, e.g. when the value is <c>0x2FFFF</c>, the remainder is the 2 in front.
+            </summary>
+            <param name="resultIndex">Index of the <see cref="P:MUnique.OpenMU.Network.SimpleModulus.PipelinedSimpleModulusBase.EncryptionResult"/>.</param>
+            <returns>The the bit mask of the first byte (at the index of <see cref="M:MUnique.OpenMU.Network.SimpleModulus.PipelinedSimpleModulusBase.GetByteOffset(System.Int32)"/>) in the encrypted block buffer based on the index of <see cref="P:MUnique.OpenMU.Network.SimpleModulus.PipelinedSimpleModulusBase.EncryptionResult"/>.</returns>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.SimpleModulus.PipelinedSimpleModulusBase.CopyDataIntoWriter(System.IO.Pipelines.PipeWriter,System.Buffers.ReadOnlySequence{System.Byte})">
+            <summary>
+            Copies the data of the packet into the target writer, without flushing it yet.
+            </summary>
+            <param name="target">The target writer.</param>
+            <param name="packet">The packet.</param>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.SimpleModulus.PipelinedSimpleModulusBase.GetContentSize(System.Span{System.Byte},System.Boolean)">
+            <summary>
+            Gets the size of the content.
+            </summary>
+            <param name="packet">The packet.</param>
+            <param name="decrypted">if set to <c>true</c> it is decrypted. Encrypted packets additionally contain a counter.</param>
+            <returns>The size of the actual content.</returns>
+        </member>
+        <member name="T:MUnique.OpenMU.Network.SimpleModulus.PipelinedSimpleModulusDecryptor">
+            <summary>
+            A decryptor which decrypts 0xC3 and 0xC4-packets with the "simple modulus" algorithm.
+            </summary>
+        </member>
+        <member name="F:MUnique.OpenMU.Network.SimpleModulus.PipelinedSimpleModulusDecryptor.DefaultServerKey">
+            <summary>
+            The default server side decryption key. The corresponding encryption key is <see cref="F:MUnique.OpenMU.Network.SimpleModulus.PipelinedSimpleModulusEncryptor.DefaultClientKey"/>.
+            </summary>
+        </member>
+        <member name="F:MUnique.OpenMU.Network.SimpleModulus.PipelinedSimpleModulusDecryptor.DefaultClientKey">
+            <summary>
+            The default client side decryption key. The corresponding encryption key is <see cref="F:MUnique.OpenMU.Network.SimpleModulus.PipelinedSimpleModulusEncryptor.DefaultServerKey"/>.
+            </summary>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.SimpleModulus.PipelinedSimpleModulusDecryptor.#ctor(System.IO.Pipelines.PipeReader)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MUnique.OpenMU.Network.SimpleModulus.PipelinedSimpleModulusDecryptor"/> class with standard keys.
+            </summary>
+            <param name="source">The source.</param>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.SimpleModulus.PipelinedSimpleModulusDecryptor.#ctor(System.IO.Pipelines.PipeReader,System.UInt32[])">
+            <summary>
+            Initializes a new instance of the <see cref="T:MUnique.OpenMU.Network.SimpleModulus.PipelinedSimpleModulusDecryptor"/> class.
+            </summary>
+            <param name="source">The source.</param>
+            <param name="decryptionKey">The decryption key.</param>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.SimpleModulus.PipelinedSimpleModulusDecryptor.#ctor(System.IO.Pipelines.PipeReader,MUnique.OpenMU.Network.SimpleModulus.SimpleModulusKeys)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MUnique.OpenMU.Network.SimpleModulus.PipelinedSimpleModulusDecryptor"/> class.
+            </summary>
+            <param name="source">The source.</param>
+            <param name="decryptionKeys">The decryption keys.</param>
+        </member>
+        <member name="P:MUnique.OpenMU.Network.SimpleModulus.PipelinedSimpleModulusDecryptor.Reader">
+            <inheritdoc/>
+        </member>
+        <member name="P:MUnique.OpenMU.Network.SimpleModulus.PipelinedSimpleModulusDecryptor.AcceptWrongBlockChecksum">
+            <summary>
+            Gets or sets a value indicating whether this decryptor instance accepts wrong block checksum, or throws an exception in this case.
+            </summary>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.SimpleModulus.PipelinedSimpleModulusDecryptor.OnCompleteAsync(System.Exception)">
+            <inheritdoc />
+        </member>
+        <member name="M:MUnique.OpenMU.Network.SimpleModulus.PipelinedSimpleModulusDecryptor.ReadPacketAsync(System.Buffers.ReadOnlySequence{System.Byte})">
+            <summary>
+            Reads the mu online packet.
+            Decrypts the packet and writes it into our pipe.
+            </summary>
+            <param name="packet">The mu online packet.</param>
+            <returns><see langword="true" />, if the flush was successful or not required.<see langword="false" />, if the pipe reader is completed and no longer reading data.</returns>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.SimpleModulus.PipelinedSimpleModulusDecryptor.DecryptBlock(System.Span{System.Byte})">
+            <summary>
+            Decrypts the block.
+            </summary>
+            <param name="outputBuffer">The output buffer array.</param>
+            <returns>The decrypted length of the block.</returns>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.SimpleModulus.PipelinedSimpleModulusDecryptor.DecodeFinal(System.Span{System.Byte})">
+            <summary>
+            Decodes the last block which contains the checksum and the block size.
+            </summary>
+            <param name="outputBuffer">The output buffer array.</param>
+            <returns>The decrypted length of the block.</returns>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.SimpleModulus.PipelinedSimpleModulusDecryptor.GetMaximumDecryptedSize(System.Span{System.Byte})">
+            <summary>
+            Returns the maximum packet size of the packet in decrypted state.
+            (The exact size needs to be decrypted first).
+            </summary>
+            <param name="packet">The encrypted packet.</param>
+            <returns>The maximum packet size of the packet in decrypted state.</returns>
+        </member>
+        <member name="T:MUnique.OpenMU.Network.SimpleModulus.PipelinedSimpleModulusEncryptor">
+            <summary>
+            The standard encryptor (server-side) which encrypts 0xC3 and 0xC4-packets with the "simple modulus" algorithm.
+            </summary>
+            <seealso cref="T:MUnique.OpenMU.Network.SimpleModulus.PipelinedSimpleModulusBase" />
+        </member>
+        <member name="F:MUnique.OpenMU.Network.SimpleModulus.PipelinedSimpleModulusEncryptor.DefaultServerKey">
+            <summary>
+            The default server side encryption key. The corresponding encryption key is <see cref="F:MUnique.OpenMU.Network.SimpleModulus.PipelinedSimpleModulusDecryptor.DefaultClientKey"/>.
+            </summary>
+        </member>
+        <member name="F:MUnique.OpenMU.Network.SimpleModulus.PipelinedSimpleModulusEncryptor.DefaultClientKey">
+            <summary>
+            The default client side decryption key. The corresponding encryption key is <see cref="F:MUnique.OpenMU.Network.SimpleModulus.PipelinedSimpleModulusDecryptor.DefaultServerKey"/>.
+            </summary>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.SimpleModulus.PipelinedSimpleModulusEncryptor.#ctor(System.IO.Pipelines.PipeWriter)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MUnique.OpenMU.Network.SimpleModulus.PipelinedSimpleModulusEncryptor"/> class.
+            </summary>
+            <param name="target">The target pipe writer.</param>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.SimpleModulus.PipelinedSimpleModulusEncryptor.#ctor(System.IO.Pipelines.PipeWriter,System.UInt32[])">
+            <summary>
+            Initializes a new instance of the <see cref="T:MUnique.OpenMU.Network.SimpleModulus.PipelinedSimpleModulusEncryptor"/> class.
+            </summary>
+            <param name="target">The target pipe writer.</param>
+            <param name="encryptionKeys">The encryption keys.</param>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.SimpleModulus.PipelinedSimpleModulusEncryptor.#ctor(System.IO.Pipelines.PipeWriter,MUnique.OpenMU.Network.SimpleModulus.SimpleModulusKeys)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MUnique.OpenMU.Network.SimpleModulus.PipelinedSimpleModulusEncryptor" /> class.
+            </summary>
+            <param name="target">The target pipe writer.</param>
+            <param name="encryptionKeys">The encryption keys.</param>
+        </member>
+        <member name="P:MUnique.OpenMU.Network.SimpleModulus.PipelinedSimpleModulusEncryptor.Writer">
+            <inheritdoc/>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.SimpleModulus.PipelinedSimpleModulusEncryptor.OnCompleteAsync(System.Exception)">
+            <inheritdoc />
+        </member>
+        <member name="M:MUnique.OpenMU.Network.SimpleModulus.PipelinedSimpleModulusEncryptor.ReadPacketAsync(System.Buffers.ReadOnlySequence{System.Byte})">
+            <inheritdoc />
+        </member>
+        <member name="M:MUnique.OpenMU.Network.SimpleModulus.PipelinedSimpleModulusEncryptor.WriteResultToTarget(System.Span{System.Byte},System.Int32,System.UInt32)">
+            <summary>
+            Writes the encryption result into the target span.
+            It basically squeezes the result (4 bytes) into 2 bytes and 2 bits (=18 bits).
+            </summary>
+            <param name="target">The target span.</param>
+            <param name="resultIndex">Index of the result.</param>
+            <param name="result">The encryption result value.</param>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.SimpleModulus.PipelinedSimpleModulusEncryptor.EncryptFinalBlockByte(System.Int32,System.Span{System.Byte})">
+            <summary>
+            Encodes the final part of the block. It contains a checksum and the length of the block, which is needed for decryption.
+            </summary>
+            <param name="blockSize">The size of the block of decrypted data in bytes.</param>
+            <param name="outputBuffer">The output buffer to which the encrypted result will be written.</param>
+        </member>
+        <member name="T:MUnique.OpenMU.Network.SimpleModulus.SimpleModulusKeyGenerator">
+            <summary>
+            A key generator which is able to generate a new pair of encryption/decryption keys.
+            </summary>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.SimpleModulus.SimpleModulusKeyGenerator.GenerateKeysAsync">
+            <summary>
+            Generates a new pair of keys.
+            </summary>
+            <returns>The generated pair of new keys.</returns>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.SimpleModulus.SimpleModulusKeyGenerator.FindOtherKey(System.UInt32[],System.UInt32[])">
+            <summary>
+            Finds the other key when one of the decryption or encryption key is known.
+            It works in both directions, when the encryption key is known and passed, the decryption key is returned and vice versa.
+            This greatly demonstrates the "secureness" of this algorithm...
+            </summary>
+            <param name="modulusKey">The modulus key.</param>
+            <param name="cryptKey">The crypt key.</param>
+            <returns>The other crypt key.</returns>
+        </member>
+        <member name="T:MUnique.OpenMU.Network.SimpleModulus.SimpleModulusKeyGenerator.KeyNotFoundException">
+            <summary>
+            Exception which is thrown when a key is not found for the specified modulus and crypt keys.
+            </summary>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.SimpleModulus.SimpleModulusKeyGenerator.KeyNotFoundException.#ctor(System.UInt32,System.UInt32)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MUnique.OpenMU.Network.SimpleModulus.SimpleModulusKeyGenerator.KeyNotFoundException" /> class.
+            </summary>
+            <param name="modulusKey">The modulus key.</param>
+            <param name="cryptKey">The crypt key.</param>
+        </member>
+        <member name="T:MUnique.OpenMU.Network.SimpleModulus.SimpleModulusKeys">
+            <summary>
+            Class to hold encryption keys for the simple modulus algorithm.
+            </summary>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.SimpleModulus.SimpleModulusKeys.#ctor(System.UInt32[],System.UInt32[],System.UInt32[],System.UInt32[])">
+            <summary>
+            Initializes a new instance of the <see cref="T:MUnique.OpenMU.Network.SimpleModulus.SimpleModulusKeys"/> class.
+            </summary>
+            <param name="modulusKey">The modulus key.</param>
+            <param name="xorKey">The xor key.</param>
+            <param name="encryptKey">The encrypt key.</param>
+            <param name="decryptKey">The decrypt key.</param>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.SimpleModulus.SimpleModulusKeys.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:MUnique.OpenMU.Network.SimpleModulus.SimpleModulusKeys"/> class.
+            </summary>
+        </member>
+        <member name="P:MUnique.OpenMU.Network.SimpleModulus.SimpleModulusKeys.ModulusKey">
+            <summary>
+            Gets the modulus key. These values are used for the modulus operation in the encryption/decryption process.
+            </summary>
+        </member>
+        <member name="P:MUnique.OpenMU.Network.SimpleModulus.SimpleModulusKeys.XorKey">
+            <summary>
+            Gets the xor key. These values are used for a xor operation in the encryption/decryption process.
+            </summary>
+        </member>
+        <member name="P:MUnique.OpenMU.Network.SimpleModulus.SimpleModulusKeys.EncryptKey">
+            <summary>
+            Gets the encryption key. These values are used for the multiplication operation in the encryption process.
+            </summary>
+        </member>
+        <member name="P:MUnique.OpenMU.Network.SimpleModulus.SimpleModulusKeys.DecryptKey">
+            <summary>
+            Gets the decrypt key. These values are used for the multiplication operation in the encryption process.
+            </summary>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.SimpleModulus.SimpleModulusKeys.CreateDecryptionKeys(System.UInt32[])">
+            <summary>
+            Creates an instance of <see cref="T:MUnique.OpenMU.Network.SimpleModulus.SimpleModulusKeys"/> with the crypt key as <see cref="P:MUnique.OpenMU.Network.SimpleModulus.SimpleModulusKeys.DecryptKey"/>.
+            </summary>
+            <param name="decryptionKey">The decryption key with 12 integers.</param>
+            <returns>An instance of <see cref="T:MUnique.OpenMU.Network.SimpleModulus.SimpleModulusKeys"/> with the crypt key as <see cref="P:MUnique.OpenMU.Network.SimpleModulus.SimpleModulusKeys.DecryptKey"/>.</returns>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.SimpleModulus.SimpleModulusKeys.CreateEncryptionKeys(System.UInt32[])">
+            <summary>
+            Creates an instance of <see cref="T:MUnique.OpenMU.Network.SimpleModulus.SimpleModulusKeys"/> with the crypt key as <see cref="P:MUnique.OpenMU.Network.SimpleModulus.SimpleModulusKeys.EncryptKey"/>.
+            </summary>
+            <param name="encryptionKey">The decryption key with 12 integers.</param>
+            <returns>An instance of <see cref="T:MUnique.OpenMU.Network.SimpleModulus.SimpleModulusKeys"/> with the crypt key as <see cref="P:MUnique.OpenMU.Network.SimpleModulus.SimpleModulusKeys.EncryptKey"/>.</returns>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.SimpleModulus.SimpleModulusKeys.ToString">
+            <inheritdoc />
+        </member>
+        <member name="M:MUnique.OpenMU.Network.SimpleModulus.SimpleModulusKeys.GetEncryptionKeys">
+            <summary>
+            Gets the encryption key values for the <see cref="T:MUnique.OpenMU.Network.SimpleModulus.PipelinedSimpleModulusEncryptor"/>.
+            </summary>
+            <returns>The encryption key values for the <see cref="T:MUnique.OpenMU.Network.SimpleModulus.PipelinedSimpleModulusEncryptor"/>.</returns>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.SimpleModulus.SimpleModulusKeys.GetDecryptionKeys">
+            <summary>
+            Gets the decryption key values for the <see cref="T:MUnique.OpenMU.Network.SimpleModulus.PipelinedSimpleModulusDecryptor"/>.
+            </summary>
+            <returns>The decryption key values for the <see cref="T:MUnique.OpenMU.Network.SimpleModulus.PipelinedSimpleModulusDecryptor"/>.</returns>
+        </member>
+        <member name="T:MUnique.OpenMU.Network.SimpleModulus.SimpleModulusKeySerializer">
+            <summary>
+            Serializer to load/save the simple modulus keys into files in the original format of Webzen.
+            </summary>
+        </member>
+        <member name="F:MUnique.OpenMU.Network.SimpleModulus.SimpleModulusKeySerializer._encryptionKeys">
+            <summary>
+            The xor encryption keys which used to "encrypt" and "decrypt" (XOR) the encryption keys to dat files.
+            In newer versions, only the first 4 keys are in use.
+            Older versions use a slightly different SimpleModulus algorithm with 16 keys.
+            </summary>
+        </member>
+        <member name="F:MUnique.OpenMU.Network.SimpleModulus.SimpleModulusKeySerializer._headerOneKey">
+            <summary>
+            The header for key files which contain just one side of the key (encryption or decryption).
+            </summary>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.SimpleModulus.SimpleModulusKeySerializer.Serialize(System.String,System.UInt32[],System.UInt32[],System.UInt32[])">
+            <summary>
+            Serializes (saves) the specified keys to the specified file name.
+            </summary>
+            <param name="fileName">Name of the file.</param>
+            <param name="modKey">The mod key.</param>
+            <param name="key">The key.</param>
+            <param name="xorKey">The xor key.</param>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.SimpleModulus.SimpleModulusKeySerializer.TryDeserialize(System.String,System.UInt32[]@,System.UInt32[]@,System.UInt32[]@)">
+            <summary>
+            Deserializes (loads) the keys from the specified file.
+            </summary>
+            <param name="fileName">Name (and path) of the file.</param>
+            <param name="modulusKey">The modulus key.</param>
+            <param name="key">The key.</param>
+            <param name="xorKey">The xor key.</param>
+            <returns><c>True</c>, if successful; Otherwise, <c>false</c>.</returns>
+        </member>
+        <member name="T:MUnique.OpenMU.Network.StreamExtensions">
+            <summary>
+            Extensions for streams.
+            </summary>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.StreamExtensions.ReadInteger(System.IO.Stream)">
+            <summary>
+            Reads an integer from the current position of a stream.
+            </summary>
+            <param name="stream">The stream.</param>
+            <returns>The integer from the stream.</returns>
+            <exception cref="T:System.IO.EndOfStreamException">Length: {stream.Length}; Position: {stream.Position}.</exception>
+        </member>
+        <member name="T:MUnique.OpenMU.Network.Xor.DefaultKeys">
+            <summary>
+            The default xor keys for encryption and decryption.
+            </summary>
+        </member>
+        <member name="P:MUnique.OpenMU.Network.Xor.DefaultKeys.Xor3Keys">
+            <summary>
+            Gets the default 3 byte long XOR key.
+            </summary>
+            <value>
+            The default 3 byte long XOR key.
+            </value>
+        </member>
+        <member name="P:MUnique.OpenMU.Network.Xor.DefaultKeys.Xor32Key">
+            <summary>
+            Gets the default 32 byte long XOR key.
+            </summary>
+            <value>
+            The default 32 byte long XOR key.
+            </value>
+        </member>
+        <member name="T:MUnique.OpenMU.Network.Xor.PipelinedXor32Decryptor">
+            <summary>
+            Pipelined decryptor which uses a 32 byte key for a xor encryption.
+            It's typically used to decrypt packets sent by the client to the server.
+            </summary>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.Xor.PipelinedXor32Decryptor.#ctor(System.IO.Pipelines.PipeReader)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MUnique.OpenMU.Network.Xor.PipelinedXor32Decryptor"/> class.
+            </summary>
+            <param name="source">The source.</param>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.Xor.PipelinedXor32Decryptor.#ctor(System.IO.Pipelines.PipeReader,System.Byte[])">
+            <summary>
+            Initializes a new instance of the <see cref="T:MUnique.OpenMU.Network.Xor.PipelinedXor32Decryptor"/> class.
+            </summary>
+            <param name="source">The source.</param>
+            <param name="xor32Key">The xor32 key.</param>
+        </member>
+        <member name="P:MUnique.OpenMU.Network.Xor.PipelinedXor32Decryptor.Reader">
+            <inheritdoc/>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.Xor.PipelinedXor32Decryptor.OnCompleteAsync(System.Exception)">
+            <inheritdoc />
+        </member>
+        <member name="M:MUnique.OpenMU.Network.Xor.PipelinedXor32Decryptor.ReadPacketAsync(System.Buffers.ReadOnlySequence{System.Byte})">
+            <summary>
+            Reads the mu online packet.
+            Decrypts the packet and writes it into our pipe.
+            </summary>
+            <param name="packet">The mu online packet.</param>
+            <returns><see langword="true" />, if the flush was successful or not required.<see langword="false" />, if the pipe reader is completed and no longer reading data.</returns>
+        </member>
+        <member name="T:MUnique.OpenMU.Network.Xor.PipelinedXor32Encryptor">
+            <summary>
+            Pipelined encryptor which uses a 32 byte key for a xor encryption.
+            It's typically used to encrypt packet sent by the client to the server.
+            </summary>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.Xor.PipelinedXor32Encryptor.#ctor(System.IO.Pipelines.PipeWriter)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MUnique.OpenMU.Network.Xor.PipelinedXor32Encryptor"/> class.
+            </summary>
+            <param name="target">The target.</param>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.Xor.PipelinedXor32Encryptor.#ctor(System.IO.Pipelines.PipeWriter,System.Byte[])">
+            <summary>
+            Initializes a new instance of the <see cref="T:MUnique.OpenMU.Network.Xor.PipelinedXor32Encryptor"/> class.
+            </summary>
+            <param name="target">The target.</param>
+            /// <param name="xor32Key">The xor32 key.</param>
+        </member>
+        <member name="P:MUnique.OpenMU.Network.Xor.PipelinedXor32Encryptor.Writer">
+            <inheritdoc/>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.Xor.PipelinedXor32Encryptor.OnCompleteAsync(System.Exception)">
+            <inheritdoc />
+        </member>
+        <member name="M:MUnique.OpenMU.Network.Xor.PipelinedXor32Encryptor.ReadPacketAsync(System.Buffers.ReadOnlySequence{System.Byte})">
+            <summary>
+            Reads the mu online packet.
+            Encrypts the packet and writes it into the target.
+            </summary>
+            <param name="packet">The mu online packet.</param>
+            <returns><see langword="true" />, if the flush was successful or not required.<see langword="false" />, if the pipe reader is completed and no longer reading data.</returns>
+        </member>
+        <member name="T:MUnique.OpenMU.Network.Xor.Xor3Decryptor">
+            <summary>
+            A decryptor which XOR-decrypts data using a 3-byte key.
+            </summary>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.Xor.Xor3Decryptor.#ctor(System.Int32)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MUnique.OpenMU.Network.Xor.Xor3Decryptor"/> class.
+            </summary>
+            <param name="startOffset">The start offset.</param>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.Xor.Xor3Decryptor.Decrypt(System.Span{System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="T:MUnique.OpenMU.Network.Xor.Xor3Encryptor">
+            <summary>
+            An encryptor which XOR-encrypts data using a 3-byte key.
+            </summary>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.Xor.Xor3Encryptor.#ctor(System.Int32)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MUnique.OpenMU.Network.Xor.Xor3Encryptor"/> class.
+            </summary>
+            <param name="startOffset">The start offset.</param>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.Xor.Xor3Encryptor.Encrypt(System.Span{System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.Xor.Xor3Encryptor.InternalEncrypt(System.Span{System.Byte})">
+            <summary>
+            Internal encrypt function. XORs each byte with one byte of the 3-byte key.
+            </summary>
+            <param name="data">The data.</param>
+        </member>
+    </members>
+</doc>

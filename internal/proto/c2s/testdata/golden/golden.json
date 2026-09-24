@@ -1,0 +1,12 @@
+[
+  {
+    "file": "c2s_01_ping.hex",
+    "packet": "Ping",
+    "note": "C3+sub; uint32 LE; uint16 LE"
+  },
+  {
+    "file": "c2s_02_public_chat.hex",
+    "packet": "PublicChatMessage",
+    "note": "C1; String[10]; trailing String + null"
+  }
+]

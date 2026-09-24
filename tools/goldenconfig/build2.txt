@@ -1,0 +1,11 @@
+D:\MU\MU开源\开源组合\OpenMU\src\DataModel\Entities\AppearanceData.cs(20,32): warning CS0067: 从不使用事件“AppearanceData.AppearanceChanged” [D:\MU\MU开源\开源组合\OpenMU\src\DataModel\MUnique.OpenMU.DataModel.csproj]
+D:\MU\MU开源\开源组合\OpenMU\src\Persistence\MUnique.OpenMU.Persistence.csproj(45,5): error MSB3073: 命令“dotnet run --project SourceGenerator/MUnique.OpenMU.Persistence.SourceGenerator.csproj -c:Debug MUnique.OpenMU.Persistence "D:\MU\MU开源\开源组合\OpenMU\src\Persistence\BasicModel" --no-build”已退出，代码为 1。
+
+生成失败。
+
+D:\MU\MU开源\开源组合\OpenMU\src\DataModel\Entities\AppearanceData.cs(20,32): warning CS0067: 从不使用事件“AppearanceData.AppearanceChanged” [D:\MU\MU开源\开源组合\OpenMU\src\DataModel\MUnique.OpenMU.DataModel.csproj]
+D:\MU\MU开源\开源组合\OpenMU\src\Persistence\MUnique.OpenMU.Persistence.csproj(45,5): error MSB3073: 命令“dotnet run --project SourceGenerator/MUnique.OpenMU.Persistence.SourceGenerator.csproj -c:Debug MUnique.OpenMU.Persistence "D:\MU\MU开源\开源组合\OpenMU\src\Persistence\BasicModel" --no-build”已退出，代码为 1。
+    1 个警告
+    1 个错误
+
+已用时间 00:01:05.51

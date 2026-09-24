@@ -1,0 +1,42 @@
+[
+  {
+    "file": "01_chat_message.hex",
+    "packet": "ChatMessage",
+    "note": "C1; enum byte; String[10]; trailing String + null"
+  },
+  {
+    "file": "02_weather_status.hex",
+    "packet": "WeatherStatusUpdate",
+    "note": "C1; 4-bit + 4-bit shared byte"
+  },
+  {
+    "file": "03_friend_invitation_result.hex",
+    "packet": "FriendInvitationResult",
+    "note": "C3; boolean bit0; uint32 big-endian"
+  },
+  {
+    "file": "04_game_server_entered.hex",
+    "packet": "GameServerEntered",
+    "note": "C1+sub; default bool; uint16 BE; String[5]"
+  },
+  {
+    "file": "05_master_skill_level.hex",
+    "packet": "MasterSkillLevelUpdate",
+    "note": "C1+sub; bool; uint16 LE; float32 LE x2"
+  },
+  {
+    "file": "06_master_stats.hex",
+    "packet": "MasterStatsUpdate",
+    "note": "C1+sub; uint16 LE; uint64 BE x2"
+  },
+  {
+    "file": "07_muhelper_config.hex",
+    "packet": "MuHelperConfigurationData",
+    "note": "C2; 2-byte BE length=261; Binary[257] zeros"
+  },
+  {
+    "file": "08_character_list.hex",
+    "packet": "CharacterList",
+    "note": "C1+sub; Structure[2] stride=34; 4-bit enum; 4-bit bool; Binary[18] in struct"
+  }
+]

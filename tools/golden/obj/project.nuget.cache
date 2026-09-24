@@ -1,0 +1,22 @@
+{
+  "version": 2,
+  "dgSpecHash": "Ie+8P4GHIzE=",
+  "success": true,
+  "projectFilePath": "D:\\MU\\MU开源\\00MU开源项目组合\\MuGoServer\\tools\\golden\\goldengen.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Administrator\\.nuget\\packages\\microsoft.codeanalysis.analyzers\\3.11.0\\microsoft.codeanalysis.analyzers.3.11.0.nupkg.sha512",
+    "C:\\Users\\Administrator\\.nuget\\packages\\microsoft.codeanalysis.common\\4.14.0\\microsoft.codeanalysis.common.4.14.0.nupkg.sha512",
+    "C:\\Users\\Administrator\\.nuget\\packages\\microsoft.codeanalysis.csharp\\4.14.0\\microsoft.codeanalysis.csharp.4.14.0.nupkg.sha512",
+    "C:\\Users\\Administrator\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\10.0.2\\microsoft.extensions.dependencyinjection.abstractions.10.0.2.nupkg.sha512",
+    "C:\\Users\\Administrator\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\10.0.2\\microsoft.extensions.logging.abstractions.10.0.2.nupkg.sha512",
+    "C:\\Users\\Administrator\\.nuget\\packages\\munique.openmu.network\\0.9.10\\munique.openmu.network.0.9.10.nupkg.sha512",
+    "C:\\Users\\Administrator\\.nuget\\packages\\munique.openmu.network.packets\\0.9.10\\munique.openmu.network.packets.0.9.10.nupkg.sha512",
+    "C:\\Users\\Administrator\\.nuget\\packages\\munique.openmu.plugins\\0.9.10\\munique.openmu.plugins.0.9.10.nupkg.sha512",
+    "C:\\Users\\Administrator\\.nuget\\packages\\nito.asyncex.coordination\\5.1.2\\nito.asyncex.coordination.5.1.2.nupkg.sha512",
+    "C:\\Users\\Administrator\\.nuget\\packages\\nito.asyncex.tasks\\5.1.2\\nito.asyncex.tasks.5.1.2.nupkg.sha512",
+    "C:\\Users\\Administrator\\.nuget\\packages\\nito.collections.deque\\1.1.1\\nito.collections.deque.1.1.1.nupkg.sha512",
+    "C:\\Users\\Administrator\\.nuget\\packages\\nito.disposables\\2.2.1\\nito.disposables.2.2.1.nupkg.sha512",
+    "C:\\Users\\Administrator\\.nuget\\packages\\pipelines.sockets.unofficial\\2.2.8\\pipelines.sockets.unofficial.2.2.8.nupkg.sha512"
+  ],
+  "logs": []
+}

@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <AssemblyName>goldenconfig</AssemblyName>
+    <!-- 用 OpenMU 源工程做 ProjectReference（NuGet 包不含 Initialization）。
+         引用的工程各自解析自己的包版本（OpenMU 目录内有中央包管理）。 -->
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\OpenMU\src\Persistence\Initialization\MUnique.OpenMU.Persistence.Initialization.csproj" />
+    <ProjectReference Include="..\..\..\OpenMU\src\Persistence\InMemory\MUnique.OpenMU.Persistence.InMemory.csproj" />
+    <!-- TRIM-09：大师树导出要调原版 GameServer/RemoteView/MasterSkillExtensions.GetMasterSkillIndex
+         （(职业, 技能号) → 客户端技能树槽位，294 条硬编码），它在 GameServer 程序集里。 -->
+    <ProjectReference Include="..\..\..\OpenMU\src\GameServer\MUnique.OpenMU.GameServer.csproj" />
+  </ItemGroup>
+
+</Project>

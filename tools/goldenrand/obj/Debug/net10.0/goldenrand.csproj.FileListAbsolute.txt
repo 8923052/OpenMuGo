@@ -1,0 +1,14 @@
+D:\MU\MU开源\开源组合\OpenMUGo\tools\goldenrand\bin\Debug\net10.0\goldenrand.exe
+D:\MU\MU开源\开源组合\OpenMUGo\tools\goldenrand\bin\Debug\net10.0\goldenrand.deps.json
+D:\MU\MU开源\开源组合\OpenMUGo\tools\goldenrand\bin\Debug\net10.0\goldenrand.runtimeconfig.json
+D:\MU\MU开源\开源组合\OpenMUGo\tools\goldenrand\bin\Debug\net10.0\goldenrand.dll
+D:\MU\MU开源\开源组合\OpenMUGo\tools\goldenrand\bin\Debug\net10.0\goldenrand.pdb
+D:\MU\MU开源\开源组合\OpenMUGo\tools\goldenrand\obj\Debug\net10.0\goldenrand.GeneratedMSBuildEditorConfig.editorconfig
+D:\MU\MU开源\开源组合\OpenMUGo\tools\goldenrand\obj\Debug\net10.0\goldenrand.AssemblyInfoInputs.cache
+D:\MU\MU开源\开源组合\OpenMUGo\tools\goldenrand\obj\Debug\net10.0\goldenrand.AssemblyInfo.cs
+D:\MU\MU开源\开源组合\OpenMUGo\tools\goldenrand\obj\Debug\net10.0\goldenrand.csproj.CoreCompileInputs.cache
+D:\MU\MU开源\开源组合\OpenMUGo\tools\goldenrand\obj\Debug\net10.0\goldenrand.dll
+D:\MU\MU开源\开源组合\OpenMUGo\tools\goldenrand\obj\Debug\net10.0\refint\goldenrand.dll
+D:\MU\MU开源\开源组合\OpenMUGo\tools\goldenrand\obj\Debug\net10.0\goldenrand.pdb
+D:\MU\MU开源\开源组合\OpenMUGo\tools\goldenrand\obj\Debug\net10.0\goldenrand.genruntimeconfig.cache
+D:\MU\MU开源\开源组合\OpenMUGo\tools\goldenrand\obj\Debug\net10.0\ref\goldenrand.dll

@@ -1,0 +1,12 @@
+== goldenconfig: 初始化 Season6 数据（内存库，可能需要数分钟）==
+初始化完成，耗时 2.5s
+GameConfiguration 载入: 73 地图 / 472 怪物 / 677 物品 / 284 技能
+  00_meta.json (0 KB)
+  10_character_classes.json (50 KB)
+  20_experience.json (6 KB)
+  30_skills.json (53 KB)
+  40_items.json (144 KB)
+  50_monsters.json (303 KB)
+  60_maps.json (6952 KB)
+  70_warps.json (5 KB)
+导出完成 → D:\MU\MU开源\开源组合\OpenMUGo\data\season6

@@ -1,0 +1,7 @@
+Unhandled exception. System.IO.DirectoryNotFoundException: Could not find a part of the path 'D:\MU\MU开源\开源组合\OpenMUGo\internal\attribute\testdata\attributes_golden.json'.
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.CreateFile(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options)
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.Open(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at System.IO.File.OpenHandle(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize)
+   at System.IO.File.WriteToFileAsync(String path, FileMode mode, ReadOnlyMemory`1 contents, Encoding encoding, CancellationToken cancellationToken)
+   at GoldenAttributes.Program.Main(String[] args) in D:\MU\MU开源\开源组合\OpenMUGo\tools\goldenattributes\Program.cs:line 111
+   at GoldenAttributes.Program.<Main>(String[] args)

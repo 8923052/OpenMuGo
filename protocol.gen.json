@@ -1,0 +1,37 @@
+{
+  "packets_version": "0.9.10",
+  "xml_root": "spec/0.9.10",
+  "common_inputs": [
+    "CommonEnums.xml"
+  ],
+  "targets": [
+    {
+      "package": "s2c",
+      "output": "internal/proto/s2c",
+      "full": "ServerToClient/ServerToClientPackets.xml",
+      "enum_refs": [
+        "ClientToServer/ClientToServerPackets.xml"
+      ]
+    },
+    {
+      "package": "c2s",
+      "output": "internal/proto/c2s",
+      "full": "ClientToServer/ClientToServerPackets.xml",
+      "enum_refs": [
+        "ServerToClient/ServerToClientPackets.xml"
+      ]
+    },
+    {
+      "package": "connect",
+      "output": "internal/proto/connect",
+      "full": "ConnectServer/ConnectServerPackets.xml",
+      "enum_refs": []
+    },
+    {
+      "package": "chat",
+      "output": "internal/proto/chat",
+      "full": "ChatServer/ChatServerPackets.xml",
+      "enum_refs": []
+    }
+  ]
+}

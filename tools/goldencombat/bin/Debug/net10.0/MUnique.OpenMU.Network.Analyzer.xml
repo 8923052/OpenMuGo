@@ -1,0 +1,1016 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>MUnique.OpenMU.Network.Analyzer</name>
+    </assembly>
+    <members>
+        <member name="T:MUnique.OpenMU.Network.Analyzer.Archive.ArchivedSession">
+            <summary>
+            An archived session of an observed account, which is read from the archive.
+            </summary>
+            <remarks>
+            The files can be read while the session is still running: they are opened without blocking
+            the writer, and a line which isn't completely written yet is simply skipped.
+            </remarks>
+        </member>
+        <member name="F:MUnique.OpenMU.Network.Analyzer.Archive.ArchivedSession.MinimumPacketSize">
+            <summary>
+            The minimum size of a data packet: a type byte, the length and the code.
+            </summary>
+        </member>
+        <member name="P:MUnique.OpenMU.Network.Analyzer.Archive.ArchivedSession.Info">
+            <summary>
+            Gets the information about the session.
+            </summary>
+        </member>
+        <member name="P:MUnique.OpenMU.Network.Analyzer.Archive.ArchivedSession.Name">
+            <inheritdoc />
+        </member>
+        <member name="P:MUnique.OpenMU.Network.Analyzer.Archive.ArchivedSession.PacketList">
+            <inheritdoc />
+        </member>
+        <member name="P:MUnique.OpenMU.Network.Analyzer.Archive.ArchivedSession.StartTimestamp">
+            <inheritdoc />
+        </member>
+        <member name="M:MUnique.OpenMU.Network.Analyzer.Archive.ArchivedSession.LoadAsync(MUnique.OpenMU.Network.Analyzer.Archive.ArchivedSessionInfo,System.Int32)">
+            <summary>
+            Loads the packets of the specified session.
+            </summary>
+            <param name="info">The information about the session.</param>
+            <param name="maximumPacketCount">The maximum number of packets which are loaded. When
+            the session contains more, only the newest ones are returned.</param>
+            <returns>The loaded session.</returns>
+        </member>
+        <member name="T:MUnique.OpenMU.Network.Analyzer.Archive.ArchivedSessionInfo">
+            <summary>
+            The information about one session in the archive.
+            </summary>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.Analyzer.Archive.ArchivedSessionInfo.#ctor(System.String,System.String,MUnique.OpenMU.Network.Analyzer.Archive.ArchivedSessionMetadata,System.Int64,System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MUnique.OpenMU.Network.Analyzer.Archive.ArchivedSessionInfo"/> class.
+            </summary>
+            <param name="id">The identifier of the session, which is its path relative to the
+            archive.</param>
+            <param name="directoryPath">The full path of the directory of the session.</param>
+            <param name="metadata">The metadata of the session.</param>
+            <param name="sizeInBytes">The size of the session on the file system.</param>
+            <param name="isRunning">If set to <c>true</c>, the session is currently being written.</param>
+        </member>
+        <member name="P:MUnique.OpenMU.Network.Analyzer.Archive.ArchivedSessionInfo.Id">
+            <summary>
+            Gets the identifier of the session, which is its path relative to the archive.
+            </summary>
+        </member>
+        <member name="P:MUnique.OpenMU.Network.Analyzer.Archive.ArchivedSessionInfo.DirectoryPath">
+            <summary>
+            Gets the full path of the directory of the session.
+            </summary>
+        </member>
+        <member name="P:MUnique.OpenMU.Network.Analyzer.Archive.ArchivedSessionInfo.Metadata">
+            <summary>
+            Gets the metadata of the session.
+            </summary>
+        </member>
+        <member name="P:MUnique.OpenMU.Network.Analyzer.Archive.ArchivedSessionInfo.SizeInBytes">
+            <summary>
+            Gets the size of the session on the file system, in bytes.
+            </summary>
+        </member>
+        <member name="P:MUnique.OpenMU.Network.Analyzer.Archive.ArchivedSessionInfo.IsRunning">
+            <summary>
+            Gets a value indicating whether the session is currently being written, because the
+            observed player is still online.
+            </summary>
+        </member>
+        <member name="P:MUnique.OpenMU.Network.Analyzer.Archive.ArchivedSessionInfo.Duration">
+            <summary>
+            Gets the duration of the session. For a running session, it's the duration so far.
+            </summary>
+        </member>
+        <member name="P:MUnique.OpenMU.Network.Analyzer.Archive.ArchivedSessionInfo.DisplayName">
+            <summary>
+            Gets the name which should be shown for this session.
+            </summary>
+        </member>
+        <member name="T:MUnique.OpenMU.Network.Analyzer.Archive.ArchivedSessionMetadata">
+            <summary>
+            The metadata of an archived session, which is saved next to the captured packets.
+            </summary>
+            <remarks>
+            The packets themselves are saved in the same format as the capture files of the analyzer
+            tool, which has no place for this kind of information.
+            </remarks>
+        </member>
+        <member name="P:MUnique.OpenMU.Network.Analyzer.Archive.ArchivedSessionMetadata.AccountName">
+            <summary>
+            Gets or sets the name of the observed account.
+            </summary>
+        </member>
+        <member name="P:MUnique.OpenMU.Network.Analyzer.Archive.ArchivedSessionMetadata.CharacterNames">
+            <summary>
+            Gets or sets the names of the characters which were played during the session.
+            </summary>
+        </member>
+        <member name="P:MUnique.OpenMU.Network.Analyzer.Archive.ArchivedSessionMetadata.ServerType">
+            <summary>
+            Gets or sets the type of the server which handled the connection.
+            </summary>
+        </member>
+        <member name="P:MUnique.OpenMU.Network.Analyzer.Archive.ArchivedSessionMetadata.ServerId">
+            <summary>
+            Gets or sets the identifier of the server which handled the connection.
+            </summary>
+        </member>
+        <member name="P:MUnique.OpenMU.Network.Analyzer.Archive.ArchivedSessionMetadata.ServerDescription">
+            <summary>
+            Gets or sets the description of the server which handled the connection.
+            </summary>
+        </member>
+        <member name="P:MUnique.OpenMU.Network.Analyzer.Archive.ArchivedSessionMetadata.RemoteEndPoint">
+            <summary>
+            Gets or sets the remote endpoint of the connection.
+            </summary>
+        </member>
+        <member name="P:MUnique.OpenMU.Network.Analyzer.Archive.ArchivedSessionMetadata.ClientVersion">
+            <summary>
+            Gets or sets the client version which applied to the connection.
+            </summary>
+            <remarks>
+            The archive starts when the player is logged in, so the version is already the one
+            which the client reported at the version check - it doesn't change afterwards.
+            </remarks>
+        </member>
+        <member name="P:MUnique.OpenMU.Network.Analyzer.Archive.ArchivedSessionMetadata.StartTimestamp">
+            <summary>
+            Gets or sets the point in time (UTC) at which the session started.
+            </summary>
+        </member>
+        <member name="P:MUnique.OpenMU.Network.Analyzer.Archive.ArchivedSessionMetadata.EndTimestamp">
+            <summary>
+            Gets or sets the point in time (UTC) at which the session ended. It's <c>null</c> as
+            long as it's running - and stays <c>null</c> when the server process died.
+            </summary>
+        </member>
+        <member name="P:MUnique.OpenMU.Network.Analyzer.Archive.ArchivedSessionMetadata.PacketCount">
+            <summary>
+            Gets or sets the number of packets which were archived.
+            </summary>
+        </member>
+        <member name="P:MUnique.OpenMU.Network.Analyzer.Archive.ArchivedSessionMetadata.DroppedPacketCount">
+            <summary>
+            Gets or sets the number of packets which had to be dropped, because they arrived
+            faster than they could be written.
+            </summary>
+        </member>
+        <member name="P:MUnique.OpenMU.Network.Analyzer.Archive.ArchivedSessionMetadata.Parts">
+            <summary>
+            Gets or sets the names of the files which contain the packets of this session, in the
+            order in which they were written.
+            </summary>
+        </member>
+        <member name="T:MUnique.OpenMU.Network.Analyzer.Archive.ArchivedSessionWriter">
+            <summary>
+            Writes the captured packets of an observed session into the archive, while it's running.
+            </summary>
+            <remarks>
+            The packets are written by an own task, so that the network thread which captured a packet
+            is never waiting for the file system. They are appended and flushed as soon as the queue
+            ran empty, so that a running session can be read - and survives a crash of the process.
+            </remarks>
+        </member>
+        <member name="F:MUnique.OpenMU.Network.Analyzer.Archive.ArchivedSessionWriter.MetadataFileName">
+            <summary>
+            The name of the file which contains the metadata of the session.
+            </summary>
+        </member>
+        <member name="F:MUnique.OpenMU.Network.Analyzer.Archive.ArchivedSessionWriter.PartFileExtension">
+            <summary>
+            The extension of the files which contain the packets. It's the one of the analyzer
+            tool, so that an archived session can be opened with it.
+            </summary>
+        </member>
+        <member name="F:MUnique.OpenMU.Network.Analyzer.Archive.ArchivedSessionWriter.QueueCapacity">
+            <summary>
+            The maximum number of packets which are waiting to be written. When the file system
+            can't keep up with the traffic, the packets above it are dropped - the connection of
+            the player must not be slowed down by the observation.
+            </summary>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.Analyzer.Archive.ArchivedSessionWriter.#ctor(System.String,MUnique.OpenMU.Network.Analyzer.Archive.ArchivedSessionMetadata,System.Int64,Microsoft.Extensions.Logging.ILogger,System.Func{System.Threading.Tasks.ValueTask})">
+            <summary>
+            Initializes a new instance of the <see cref="T:MUnique.OpenMU.Network.Analyzer.Archive.ArchivedSessionWriter"/> class.
+            </summary>
+            <param name="directoryPath">The path of the directory of this session.</param>
+            <param name="metadata">The metadata of the session.</param>
+            <param name="maximumPartSize">The maximum size of one file of the session, in bytes.</param>
+            <param name="logger">The logger.</param>
+            <param name="onClosedAsync">The callback which is invoked when the session is closed.</param>
+        </member>
+        <member name="P:MUnique.OpenMU.Network.Analyzer.Archive.ArchivedSessionWriter.Metadata">
+            <summary>
+            Gets the metadata of the session.
+            </summary>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.Analyzer.Archive.ArchivedSessionWriter.AddCharacterNameAsync(System.String)">
+            <summary>
+            Adds the name of a character which is played in this session.
+            </summary>
+            <param name="characterName">The name of the character.</param>
+            <returns>The async task.</returns>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.Analyzer.Archive.ArchivedSessionWriter.SaveMetadataAsync">
+            <summary>
+            Saves the current state of the metadata, so that the session is visible in the archive
+            while it's still running.
+            </summary>
+            <returns>The async task.</returns>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.Analyzer.Archive.ArchivedSessionWriter.PacketCaptured(System.ReadOnlySpan{System.Byte},System.Boolean)">
+            <inheritdoc />
+        </member>
+        <member name="M:MUnique.OpenMU.Network.Analyzer.Archive.ArchivedSessionWriter.DisposeAsync">
+            <inheritdoc />
+        </member>
+        <member name="T:MUnique.OpenMU.Network.Analyzer.Archive.IPacketArchive">
+            <summary>
+            The archive which holds the traffic of the sessions of observed accounts.
+            </summary>
+            <remarks>
+            It's a feature of the game server: an observed account is archived as soon as it plays,
+            regardless of whether an admin panel is running somewhere.
+            </remarks>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.Analyzer.Archive.IPacketArchive.StartSessionAsync(MUnique.OpenMU.Network.Analyzer.Archive.ArchivedSessionMetadata)">
+            <summary>
+            Starts a new session in the archive.
+            </summary>
+            <param name="metadata">The metadata of the session. Its start timestamp is used as the
+            reference for the timestamps of the packets.</param>
+            <returns>The writer of the session, which is a sink of the connection; Or
+            <see langword="null"/>, if the session couldn't be started.</returns>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.Analyzer.Archive.IPacketArchive.GetSessionsAsync(System.String)">
+            <summary>
+            Gets the sessions which are in the archive, newest first.
+            </summary>
+            <param name="accountName">The name of the account, if only its sessions are wanted.</param>
+            <returns>The sessions which are in the archive.</returns>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.Analyzer.Archive.IPacketArchive.GetSessionAsync(System.String)">
+            <summary>
+            Gets the information about the session with the specified identifier.
+            </summary>
+            <param name="sessionId">The identifier of the session.</param>
+            <returns>The information about the session, if it exists; Otherwise,
+            <see langword="null"/>.</returns>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.Analyzer.Archive.IPacketArchive.DeleteSessionAsync(System.String)">
+            <summary>
+            Deletes the session with the specified identifier.
+            </summary>
+            <param name="sessionId">The identifier of the session.</param>
+            <returns><see langword="true"/>, if the session has been deleted.</returns>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.Analyzer.Archive.IPacketArchive.ApplyHousekeepingAsync">
+            <summary>
+            Applies the retention and the size limit of the archive, by removing the oldest
+            sessions. A session which is currently written is never removed.
+            </summary>
+            <returns>The async task.</returns>
+        </member>
+        <member name="T:MUnique.OpenMU.Network.Analyzer.Archive.NetworkObservationOptions">
+            <summary>
+            The options of the network observation, which archives the traffic of the accounts whose
+            observation is active.
+            </summary>
+            <remarks>
+            They are configured in the system configuration of the database. This class is the plain
+            counterpart of it, so that the archive doesn't need to know the data model.
+            </remarks>
+        </member>
+        <member name="F:MUnique.OpenMU.Network.Analyzer.Archive.NetworkObservationOptions.DefaultArchivePath">
+            <summary>
+            The default path of the archive, relative to the directory of the application.
+            </summary>
+        </member>
+        <member name="F:MUnique.OpenMU.Network.Analyzer.Archive.NetworkObservationOptions.DefaultMaximumSessionSizeMb">
+            <summary>
+            The default maximum size of one file of a session, in megabytes.
+            </summary>
+        </member>
+        <member name="F:MUnique.OpenMU.Network.Analyzer.Archive.NetworkObservationOptions.DefaultMaximumTotalSizeMb">
+            <summary>
+            The default maximum size of the whole archive, in megabytes.
+            </summary>
+        </member>
+        <member name="F:MUnique.OpenMU.Network.Analyzer.Archive.NetworkObservationOptions.DefaultRetentionDays">
+            <summary>
+            The default number of days after which an archived session is removed.
+            </summary>
+        </member>
+        <member name="P:MUnique.OpenMU.Network.Analyzer.Archive.NetworkObservationOptions.ArchivePath">
+            <summary>
+            Gets or sets the path of the archive. A relative path is resolved against the directory
+            of the application.
+            </summary>
+            <remarks>
+            It must not point into a folder which is served by the web server - an archived session
+            contains the login packet of the player in plain text.
+            </remarks>
+        </member>
+        <member name="P:MUnique.OpenMU.Network.Analyzer.Archive.NetworkObservationOptions.MaximumSessionSizeMb">
+            <summary>
+            Gets or sets the maximum size of one file of a session, in megabytes. A session which
+            grows bigger is continued in another file.
+            </summary>
+        </member>
+        <member name="P:MUnique.OpenMU.Network.Analyzer.Archive.NetworkObservationOptions.MaximumTotalSizeMb">
+            <summary>
+            Gets or sets the maximum size of the whole archive, in megabytes. When it's exceeded,
+            the oldest sessions are removed. A value of 0 or less means that the size is unlimited.
+            </summary>
+        </member>
+        <member name="P:MUnique.OpenMU.Network.Analyzer.Archive.NetworkObservationOptions.RetentionDays">
+            <summary>
+            Gets or sets the number of days after which an archived session is removed. A value of
+            0 or less means that the sessions are kept forever.
+            </summary>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.Analyzer.Archive.NetworkObservationOptions.GetMaximumSessionSizeInBytes">
+            <summary>
+            Gets the maximum size of one file of a session, in bytes.
+            </summary>
+            <returns>The maximum size of one file of a session, in bytes.</returns>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.Analyzer.Archive.NetworkObservationOptions.GetFullArchivePath">
+            <summary>
+            Gets the full path of the archive.
+            </summary>
+            <returns>The full path of the archive.</returns>
+        </member>
+        <member name="T:MUnique.OpenMU.Network.Analyzer.Archive.PacketArchive">
+            <summary>
+            The implementation of the <see cref="T:MUnique.OpenMU.Network.Analyzer.Archive.IPacketArchive"/>, which keeps the sessions on the
+            file system.
+            </summary>
+            <remarks>
+            A session is a directory below the one of its account, which holds the captured packets in
+            one or more files of the analyzer tool format, plus the metadata as json. That way, a
+            session can be deleted, copied or opened as a whole.
+            </remarks>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.Analyzer.Archive.PacketArchive.#ctor(MUnique.OpenMU.Network.Analyzer.Archive.NetworkObservationOptions,Microsoft.Extensions.Logging.ILogger{MUnique.OpenMU.Network.Analyzer.Archive.PacketArchive})">
+            <summary>
+            Initializes a new instance of the <see cref="T:MUnique.OpenMU.Network.Analyzer.Archive.PacketArchive"/> class.
+            </summary>
+            <param name="options">The options of the network observation.</param>
+            <param name="logger">The logger.</param>
+        </member>
+        <member name="P:MUnique.OpenMU.Network.Analyzer.Archive.PacketArchive.ArchivePath">
+            <summary>
+            Gets the full path of the archive.
+            </summary>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.Analyzer.Archive.PacketArchive.StartSessionAsync(MUnique.OpenMU.Network.Analyzer.Archive.ArchivedSessionMetadata)">
+            <inheritdoc />
+        </member>
+        <member name="M:MUnique.OpenMU.Network.Analyzer.Archive.PacketArchive.GetSessionsAsync(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:MUnique.OpenMU.Network.Analyzer.Archive.PacketArchive.GetSessionAsync(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:MUnique.OpenMU.Network.Analyzer.Archive.PacketArchive.DeleteSessionAsync(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:MUnique.OpenMU.Network.Analyzer.Archive.PacketArchive.ApplyHousekeepingAsync">
+            <inheritdoc />
+        </member>
+        <member name="T:MUnique.OpenMU.Network.Analyzer.CapturedConnectionExtensions">
+            <summary>
+            Extensions for <see cref="T:MUnique.OpenMU.Network.Analyzer.ICapturedConnection"/>.
+            </summary>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.Analyzer.CapturedConnectionExtensions.SaveToFile(MUnique.OpenMU.Network.Analyzer.ICapturedConnection,System.String)">
+            <summary>
+            Saves the captured packets to the file in a CSV format.
+            </summary>
+            <param name="connection">The connection.</param>
+            <param name="path">The path.</param>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.Analyzer.CapturedConnectionExtensions.LoadFromFile(System.ComponentModel.BindingList{MUnique.OpenMU.Network.Analyzer.Packet},System.String)">
+            <summary>
+            Loads the packets from the file.
+            </summary>
+            <param name="packetList">The packet list.</param>
+            <param name="path">The path.</param>
+            <returns>The <see cref="P:MUnique.OpenMU.Network.Analyzer.ICapturedConnection.StartTimestamp"/>.</returns>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.Analyzer.CapturedConnectionExtensions.TryParseArray(System.String,System.Byte[]@)">
+            <summary>
+            Tries to parse the byte array string.
+            </summary>
+            <param name="arrayString">The array string.</param>
+            <param name="data">The resulting byte array.</param>
+            <returns>The success of the parsing.</returns>
+        </member>
+        <member name="T:MUnique.OpenMU.Network.Analyzer.FieldExtensions">
+            <summary>
+            Extensions for <see cref="T:MUnique.OpenMU.Network.Packets.Field"/>s.
+            </summary>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.Analyzer.FieldExtensions.GetFieldSizeInBytes(MUnique.OpenMU.Network.Packets.Field)">
+            <summary>
+            Gets the field size in bytes.
+            </summary>
+            <param name="field">The field.</param>
+            <returns>The size of the field in bytes.</returns>
+        </member>
+        <member name="T:MUnique.OpenMU.Network.Analyzer.ICapturedConnection">
+            <summary>
+            Interface for a captured connection.
+            </summary>
+        </member>
+        <member name="P:MUnique.OpenMU.Network.Analyzer.ICapturedConnection.Name">
+            <summary>
+            Gets the name of the connection.
+            </summary>
+        </member>
+        <member name="P:MUnique.OpenMU.Network.Analyzer.ICapturedConnection.PacketList">
+            <summary>
+            Gets the packets of the connection.
+            </summary>
+        </member>
+        <member name="P:MUnique.OpenMU.Network.Analyzer.ICapturedConnection.StartTimestamp">
+            <summary>
+            Gets the start timestamp.
+            </summary>
+        </member>
+        <member name="T:MUnique.OpenMU.Network.Analyzer.ICapturedConnectionInfo">
+            <summary>
+            Information about a connection of a server, whose traffic can be captured.
+            </summary>
+            <remarks>
+            The implementations are provided by the servers themselves, so that the network connection
+            stays inside the server which owns it.
+            </remarks>
+        </member>
+        <member name="P:MUnique.OpenMU.Network.Analyzer.ICapturedConnectionInfo.Id">
+            <summary>
+            Gets the identifier of the connection.
+            </summary>
+        </member>
+        <member name="P:MUnique.OpenMU.Network.Analyzer.ICapturedConnectionInfo.ServerType">
+            <summary>
+            Gets the type of the server which handles this connection.
+            </summary>
+        </member>
+        <member name="P:MUnique.OpenMU.Network.Analyzer.ICapturedConnectionInfo.ServerId">
+            <summary>
+            Gets the identifier of the server which handles this connection.
+            </summary>
+        </member>
+        <member name="P:MUnique.OpenMU.Network.Analyzer.ICapturedConnectionInfo.ServerDescription">
+            <summary>
+            Gets the description of the server which handles this connection.
+            </summary>
+        </member>
+        <member name="P:MUnique.OpenMU.Network.Analyzer.ICapturedConnectionInfo.AccountName">
+            <summary>
+            Gets the name of the account, if the client is logged in.
+            </summary>
+        </member>
+        <member name="P:MUnique.OpenMU.Network.Analyzer.ICapturedConnectionInfo.CharacterName">
+            <summary>
+            Gets the name of the selected character, if one is selected.
+            </summary>
+        </member>
+        <member name="P:MUnique.OpenMU.Network.Analyzer.ICapturedConnectionInfo.RemoteEndPoint">
+            <summary>
+            Gets the remote endpoint of the connection.
+            </summary>
+        </member>
+        <member name="P:MUnique.OpenMU.Network.Analyzer.ICapturedConnectionInfo.ClientVersion">
+            <summary>
+            Gets the client version which currently applies to this connection.
+            </summary>
+        </member>
+        <member name="P:MUnique.OpenMU.Network.Analyzer.ICapturedConnectionInfo.DefinitionSet">
+            <summary>
+            Gets the set of packet definitions which applies to this connection.
+            </summary>
+        </member>
+        <member name="P:MUnique.OpenMU.Network.Analyzer.ICapturedConnectionInfo.IsConnected">
+            <summary>
+            Gets a value indicating whether the connection is still connected.
+            </summary>
+        </member>
+        <member name="P:MUnique.OpenMU.Network.Analyzer.ICapturedConnectionInfo.DisplayName">
+            <summary>
+            Gets the name which should be shown for this connection. It's the character name, the
+            account name or the remote endpoint - whatever is known.
+            </summary>
+        </member>
+        <member name="P:MUnique.OpenMU.Network.Analyzer.ICapturedConnectionInfo.IsObserved">
+            <summary>
+            Gets a value indicating whether the traffic of the account of this connection is
+            observed, so that it's archived for each of its sessions.
+            </summary>
+            <remarks>
+            The observation is an account setting, so only a connection which knows its account -
+            a game server connection - can be observed.
+            </remarks>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.Analyzer.ICapturedConnectionInfo.SetObservationAsync(System.Boolean)">
+            <summary>
+            Sets whether the traffic of the account of this connection is observed. It's applied
+            to the running session as well, so it doesn't need a reconnect.
+            </summary>
+            <param name="isActive">If set to <c>true</c>, the traffic is observed.</param>
+            <returns><see langword="true"/>, if it has been applied.</returns>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.Analyzer.ICapturedConnectionInfo.AddCaptureSink(MUnique.OpenMU.Network.IPacketCaptureSink)">
+            <summary>
+            Adds a sink which gets the data packets of this connection.
+            </summary>
+            <param name="sink">The sink.</param>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.Analyzer.ICapturedConnectionInfo.RemoveCaptureSink(MUnique.OpenMU.Network.IPacketCaptureSink)">
+            <summary>
+            Removes a previously added sink.
+            </summary>
+            <param name="sink">The sink.</param>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.Analyzer.ICapturedConnectionInfo.DisconnectAsync">
+            <summary>
+            Disconnects the client of this connection.
+            </summary>
+            <returns>The async task.</returns>
+        </member>
+        <member name="T:MUnique.OpenMU.Network.Analyzer.IConnectionSource">
+            <summary>
+            Interface for a server which can provide the connections of its clients, so that their
+            traffic can be captured.
+            </summary>
+            <remarks>
+            It's implemented by the servers themselves. A server which doesn't implement it, e.g.
+            because it's just a proxy to a server in another process, is simply not listed.
+            </remarks>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.Analyzer.IConnectionSource.GetConnectionsAsync">
+            <summary>
+            Gets the currently connected clients of this server.
+            </summary>
+            <returns>The currently connected clients of this server.</returns>
+        </member>
+        <member name="T:MUnique.OpenMU.Network.Analyzer.ILiveCapturedConnection">
+            <summary>
+            A <see cref="T:MUnique.OpenMU.Network.Analyzer.ICapturedConnection"/> which captures the traffic of a connection which is
+            currently handled by one of our servers.
+            </summary>
+        </member>
+        <member name="E:MUnique.OpenMU.Network.Analyzer.ILiveCapturedConnection.PacketsChanged">
+            <summary>
+            Occurs when packets have been added or removed.
+            </summary>
+        </member>
+        <member name="P:MUnique.OpenMU.Network.Analyzer.ILiveCapturedConnection.ConnectionInfo">
+            <summary>
+            Gets the information about the captured connection.
+            </summary>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.Analyzer.ILiveCapturedConnection.GetPackets">
+            <summary>
+            Gets a snapshot of the currently captured packets.
+            </summary>
+            <returns>A snapshot of the currently captured packets.</returns>
+            <remarks>
+            The packets are captured on the network threads of the connection, so the
+            <see cref="P:MUnique.OpenMU.Network.Analyzer.ICapturedConnection.PacketList"/> must not be enumerated directly.
+            </remarks>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.Analyzer.ILiveCapturedConnection.Clear">
+            <summary>
+            Removes all captured packets.
+            </summary>
+        </member>
+        <member name="T:MUnique.OpenMU.Network.Analyzer.IPacketCaptureService">
+            <summary>
+            Service which provides the connections of all servers which run in this process, and which
+            captures their traffic on request.
+            </summary>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.Analyzer.IPacketCaptureService.GetConnectionsAsync">
+            <summary>
+            Gets the connections of all servers which can provide them.
+            </summary>
+            <returns>The connections of all servers which can provide them.</returns>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.Analyzer.IPacketCaptureService.FindConnectionAsync(System.Guid)">
+            <summary>
+            Gets the connection with the specified identifier.
+            </summary>
+            <param name="connectionId">The identifier of the connection.</param>
+            <returns>The connection, if it's still connected; Otherwise, <see langword="null"/>.</returns>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.Analyzer.IPacketCaptureService.FindConnectionAsync(System.Int32,System.String)">
+            <summary>
+            Gets the connection of the specified account or character name.
+            </summary>
+            <param name="serverId">The identifier of the server.</param>
+            <param name="accountOrCharacterName">The name of the account or character.</param>
+            <returns>The connection, if one was found; Otherwise, <see langword="null"/>.</returns>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.Analyzer.IPacketCaptureService.StartCaptureAsync(System.Guid)">
+            <summary>
+            Starts to capture the traffic of the specified connection, or returns the already
+            running capture of it.
+            </summary>
+            <param name="connectionId">The identifier of the connection.</param>
+            <returns>The capture of the connection, if it's still connected; Otherwise, <see langword="null"/>.</returns>
+            <remarks>
+            Each call has to be followed by a <see cref="M:MUnique.OpenMU.Network.Analyzer.IPacketCaptureService.StopCapture(System.Guid)"/> when the caller isn't
+            interested anymore. The capture stops when the last interested caller is gone.
+            </remarks>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.Analyzer.IPacketCaptureService.StopCapture(System.Guid)">
+            <summary>
+            Stops the capture of the specified connection, when no other caller is interested in
+            it anymore.
+            </summary>
+            <param name="connectionId">The identifier of the connection.</param>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.Analyzer.IPacketCaptureService.SetObservationAsync(System.Guid,System.Boolean)">
+            <summary>
+            Sets whether the traffic of the account of the specified connection is observed, so
+            that it's archived for each of its sessions.
+            </summary>
+            <param name="connectionId">The identifier of the connection.</param>
+            <param name="isActive">If set to <c>true</c>, the traffic is observed.</param>
+            <returns><see langword="true"/>, if it has been applied.</returns>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.Analyzer.IPacketCaptureService.GetRunningCapture(System.Guid)">
+            <summary>
+            Gets the currently running capture of the specified connection.
+            </summary>
+            <param name="connectionId">The identifier of the connection.</param>
+            <returns>The running capture, if there is one; Otherwise, <see langword="null"/>.</returns>
+        </member>
+        <member name="T:MUnique.OpenMU.Network.Analyzer.LiveCapturedConnection">
+            <summary>
+            Captures the traffic of a connection which is currently handled by one of our servers.
+            </summary>
+        </member>
+        <member name="F:MUnique.OpenMU.Network.Analyzer.LiveCapturedConnection.DefaultMaximumPacketCount">
+            <summary>
+            The default maximum number of packets which are kept in memory.
+            </summary>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.Analyzer.LiveCapturedConnection.#ctor(MUnique.OpenMU.Network.Analyzer.ICapturedConnectionInfo,System.Int32)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MUnique.OpenMU.Network.Analyzer.LiveCapturedConnection"/> class.
+            </summary>
+            <param name="connectionInfo">The information about the captured connection.</param>
+            <param name="maximumPacketCount">The maximum number of packets which are kept in
+            memory. When more packets arrive, the oldest ones are dropped.</param>
+        </member>
+        <member name="E:MUnique.OpenMU.Network.Analyzer.LiveCapturedConnection.PacketsChanged">
+            <inheritdoc />
+        </member>
+        <member name="P:MUnique.OpenMU.Network.Analyzer.LiveCapturedConnection.ConnectionInfo">
+            <inheritdoc />
+        </member>
+        <member name="P:MUnique.OpenMU.Network.Analyzer.LiveCapturedConnection.Name">
+            <inheritdoc />
+        </member>
+        <member name="P:MUnique.OpenMU.Network.Analyzer.LiveCapturedConnection.PacketList">
+            <inheritdoc />
+        </member>
+        <member name="P:MUnique.OpenMU.Network.Analyzer.LiveCapturedConnection.StartTimestamp">
+            <inheritdoc />
+        </member>
+        <member name="M:MUnique.OpenMU.Network.Analyzer.LiveCapturedConnection.GetPackets">
+            <inheritdoc />
+        </member>
+        <member name="M:MUnique.OpenMU.Network.Analyzer.LiveCapturedConnection.Clear">
+            <inheritdoc />
+        </member>
+        <member name="M:MUnique.OpenMU.Network.Analyzer.LiveCapturedConnection.PacketCaptured(System.ReadOnlySpan{System.Byte},System.Boolean)">
+            <inheritdoc />
+        </member>
+        <member name="T:MUnique.OpenMU.Network.Analyzer.Packet">
+            <summary>
+            A captured data packet.
+            </summary>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.Analyzer.Packet.#ctor(System.TimeSpan,System.Byte[],System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MUnique.OpenMU.Network.Analyzer.Packet" /> class.
+            </summary>
+            <param name="timestamp">The timestamp.</param>
+            <param name="data">The data.</param>
+            <param name="toServer">If set to <c>true</c>, the packet was sent to server; Otherwise it was sent to the client.</param>
+        </member>
+        <member name="E:MUnique.OpenMU.Network.Analyzer.Packet.AnalyzingRequested">
+            <summary>
+            Occurs when analyzing the packet requested, e.g. when the description is needed.
+            </summary>
+        </member>
+        <member name="E:MUnique.OpenMU.Network.Analyzer.Packet.PropertyChanged">
+            <inheritdoc />
+        </member>
+        <member name="P:MUnique.OpenMU.Network.Analyzer.Packet.Timestamp">
+            <summary>
+            Gets the timestamp.
+            </summary>
+        </member>
+        <member name="P:MUnique.OpenMU.Network.Analyzer.Packet.Data">
+            <summary>
+            Gets the raw data of the packet.
+            </summary>
+        </member>
+        <member name="P:MUnique.OpenMU.Network.Analyzer.Packet.Type">
+            <summary>
+            Gets the type of the packet, which is the first byte of the packet byte array.
+            </summary>
+        </member>
+        <member name="P:MUnique.OpenMU.Network.Analyzer.Packet.Code">
+            <summary>
+            Gets the code of the packet, which specifies the kind of the message.
+            </summary>
+        </member>
+        <member name="P:MUnique.OpenMU.Network.Analyzer.Packet.SubCode">
+            <summary>
+            Gets the sub code of the packet, which further specifies the kind of the message, if specified.
+            </summary>
+        </member>
+        <member name="P:MUnique.OpenMU.Network.Analyzer.Packet.DisplayCode">
+            <summary>
+            Gets the display code of the packet, which specifies the kind of the message.
+            </summary>
+        </member>
+        <member name="P:MUnique.OpenMU.Network.Analyzer.Packet.Direction">
+            <summary>
+            Gets the direction as string.
+            </summary>
+        </member>
+        <member name="P:MUnique.OpenMU.Network.Analyzer.Packet.Message">
+            <summary>
+            Gets the packet as text in a one-line string.
+            </summary>
+        </member>
+        <member name="P:MUnique.OpenMU.Network.Analyzer.Packet.ToServer">
+            <summary>
+            Gets a value indicating whether the packet was sent to the server; Otherwise it was sent to the client.
+            </summary>
+        </member>
+        <member name="P:MUnique.OpenMU.Network.Analyzer.Packet.Size">
+            <summary>
+            Gets the size of the packet byte array.
+            </summary>
+        </member>
+        <member name="P:MUnique.OpenMU.Network.Analyzer.Packet.PacketData">
+            <summary>
+            Gets the packet data as binary string.
+            </summary>
+        </member>
+        <member name="P:MUnique.OpenMU.Network.Analyzer.Packet.AnalyzedByVersion">
+            <summary>
+            Gets the protocol version which was applied when analyzing.
+            </summary>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.Analyzer.Packet.ToString">
+            <inheritdoc />
+        </member>
+        <member name="M:MUnique.OpenMU.Network.Analyzer.Packet.ClearMessage">
+            <summary>
+            Clears the message which was generated by the packet analyzer based on a selected version.
+            </summary>
+        </member>
+        <member name="T:MUnique.OpenMU.Network.Analyzer.Packet.AnalyzingRequestedEventArgs">
+            <summary>
+            Event args for <see cref="E:MUnique.OpenMU.Network.Analyzer.Packet.AnalyzingRequested"/>.
+            </summary>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.Analyzer.Packet.AnalyzingRequestedEventArgs.#ctor(MUnique.OpenMU.Network.Analyzer.Packet)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MUnique.OpenMU.Network.Analyzer.Packet.AnalyzingRequestedEventArgs"/> class.
+            </summary>
+            <param name="data">The data.</param>
+        </member>
+        <member name="P:MUnique.OpenMU.Network.Analyzer.Packet.AnalyzingRequestedEventArgs.Packet">
+            <summary>
+            Gets the packet which should be analyzed.
+            </summary>
+        </member>
+        <member name="P:MUnique.OpenMU.Network.Analyzer.Packet.AnalyzingRequestedEventArgs.Definition">
+            <summary>
+            Gets or sets the definition which was found during the analyzing.
+            </summary>
+        </member>
+        <member name="P:MUnique.OpenMU.Network.Analyzer.Packet.AnalyzingRequestedEventArgs.ClientVersion">
+            <summary>
+            Gets or sets the client version which was set during analyzing.
+            </summary>
+        </member>
+        <member name="P:MUnique.OpenMU.Network.Analyzer.Packet.AnalyzingRequestedEventArgs.Message">
+            <summary>
+            Gets or sets the message which describes the packet in a one-line string.
+            </summary>
+        </member>
+        <member name="T:MUnique.OpenMU.Network.Analyzer.PacketAnalyzer">
+            <summary>
+            Analyzer that analyzes data packets by considering the configuration files.
+            </summary>
+        </member>
+        <member name="F:MUnique.OpenMU.Network.Analyzer.PacketAnalyzer._packetDefinitions">
+            <summary>
+            The loaded packet definitions of the <see cref="P:MUnique.OpenMU.Network.Analyzer.PacketAnalyzer.DefinitionSet"/>. The array has one
+            slot per file, so that a reloaded file can simply replace its previous content.
+            </summary>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.Analyzer.PacketAnalyzer.#ctor(MUnique.OpenMU.Network.Analyzer.PacketDefinitionSet,System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MUnique.OpenMU.Network.Analyzer.PacketAnalyzer" /> class.
+            The definitions are automatically loaded from the configuration files.
+            </summary>
+            <param name="definitionSet">The set of packet definitions which should be used.</param>
+            <param name="watchFiles">If set to <c>true</c>, the definition files are watched and
+            automatically reloaded when they change. That's useful when new packet definitions are
+            developed, but usually not required when just analyzing the traffic.</param>
+        </member>
+        <member name="P:MUnique.OpenMU.Network.Analyzer.PacketAnalyzer.DefinitionSet">
+            <summary>
+            Gets the set of packet definitions which is used by this instance.
+            </summary>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.Analyzer.PacketAnalyzer.ExtractInformation(MUnique.OpenMU.Network.Analyzer.Packet,MUnique.OpenMU.Network.PlugIns.ClientVersion)">
+            <summary>
+            Extracts the information of the packet and returns it as a formatted string.
+            </summary>
+            <param name="packet">The packet.</param>
+            <param name="clientVersion">The client version of the connection, which decides which
+            packet definition applies when more than one matches.</param>
+            <returns>The formatted string with the extracted information.</returns>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.Analyzer.PacketAnalyzer.ExtractShortInformation(MUnique.OpenMU.Network.Analyzer.Packet,MUnique.OpenMU.Network.PlugIns.ClientVersion)">
+            <summary>
+            Extracts the information of the packet and returns it as a short, formatted string.
+            </summary>
+            <param name="packet">The packet.</param>
+            <param name="clientVersion">The client version of the connection, which decides which
+            packet definition applies when more than one matches.</param>
+            <returns>The formatted string with the extracted information.</returns>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.Analyzer.PacketAnalyzer.Dispose">
+            <summary>
+            Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+            </summary>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.Analyzer.PacketAnalyzer.ExtractFieldValueOrGetError(System.Span{System.Byte},MUnique.OpenMU.Network.Packets.Field,MUnique.OpenMU.Network.Packets.PacketDefinition,MUnique.OpenMU.Network.Packets.PacketDefinitions,System.Int32)">
+            <summary>
+            Extracts the field value from this packet or returns an error message, if it couldn't be extracted.
+            </summary>
+            <param name="data">The data.</param>
+            <param name="field">The field definition.</param>
+            <param name="packet">The packet.</param>
+            <param name="definitions">The definitions.</param>
+            <param name="clientVersionValue">The numeric client version of the connection.</param>
+            <returns>
+            The value of the field or the error message.
+            </returns>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.Analyzer.PacketAnalyzer.ExtractFieldValue(System.Span{System.Byte},MUnique.OpenMU.Network.Packets.Field,MUnique.OpenMU.Network.Packets.PacketDefinition,MUnique.OpenMU.Network.Packets.PacketDefinitions,System.Int32)">
+            <summary>
+            Extracts the field value from this packet.
+            </summary>
+            <param name="data">The data.</param>
+            <param name="field">The field definition.</param>
+            <param name="packet">The packet.</param>
+            <param name="definitions">The definitions.</param>
+            <param name="clientVersionValue">The numeric client version of the connection.</param>
+            <returns>
+            The value of the field.
+            </returns>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.Analyzer.PacketAnalyzer.DetermineDynamicStructLength(System.Span{System.Byte},MUnique.OpenMU.Network.Packets.Structure,MUnique.OpenMU.Network.Packets.PacketDefinition,System.Int32)">
+            <summary>
+            Determines the length of the dynamic structure.
+            We assume that a nested struct type has a fixed length specified in <see cref="P:MUnique.OpenMU.Network.Packets.Structure.Length"/>.
+            </summary>
+            <param name="restData">The rest data.</param>
+            <param name="type">The type.</param>
+            <param name="packetType">Type of the packet.</param>
+            <param name="clientVersionValue">The numeric client version of the connection.</param>
+            <returns>The dynamic length of a struct with a nested structure array.</returns>
+        </member>
+        <member name="T:MUnique.OpenMU.Network.Analyzer.PacketAnalyzerProvider">
+            <summary>
+            Provides a <see cref="T:MUnique.OpenMU.Network.Analyzer.PacketAnalyzer"/> per <see cref="T:MUnique.OpenMU.Network.Analyzer.PacketDefinitionSet"/>.
+            </summary>
+            <remarks>
+            A <see cref="T:MUnique.OpenMU.Network.Analyzer.PacketAnalyzer"/> reads its definitions from the file system, so it's created
+            once per definition set and then shared. The client version is passed per call, so one
+            instance can analyze the traffic of all connections of its definition set.
+            </remarks>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.Analyzer.PacketAnalyzerProvider.GetAnalyzer(MUnique.OpenMU.Network.Analyzer.PacketDefinitionSet)">
+            <summary>
+            Gets the analyzer for the specified definition set.
+            </summary>
+            <param name="definitionSet">The definition set.</param>
+            <returns>The analyzer for the specified definition set.</returns>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.Analyzer.PacketAnalyzerProvider.Dispose">
+            <inheritdoc />
+        </member>
+        <member name="T:MUnique.OpenMU.Network.Analyzer.PacketCaptureService">
+            <summary>
+            The implementation of the <see cref="T:MUnique.OpenMU.Network.Analyzer.IPacketCaptureService"/>, which collects the
+            connections of all servers of this process which implement <see cref="T:MUnique.OpenMU.Network.Analyzer.IConnectionSource"/>.
+            </summary>
+            <remarks>
+            In a distributed deployment, the servers of other processes are just proxies which don't
+            implement <see cref="T:MUnique.OpenMU.Network.Analyzer.IConnectionSource"/> - their connections are simply not listed.
+            </remarks>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.Analyzer.PacketCaptureService.#ctor(MUnique.OpenMU.Interfaces.IServerProvider,System.Int32)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MUnique.OpenMU.Network.Analyzer.PacketCaptureService"/> class.
+            </summary>
+            <param name="serverProvider">The provider of the servers of this process.</param>
+            <param name="maximumPacketCount">The maximum number of packets which are kept in
+            memory per capture.</param>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.Analyzer.PacketCaptureService.GetConnectionsAsync">
+            <inheritdoc />
+        </member>
+        <member name="M:MUnique.OpenMU.Network.Analyzer.PacketCaptureService.FindConnectionAsync(System.Guid)">
+            <inheritdoc />
+        </member>
+        <member name="M:MUnique.OpenMU.Network.Analyzer.PacketCaptureService.FindConnectionAsync(System.Int32,System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:MUnique.OpenMU.Network.Analyzer.PacketCaptureService.StartCaptureAsync(System.Guid)">
+            <inheritdoc />
+        </member>
+        <member name="M:MUnique.OpenMU.Network.Analyzer.PacketCaptureService.StopCapture(System.Guid)">
+            <inheritdoc />
+        </member>
+        <member name="M:MUnique.OpenMU.Network.Analyzer.PacketCaptureService.SetObservationAsync(System.Guid,System.Boolean)">
+            <inheritdoc />
+        </member>
+        <member name="M:MUnique.OpenMU.Network.Analyzer.PacketCaptureService.GetRunningCapture(System.Guid)">
+            <inheritdoc />
+        </member>
+        <member name="T:MUnique.OpenMU.Network.Analyzer.PacketDefinitionSet">
+            <summary>
+            The set of packet definitions which is used to analyze the traffic of a connection.
+            Which one applies depends on the server the client is connected to.
+            </summary>
+        </member>
+        <member name="F:MUnique.OpenMU.Network.Analyzer.PacketDefinitionSet.GameServer">
+            <summary>
+            The packets which are exchanged between game client and game server.
+            </summary>
+        </member>
+        <member name="F:MUnique.OpenMU.Network.Analyzer.PacketDefinitionSet.ConnectServer">
+            <summary>
+            The packets which are exchanged between game client and connect server.
+            </summary>
+        </member>
+        <member name="F:MUnique.OpenMU.Network.Analyzer.PacketDefinitionSet.ChatServer">
+            <summary>
+            The packets which are exchanged between game client and chat server.
+            </summary>
+        </member>
+        <member name="T:MUnique.OpenMU.Network.Analyzer.SavedConnection">
+            <summary>
+            A <see cref="T:MUnique.OpenMU.Network.Analyzer.ICapturedConnection"/> which has been saved in a file and can be loaded again for analyzing.
+            </summary>
+        </member>
+        <member name="M:MUnique.OpenMU.Network.Analyzer.SavedConnection.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MUnique.OpenMU.Network.Analyzer.SavedConnection"/> class.
+            </summary>
+            <param name="filePath">The file path.</param>
+        </member>
+        <member name="P:MUnique.OpenMU.Network.Analyzer.SavedConnection.Name">
+            <summary>
+            Gets the name of the connection.
+            In this case it's simply the file name.
+            </summary>
+        </member>
+        <member name="P:MUnique.OpenMU.Network.Analyzer.SavedConnection.PacketList">
+            <summary>
+            Gets the packets of the connection.
+            </summary>
+        </member>
+        <member name="P:MUnique.OpenMU.Network.Analyzer.SavedConnection.StartTimestamp">
+            <summary>
+            Gets the start timestamp.
+            </summary>
+        </member>
+    </members>
+</doc>

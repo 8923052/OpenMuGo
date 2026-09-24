@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
+    <RestoreSuccess Condition=" '$(RestoreSuccess)' == '' ">True</RestoreSuccess>
+    <RestoreTool Condition=" '$(RestoreTool)' == '' ">NuGet</RestoreTool>
+    <ProjectAssetsFile Condition=" '$(ProjectAssetsFile)' == '' ">$(MSBuildThisFileDirectory)project.assets.json</ProjectAssetsFile>
+    <NuGetPackageRoot Condition=" '$(NuGetPackageRoot)' == '' ">$(UserProfile)\.nuget\packages\</NuGetPackageRoot>
+    <NuGetPackageFolders Condition=" '$(NuGetPackageFolders)' == '' ">C:\Users\Administrator\.nuget\packages\;C:\Program Files (x86)\Microsoft Visual Studio\Shared\NuGetPackages</NuGetPackageFolders>
+    <NuGetProjectStyle Condition=" '$(NuGetProjectStyle)' == '' ">PackageReference</NuGetProjectStyle>
+    <NuGetToolVersion Condition=" '$(NuGetToolVersion)' == '' ">7.0.0</NuGetToolVersion>
+  </PropertyGroup>
+  <ItemGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
+    <SourceRoot Include="C:\Users\Administrator\.nuget\packages\" />
+    <SourceRoot Include="C:\Program Files (x86)\Microsoft Visual Studio\Shared\NuGetPackages\" />
+  </ItemGroup>
+  <ItemGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
+    <Content Include="$(NuGetPackageRoot)munique.openmu.network.packets\0.9.10\contentFiles\any\net10.0\ChatServer\ChatServerPackets.xml" Condition="Exists('$(NuGetPackageRoot)munique.openmu.network.packets\0.9.10\contentFiles\any\net10.0\ChatServer\ChatServerPackets.xml')">
+      <NuGetPackageId>MUnique.OpenMU.Network.Packets</NuGetPackageId>
+      <NuGetPackageVersion>0.9.10</NuGetPackageVersion>
+      <NuGetItemType>Content</NuGetItemType>
+      <Pack>false</Pack>
+      <Private>False</Private>
+      <Link>ChatServer\ChatServerPackets.xml</Link>
+    </Content>
+    <Content Include="$(NuGetPackageRoot)munique.openmu.network.packets\0.9.10\contentFiles\any\net10.0\ClientToServer\ClientToServerPackets.xml" Condition="Exists('$(NuGetPackageRoot)munique.openmu.network.packets\0.9.10\contentFiles\any\net10.0\ClientToServer\ClientToServerPackets.xml')">
+      <NuGetPackageId>MUnique.OpenMU.Network.Packets</NuGetPackageId>
+      <NuGetPackageVersion>0.9.10</NuGetPackageVersion>
+      <NuGetItemType>Content</NuGetItemType>
+      <Pack>false</Pack>
+      <Private>False</Private>
+      <Link>ClientToServer\ClientToServerPackets.xml</Link>
+    </Content>
+    <Content Include="$(NuGetPackageRoot)munique.openmu.network.packets\0.9.10\contentFiles\any\net10.0\CommonEnums.xml" Condition="Exists('$(NuGetPackageRoot)munique.openmu.network.packets\0.9.10\contentFiles\any\net10.0\CommonEnums.xml')">
+      <NuGetPackageId>MUnique.OpenMU.Network.Packets</NuGetPackageId>
+      <NuGetPackageVersion>0.9.10</NuGetPackageVersion>
+      <NuGetItemType>Content</NuGetItemType>
+      <Pack>false</Pack>
+      <Private>False</Private>
+      <Link>CommonEnums.xml</Link>
+    </Content>
+    <Content Include="$(NuGetPackageRoot)munique.openmu.network.packets\0.9.10\contentFiles\any\net10.0\ConnectServer\ConnectServerPackets.xml" Condition="Exists('$(NuGetPackageRoot)munique.openmu.network.packets\0.9.10\contentFiles\any\net10.0\ConnectServer\ConnectServerPackets.xml')">
+      <NuGetPackageId>MUnique.OpenMU.Network.Packets</NuGetPackageId>
+      <NuGetPackageVersion>0.9.10</NuGetPackageVersion>
+      <NuGetItemType>Content</NuGetItemType>
+      <Pack>false</Pack>
+      <Private>False</Private>
+      <Link>ConnectServer\ConnectServerPackets.xml</Link>
+    </Content>
+    <Content Include="$(NuGetPackageRoot)munique.openmu.network.packets\0.9.10\contentFiles\any\net10.0\PacketHeaders.xml" Condition="Exists('$(NuGetPackageRoot)munique.openmu.network.packets\0.9.10\contentFiles\any\net10.0\PacketHeaders.xml')">
+      <NuGetPackageId>MUnique.OpenMU.Network.Packets</NuGetPackageId>
+      <NuGetPackageVersion>0.9.10</NuGetPackageVersion>
+      <NuGetItemType>Content</NuGetItemType>
+      <Pack>false</Pack>
+      <Private>False</Private>
+      <Link>PacketHeaders.xml</Link>
+    </Content>
+    <Content Include="$(NuGetPackageRoot)munique.openmu.network.packets\0.9.10\contentFiles\any\net10.0\ServerToClient\ServerToClientPackets.xml" Condition="Exists('$(NuGetPackageRoot)munique.openmu.network.packets\0.9.10\contentFiles\any\net10.0\ServerToClient\ServerToClientPackets.xml')">
+      <NuGetPackageId>MUnique.OpenMU.Network.Packets</NuGetPackageId>
+      <NuGetPackageVersion>0.9.10</NuGetPackageVersion>
+      <NuGetItemType>Content</NuGetItemType>
+      <Pack>false</Pack>
+      <Private>False</Private>
+      <Link>ServerToClient\ServerToClientPackets.xml</Link>
+    </Content>
+  </ItemGroup>
+  <ImportGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
+    <Import Project="$(NuGetPackageRoot)microsoft.codeanalysis.analyzers\3.11.0\buildTransitive\Microsoft.CodeAnalysis.Analyzers.props" Condition="Exists('$(NuGetPackageRoot)microsoft.codeanalysis.analyzers\3.11.0\buildTransitive\Microsoft.CodeAnalysis.Analyzers.props')" />
+  </ImportGroup>
+  <PropertyGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
+    <PkgMicrosoft_CodeAnalysis_Analyzers Condition=" '$(PkgMicrosoft_CodeAnalysis_Analyzers)' == '' ">C:\Users\Administrator\.nuget\packages\microsoft.codeanalysis.analyzers\3.11.0</PkgMicrosoft_CodeAnalysis_Analyzers>
+  </PropertyGroup>
+</Project>

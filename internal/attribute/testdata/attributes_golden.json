@@ -1,0 +1,18 @@
+{
+  "scenario": "OpenMUGo T0-a golden\uFF1A\u56DB\u805A\u5408 \u002B \u5168 InputOperator \u002B \u5B9A\u4E49\u94B3\u5236 \u002B \u5173\u7CFB\u4F20\u64AD",
+  "step1_initial": {
+    "defense": 1450,
+    "speed": 3000000,
+    "hp": 80,
+    "maxhp": 100,
+    "agility_value": 57.5
+  },
+  "step2_after_str_150": {
+    "defense": 2175,
+    "speed": 10125000,
+    "hp": 95,
+    "maxhp": 100
+  },
+  "step3_extra_agi_element": 2600,
+  "step3_after_remove": 1450
+}

@@ -1,0 +1,13 @@
+D:\MU\MU开源\开源组合\OpenMU\src\Persistence\MUnique.OpenMU.Persistence.csproj(45,5): error MSB3073: 命令“dotnet run --project SourceGenerator/MUnique.OpenMU.Persistence.SourceGenerator.csproj -c:Debug MUnique.OpenMU.Persistence "D:\MU\MU开源\开源组合\OpenMU\src\Persistence\BasicModel" --no-build”已退出，代码为 1。
+CSC : warning SA0001: XML comment analysis is disabled due to project configuration (https://github.com/DotNetAnalyzers/StyleCopAnalyzers/blob/master/documentation/SA0001.md) [D:\MU\MU开源\开源组合\OpenMU\src\SourceGenerators\MUnique.OpenMU.SourceGenerators.csproj]
+CSC : error CS0016: 未能写入输出文件“D:\MU\MU开源\开源组合\OpenMU\src\DataModel\obj\Debug\generated\MUnique.OpenMU.SourceGenerators\MUnique.OpenMU.SourceGenerators.CloneableGenerator\Item_Cloneable.cs”--“Access to the path 'D:\MU\MU开源\开源组合\OpenMU\src\DataModel\obj\Debug\generated\MUnique.OpenMU.SourceGenerators\MUnique.OpenMU.SourceGenerators.CloneableGenerator\Item_Cloneable.cs' is denied.” [D:\MU\MU开源\开源组合\OpenMU\src\DataModel\MUnique.OpenMU.DataModel.csproj]
+
+生成失败。
+
+CSC : warning SA0001: XML comment analysis is disabled due to project configuration (https://github.com/DotNetAnalyzers/StyleCopAnalyzers/blob/master/documentation/SA0001.md) [D:\MU\MU开源\开源组合\OpenMU\src\SourceGenerators\MUnique.OpenMU.SourceGenerators.csproj]
+D:\MU\MU开源\开源组合\OpenMU\src\Persistence\MUnique.OpenMU.Persistence.csproj(45,5): error MSB3073: 命令“dotnet run --project SourceGenerator/MUnique.OpenMU.Persistence.SourceGenerator.csproj -c:Debug MUnique.OpenMU.Persistence "D:\MU\MU开源\开源组合\OpenMU\src\Persistence\BasicModel" --no-build”已退出，代码为 1。
+CSC : error CS0016: 未能写入输出文件“D:\MU\MU开源\开源组合\OpenMU\src\DataModel\obj\Debug\generated\MUnique.OpenMU.SourceGenerators\MUnique.OpenMU.SourceGenerators.CloneableGenerator\Item_Cloneable.cs”--“Access to the path 'D:\MU\MU开源\开源组合\OpenMU\src\DataModel\obj\Debug\generated\MUnique.OpenMU.SourceGenerators\MUnique.OpenMU.SourceGenerators.CloneableGenerator\Item_Cloneable.cs' is denied.” [D:\MU\MU开源\开源组合\OpenMU\src\DataModel\MUnique.OpenMU.DataModel.csproj]
+    1 个警告
+    2 个错误
+
+已用时间 00:01:04.30

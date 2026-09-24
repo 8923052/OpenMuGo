@@ -1,0 +1,379 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>MUnique.OpenMU.Persistence.InMemory</name>
+    </assembly>
+    <members>
+        <member name="T:MUnique.OpenMU.Persistence.InMemory.ConfigurationInMemoryContext">
+            <summary>
+            A context which is used to access the configuration data in-memory.
+            </summary>
+        </member>
+        <member name="M:MUnique.OpenMU.Persistence.InMemory.ConfigurationInMemoryContext.#ctor(MUnique.OpenMU.Persistence.InMemory.InMemoryRepositoryProvider)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MUnique.OpenMU.Persistence.InMemory.ConfigurationInMemoryContext"/> class.
+            </summary>
+            <param name="provider">The manager which holds the memory repositories.</param>
+        </member>
+        <member name="M:MUnique.OpenMU.Persistence.InMemory.ConfigurationInMemoryContext.GetDefaultGameConfigurationIdAsync(System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="T:MUnique.OpenMU.Persistence.InMemory.FriendServerInMemoryContext">
+            <summary>
+            In-memory context implementation for <see cref="T:MUnique.OpenMU.Persistence.IFriendServerContext"/>.
+            </summary>
+        </member>
+        <member name="M:MUnique.OpenMU.Persistence.InMemory.FriendServerInMemoryContext.#ctor(MUnique.OpenMU.Persistence.InMemory.InMemoryRepositoryProvider)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MUnique.OpenMU.Persistence.InMemory.FriendServerInMemoryContext"/> class.
+            </summary>
+            <param name="provider">The manager which holds the memory repositories.</param>
+        </member>
+        <member name="M:MUnique.OpenMU.Persistence.InMemory.FriendServerInMemoryContext.CreateNewFriendAsync(System.String,System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:MUnique.OpenMU.Persistence.InMemory.FriendServerInMemoryContext.GetFriendByNamesAsync(System.String,System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:MUnique.OpenMU.Persistence.InMemory.FriendServerInMemoryContext.GetFriendsAsync(System.Guid)">
+            <inheritdoc/>
+        </member>
+        <member name="M:MUnique.OpenMU.Persistence.InMemory.FriendServerInMemoryContext.GetFriendNamesAsync(System.Guid)">
+            <inheritdoc />
+        </member>
+        <member name="M:MUnique.OpenMU.Persistence.InMemory.FriendServerInMemoryContext.DeleteAsync(System.String,System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:MUnique.OpenMU.Persistence.InMemory.FriendServerInMemoryContext.GetOpenFriendRequesterNamesAsync(System.Guid)">
+            <inheritdoc/>
+        </member>
+        <member name="T:MUnique.OpenMU.Persistence.InMemory.GuildServerInMemoryContext">
+            <summary>
+            In-memory context implementation for <see cref="T:MUnique.OpenMU.Persistence.IGuildServerContext"/>.
+            </summary>
+        </member>
+        <member name="M:MUnique.OpenMU.Persistence.InMemory.GuildServerInMemoryContext.#ctor(MUnique.OpenMU.Persistence.InMemory.InMemoryRepositoryProvider)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MUnique.OpenMU.Persistence.InMemory.GuildServerInMemoryContext"/> class.
+            </summary>
+            <param name="provider">The manager which holds the memory repositories.</param>
+        </member>
+        <member name="M:MUnique.OpenMU.Persistence.InMemory.GuildServerInMemoryContext.GuildWithNameExistsAsync(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:MUnique.OpenMU.Persistence.InMemory.GuildServerInMemoryContext.GetPersistentGuildIdByNameAsync(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:MUnique.OpenMU.Persistence.InMemory.GuildServerInMemoryContext.GetPersistentGuildNamesAsync(System.Collections.Generic.IReadOnlyCollection{System.Guid})">
+            <inheritdoc/>
+        </member>
+        <member name="M:MUnique.OpenMU.Persistence.InMemory.GuildServerInMemoryContext.GetMemberNamesAsync(System.Guid)">
+            <inheritdoc/>
+        </member>
+        <member name="M:MUnique.OpenMU.Persistence.InMemory.GuildServerInMemoryContext.GetAlliancesAsync(System.Guid)">
+            <inheritdoc/>
+        </member>
+        <member name="T:MUnique.OpenMU.Persistence.InMemory.IMemoryRepository">
+            <summary>
+            Interface for a memory repository, which allows to modify its stored items.
+            </summary>
+        </member>
+        <member name="M:MUnique.OpenMU.Persistence.InMemory.IMemoryRepository.Add(System.Guid,System.Object)">
+            <summary>
+            Adds the specified object with the specified key.
+            </summary>
+            <param name="key">The key.</param>
+            <param name="obj">The object.</param>
+        </member>
+        <member name="M:MUnique.OpenMU.Persistence.InMemory.IMemoryRepository.RemoveAsync(System.Guid)">
+            <summary>
+            Removes the object with the specified key.
+            </summary>
+            <param name="key">The key.</param>
+        </member>
+        <member name="M:MUnique.OpenMU.Persistence.InMemory.IMemoryRepository.OnSaveChanges">
+            <summary>
+            Called when the context saves the changes.
+            </summary>
+        </member>
+        <member name="T:MUnique.OpenMU.Persistence.InMemory.InMemoryBackupService">
+            <summary>
+            An implementation of <see cref="T:MUnique.OpenMU.Persistence.IBackupService"/> for the in-memory persistence layer.
+            Export is supported via the base <see cref="T:MUnique.OpenMU.Persistence.BackupService"/>; restore is not supported.
+            </summary>
+        </member>
+        <member name="M:MUnique.OpenMU.Persistence.InMemory.InMemoryBackupService.#ctor(MUnique.OpenMU.Persistence.IPersistenceContextProvider,MUnique.OpenMU.Persistence.AdminAuth.IAdminUserRepository)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MUnique.OpenMU.Persistence.InMemory.InMemoryBackupService"/> class.
+            </summary>
+            <param name="contextProvider">The persistence context provider.</param>
+            <param name="adminUserRepository">The admin user repository.</param>
+        </member>
+        <member name="M:MUnique.OpenMU.Persistence.InMemory.InMemoryBackupService.RestoreBackupAsync(System.IO.Stream,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="T:MUnique.OpenMU.Persistence.InMemory.InMemoryContext">
+            <summary>
+            An in-memory context which get it's data from the repositories of the <see cref="T:MUnique.OpenMU.Persistence.InMemory.InMemoryPersistenceContextProvider"/>.
+            </summary>
+        </member>
+        <member name="M:MUnique.OpenMU.Persistence.InMemory.InMemoryContext.#ctor(MUnique.OpenMU.Persistence.InMemory.InMemoryRepositoryProvider)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MUnique.OpenMU.Persistence.InMemory.InMemoryContext"/> class.
+            </summary>
+            <param name="provider">The manager which holds the memory repositories.</param>
+        </member>
+        <member name="E:MUnique.OpenMU.Persistence.InMemory.InMemoryContext.SavedChanges">
+            <summary>
+            Occurs when changes have been "saved".
+            </summary>
+        </member>
+        <member name="P:MUnique.OpenMU.Persistence.InMemory.InMemoryContext.HasChanges">
+            <inheritdoc />
+        </member>
+        <member name="P:MUnique.OpenMU.Persistence.InMemory.InMemoryContext.Provider">
+            <summary>
+            Gets the manager which holds the memory repositories.
+            </summary>
+            <value>
+            The manager.
+            </value>
+        </member>
+        <member name="M:MUnique.OpenMU.Persistence.InMemory.InMemoryContext.Dispose">
+            <inheritdoc/>
+        </member>
+        <member name="M:MUnique.OpenMU.Persistence.InMemory.InMemoryContext.SaveChanges">
+            <summary>
+            Saves the changes of the context.
+            </summary>
+            <returns><c>True</c>, if the saving was successful; <c>false</c>, otherwise.</returns>
+        </member>
+        <member name="M:MUnique.OpenMU.Persistence.InMemory.InMemoryContext.SaveChangesAsync(System.Threading.CancellationToken)">
+            <inheritdoc/>
+        </member>
+        <member name="M:MUnique.OpenMU.Persistence.InMemory.InMemoryContext.SuspendChangeNotifications">
+            <inheritdoc />
+        </member>
+        <member name="M:MUnique.OpenMU.Persistence.InMemory.InMemoryContext.Detach(System.Object)">
+            <inheritdoc/>
+        </member>
+        <member name="M:MUnique.OpenMU.Persistence.InMemory.InMemoryContext.Attach(System.Object)">
+            <inheritdoc/>
+        </member>
+        <member name="M:MUnique.OpenMU.Persistence.InMemory.InMemoryContext.CreateNew``1(System.Object[])">
+            <inheritdoc/>
+        </member>
+        <member name="M:MUnique.OpenMU.Persistence.InMemory.InMemoryContext.CreateNew(System.Type,System.Object[])">
+            <inheritdoc/>
+        </member>
+        <member name="M:MUnique.OpenMU.Persistence.InMemory.InMemoryContext.DeleteAsync``1(``0)">
+            <inheritdoc/>
+        </member>
+        <member name="M:MUnique.OpenMU.Persistence.InMemory.InMemoryContext.GetByIdAsync``1(System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc/>
+        </member>
+        <member name="M:MUnique.OpenMU.Persistence.InMemory.InMemoryContext.GetByIdAsync(System.Guid,System.Type,System.Threading.CancellationToken)">
+            <inheritdoc/>
+        </member>
+        <member name="M:MUnique.OpenMU.Persistence.InMemory.InMemoryContext.GetAsync``1(System.Threading.CancellationToken)">
+            <inheritdoc/>
+        </member>
+        <member name="M:MUnique.OpenMU.Persistence.InMemory.InMemoryContext.GetAsync(System.Type,System.Threading.CancellationToken)">
+            <inheritdoc/>
+        </member>
+        <member name="M:MUnique.OpenMU.Persistence.InMemory.InMemoryContext.IsSupporting(System.Type)">
+            <inheritdoc/>
+        </member>
+        <member name="T:MUnique.OpenMU.Persistence.InMemory.InMemoryPersistenceContextProvider">
+            <summary>
+            A context provider which uses in-memory repositories to hold its data, e.g. for testing or demo purposes.
+            Changes in one context directly have effect in other contexts! Calling SaveChanges or not doesn't matter.
+            </summary>
+        </member>
+        <member name="M:MUnique.OpenMU.Persistence.InMemory.InMemoryPersistenceContextProvider.#ctor(MUnique.OpenMU.Interfaces.IConfigurationChangePublisher)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MUnique.OpenMU.Persistence.InMemory.InMemoryPersistenceContextProvider"/> class.
+            </summary>
+            <param name="changePublisher">The change publisher.</param>
+        </member>
+        <member name="P:MUnique.OpenMU.Persistence.InMemory.InMemoryPersistenceContextProvider.RepositoryProvider">
+            <inheritdoc />
+        </member>
+        <member name="P:MUnique.OpenMU.Persistence.InMemory.InMemoryPersistenceContextProvider.ChangePublisher">
+            <summary>
+            Gets or sets the publisher for configuration changes.
+            </summary>
+        </member>
+        <member name="M:MUnique.OpenMU.Persistence.InMemory.InMemoryPersistenceContextProvider.CreateNewContext">
+            <inheritdoc/>
+        </member>
+        <member name="M:MUnique.OpenMU.Persistence.InMemory.InMemoryPersistenceContextProvider.CreateNewContext(MUnique.OpenMU.DataModel.Configuration.GameConfiguration)">
+            <inheritdoc/>
+        </member>
+        <member name="M:MUnique.OpenMU.Persistence.InMemory.InMemoryPersistenceContextProvider.CreateNewTradeContext">
+            <inheritdoc/>
+        </member>
+        <member name="M:MUnique.OpenMU.Persistence.InMemory.InMemoryPersistenceContextProvider.CreateNewPlayerContext(MUnique.OpenMU.DataModel.Configuration.GameConfiguration)">
+            <inheritdoc/>
+        </member>
+        <member name="M:MUnique.OpenMU.Persistence.InMemory.InMemoryPersistenceContextProvider.CreateNewConfigurationContext">
+            <inheritdoc/>
+        </member>
+        <member name="M:MUnique.OpenMU.Persistence.InMemory.InMemoryPersistenceContextProvider.CreateNewFriendServerContext">
+            <inheritdoc />
+        </member>
+        <member name="M:MUnique.OpenMU.Persistence.InMemory.InMemoryPersistenceContextProvider.CreateNewGuildContext">
+            <inheritdoc/>
+        </member>
+        <member name="M:MUnique.OpenMU.Persistence.InMemory.InMemoryPersistenceContextProvider.CreateNewTypedContext(System.Type,System.Boolean,MUnique.OpenMU.DataModel.Configuration.GameConfiguration)">
+            <inheritdoc />
+        </member>
+        <member name="M:MUnique.OpenMU.Persistence.InMemory.InMemoryPersistenceContextProvider.DatabaseExistsAsync(System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:MUnique.OpenMU.Persistence.InMemory.InMemoryPersistenceContextProvider.IsDatabaseUpToDateAsync(System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:MUnique.OpenMU.Persistence.InMemory.InMemoryPersistenceContextProvider.ApplyAllPendingUpdatesAsync">
+            <inheritdoc />
+        </member>
+        <member name="M:MUnique.OpenMU.Persistence.InMemory.InMemoryPersistenceContextProvider.WaitForUpdatedDatabaseAsync(System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:MUnique.OpenMU.Persistence.InMemory.InMemoryPersistenceContextProvider.CanConnectToDatabaseAsync(System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:MUnique.OpenMU.Persistence.InMemory.InMemoryPersistenceContextProvider.ShouldDoAutoSchemaUpdateAsync(System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:MUnique.OpenMU.Persistence.InMemory.InMemoryPersistenceContextProvider.ReCreateDatabaseAsync(System.Boolean)">
+            <inheritdoc />
+        </member>
+        <member name="M:MUnique.OpenMU.Persistence.InMemory.InMemoryPersistenceContextProvider.ResetCache">
+            <inheritdoc />
+        </member>
+        <member name="T:MUnique.OpenMU.Persistence.InMemory.InMemoryRepositoryAdapter`1">
+            <summary>
+            A <see cref="T:MUnique.OpenMU.Persistence.RepositoryAdapter`1"/> which implements <see cref="T:MUnique.OpenMU.Persistence.InMemory.IMemoryRepository"/>.
+            </summary>
+            <typeparam name="T">The type of the saved objects.</typeparam>
+        </member>
+        <member name="M:MUnique.OpenMU.Persistence.InMemory.InMemoryRepositoryAdapter`1.#ctor(MUnique.OpenMU.Persistence.InMemory.IMemoryRepository)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MUnique.OpenMU.Persistence.InMemory.InMemoryRepositoryAdapter`1"/> class.
+            </summary>
+            <param name="repository">The repository.</param>
+        </member>
+        <member name="M:MUnique.OpenMU.Persistence.InMemory.InMemoryRepositoryAdapter`1.Add(System.Guid,System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="M:MUnique.OpenMU.Persistence.InMemory.InMemoryRepositoryAdapter`1.RemoveAsync(System.Guid)">
+            <inheritdoc />
+        </member>
+        <member name="M:MUnique.OpenMU.Persistence.InMemory.InMemoryRepositoryAdapter`1.OnSaveChanges">
+            <inheritdoc />
+        </member>
+        <member name="T:MUnique.OpenMU.Persistence.InMemory.InMemoryRepositoryProvider">
+            <summary>
+            A repository provider which creates new in-memory repositories on-demand.
+            </summary>
+        </member>
+        <member name="P:MUnique.OpenMU.Persistence.InMemory.InMemoryRepositoryProvider.MemoryRepositories">
+            <summary>
+            Gets all <see cref="T:MUnique.OpenMU.Persistence.InMemory.IMemoryRepository"/> which were added to this manager.
+            </summary>
+        </member>
+        <member name="M:MUnique.OpenMU.Persistence.InMemory.InMemoryRepositoryProvider.GetRepository``1">
+            <summary>
+            Gets the memory repository, and creates it if it wasn't created yet.
+            </summary>
+            <typeparam name="T">The type of the business object.</typeparam>
+            <returns>The memory repository.</returns>
+        </member>
+        <member name="M:MUnique.OpenMU.Persistence.InMemory.InMemoryRepositoryProvider.GetRepository(System.Type)">
+            <summary>
+            Gets the repository of the specified type.
+            </summary>
+            <param name="objectType">Type of the object.</param>
+            <returns>The repository of the specified type.</returns>
+        </member>
+        <member name="T:MUnique.OpenMU.Persistence.InMemory.MemoryRepository`1">
+            <summary>
+            A repository which lives on memory only.
+            </summary>
+            <typeparam name="TValue">The type of the value.</typeparam>
+        </member>
+        <member name="M:MUnique.OpenMU.Persistence.InMemory.MemoryRepository`1.Add(System.Guid,`0)">
+            <summary>
+            Adds an item to the repository.
+            </summary>
+            <param name="key">The key.</param>
+            <param name="obj">The item.</param>
+        </member>
+        <member name="M:MUnique.OpenMU.Persistence.InMemory.MemoryRepository`1.Add(System.Guid,System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="M:MUnique.OpenMU.Persistence.InMemory.MemoryRepository`1.RemoveAsync(System.Guid)">
+            <inheritdoc />
+        </member>
+        <member name="M:MUnique.OpenMU.Persistence.InMemory.MemoryRepository`1.GetByIdAsync(System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc/>
+        </member>
+        <member name="M:MUnique.OpenMU.Persistence.InMemory.MemoryRepository`1.OnSaveChanges">
+            <inheritdoc/>
+        </member>
+        <member name="M:MUnique.OpenMU.Persistence.InMemory.MemoryRepository`1.MUnique#OpenMU#Persistence#IRepository#GetByIdAsync(System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc/>
+        </member>
+        <member name="M:MUnique.OpenMU.Persistence.InMemory.MemoryRepository`1.DeleteAsync(System.Object)">
+            <inheritdoc/>
+        </member>
+        <member name="M:MUnique.OpenMU.Persistence.InMemory.MemoryRepository`1.DeleteAsync(System.Guid)">
+            <inheritdoc/>
+        </member>
+        <member name="M:MUnique.OpenMU.Persistence.InMemory.MemoryRepository`1.GetAllAsync(System.Threading.CancellationToken)">
+            <inheritdoc/>
+        </member>
+        <member name="M:MUnique.OpenMU.Persistence.InMemory.MemoryRepository`1.MUnique#OpenMU#Persistence#IRepository#GetAllAsync(System.Threading.CancellationToken)">
+            <inheritdoc/>
+        </member>
+        <member name="T:MUnique.OpenMU.Persistence.InMemory.PlayerInMemoryContext">
+            <summary>
+            In-memory context implementation for <see cref="T:MUnique.OpenMU.Persistence.IPlayerContext"/>.
+            </summary>
+        </member>
+        <member name="M:MUnique.OpenMU.Persistence.InMemory.PlayerInMemoryContext.#ctor(MUnique.OpenMU.Persistence.InMemory.InMemoryRepositoryProvider)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MUnique.OpenMU.Persistence.InMemory.PlayerInMemoryContext"/> class.
+            </summary>
+            <param name="provider">The manager which holds the memory repositories.</param>
+        </member>
+        <member name="M:MUnique.OpenMU.Persistence.InMemory.PlayerInMemoryContext.GetLetterBodyByHeaderIdAsync(System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc/>
+        </member>
+        <member name="M:MUnique.OpenMU.Persistence.InMemory.PlayerInMemoryContext.AuthenticateAsync(System.String,System.String,System.Threading.CancellationToken)">
+            <inheritdoc/>
+        </member>
+        <member name="M:MUnique.OpenMU.Persistence.InMemory.PlayerInMemoryContext.GetAccountByLoginNameAsync(System.String,System.String,System.Threading.CancellationToken)">
+            <inheritdoc/>
+        </member>
+        <member name="M:MUnique.OpenMU.Persistence.InMemory.PlayerInMemoryContext.GetAccountByLoginNameAsync(System.String,System.Threading.CancellationToken)">
+            <inheritdoc/>
+        </member>
+        <member name="M:MUnique.OpenMU.Persistence.InMemory.PlayerInMemoryContext.GetAccountsOrderedByLoginNameAsync(System.Int32,System.Int32,System.Threading.CancellationToken)">
+            <inheritdoc/>
+        </member>
+        <member name="M:MUnique.OpenMU.Persistence.InMemory.PlayerInMemoryContext.SearchAccountsAsync(System.String,System.Int32,System.Int32,System.Threading.CancellationToken)">
+            <inheritdoc/>
+        </member>
+        <member name="M:MUnique.OpenMU.Persistence.InMemory.PlayerInMemoryContext.CanSaveLetterAsync(MUnique.OpenMU.Interfaces.LetterHeader,System.Threading.CancellationToken)">
+            <inheritdoc/>
+        </member>
+        <member name="M:MUnique.OpenMU.Persistence.InMemory.PlayerInMemoryContext.GetAccountByCharacterNameAsync(System.String,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:MUnique.OpenMU.Persistence.InMemory.PlayerInMemoryContext.GetPendingCastleSiegeRewardsAsync(System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+    </members>
+</doc>

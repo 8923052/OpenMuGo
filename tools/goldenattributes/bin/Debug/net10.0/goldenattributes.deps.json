@@ -1,0 +1,39 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v10.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v10.0": {
+      "goldenattributes/1.0.0": {
+        "dependencies": {
+          "MUnique.OpenMU.AttributeSystem": "1.0.0"
+        },
+        "runtime": {
+          "goldenattributes.dll": {}
+        }
+      },
+      "MUnique.OpenMU.AttributeSystem/1.0.0": {
+        "runtime": {
+          "MUnique.OpenMU.AttributeSystem.dll": {
+            "assemblyVersion": "0.9.10.0",
+            "fileVersion": "0.9.10.0"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "goldenattributes/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "MUnique.OpenMU.AttributeSystem/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

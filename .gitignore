@@ -1,0 +1,15 @@
+# Go
+*.exe
+*.test
+*.out
+/build/
+/mugo
+
+# .NET (tools/golden* + tools/goldenconfig)
+#tools/golden/bin/
+#tools/golden/obj/
+tools/goldenconfig/bin/
+tools/goldenconfig/obj/
+/.idea
+/.trae
+/*.lnk

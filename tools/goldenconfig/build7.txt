@@ -1,0 +1,13 @@
+D:\MU\MU开源\开源组合\OpenMU\src\Persistence\RepositoryAdapter.cs(41,76): warning CS1066: 为形参“cancellationToken”指定的默认值将不起任何作用，因为它适用于在不允许指定可选实参的上下文中使用的成员 [D:\MU\MU开源\开源组合\OpenMU\src\Persistence\MUnique.OpenMU.Persistence.csproj]
+D:\MU\MU开源\开源组合\OpenMU\src\Persistence\RepositoryAdapter.cs(59,76): warning CS1066: 为形参“cancellationToken”指定的默认值将不起任何作用，因为它适用于在不允许指定可选实参的上下文中使用的成员 [D:\MU\MU开源\开源组合\OpenMU\src\Persistence\MUnique.OpenMU.Persistence.csproj]
+D:\MU\MU开源\开源组合\OpenMU\src\Persistence\BackupService.cs(186,31): warning SA1204: Static members should appear before non-static members (https://github.com/DotNetAnalyzers/StyleCopAnalyzers/blob/master/documentation/SA1204.md) [D:\MU\MU开源\开源组合\OpenMU\src\Persistence\MUnique.OpenMU.Persistence.csproj]
+
+已成功生成。
+
+D:\MU\MU开源\开源组合\OpenMU\src\Persistence\RepositoryAdapter.cs(41,76): warning CS1066: 为形参“cancellationToken”指定的默认值将不起任何作用，因为它适用于在不允许指定可选实参的上下文中使用的成员 [D:\MU\MU开源\开源组合\OpenMU\src\Persistence\MUnique.OpenMU.Persistence.csproj]
+D:\MU\MU开源\开源组合\OpenMU\src\Persistence\RepositoryAdapter.cs(59,76): warning CS1066: 为形参“cancellationToken”指定的默认值将不起任何作用，因为它适用于在不允许指定可选实参的上下文中使用的成员 [D:\MU\MU开源\开源组合\OpenMU\src\Persistence\MUnique.OpenMU.Persistence.csproj]
+D:\MU\MU开源\开源组合\OpenMU\src\Persistence\BackupService.cs(186,31): warning SA1204: Static members should appear before non-static members (https://github.com/DotNetAnalyzers/StyleCopAnalyzers/blob/master/documentation/SA1204.md) [D:\MU\MU开源\开源组合\OpenMU\src\Persistence\MUnique.OpenMU.Persistence.csproj]
+    3 个警告
+    0 个错误
+
+已用时间 00:01:00.97

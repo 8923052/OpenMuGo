@@ -1,0 +1,82 @@
+{
+  "source": "OpenMU src/GameServer/RemoteView ItemSerializer.cs + AppearanceSerializer.cs + AppearanceSerializerExtended.cs (Season6Episode3)",
+  "anchor_test": "AppearanceSerializerTest.NewDarkKnightWithSmallAxe",
+  "items": [
+    {
+      "name": "plain_sword",
+      "bytes": "00006400000000FFFFFFFFFF"
+    },
+    {
+      "name": "level9_skill_luck",
+      "bytes": "04CCFF00000000FFFFFFFFFF"
+    },
+    {
+      "name": "option_level7",
+      "bytes": "061B3240002000FFFFFFFFFF"
+    },
+    {
+      "name": "excellent_full",
+      "bytes": "085CC83F004000FFFFFFFFFF"
+    },
+    {
+      "name": "item512_fenrir_blue",
+      "bytes": "0000018200C000FFFFFFFFFF"
+    },
+    {
+      "name": "ancient",
+      "bytes": "0A3050000E7000FFFFFFFFFF"
+    },
+    {
+      "name": "guardian380",
+      "bytes": "0C007800005800FFFFFFFFFF"
+    },
+    {
+      "name": "harmony",
+      "bytes": "0E383C0000309CFFFFFFFFFF"
+    },
+    {
+      "name": "sockets_3",
+      "bytes": "1468FA00008014010B15FEFF"
+    },
+    {
+      "name": "sockets_empty_bonus_absent",
+      "bytes": "1500FA000080FFFEFEFEFEFE"
+    }
+  ],
+  "appearances": [
+    {
+      "name": "smallaxe_anchor",
+      "bytes": "2000FFFFFFF3000000F8000020FFFFFF0000"
+    },
+    {
+      "name": "naked_darkknight",
+      "bytes": "20FFFFFFFFF3000000F80000F0FFFFFF0000"
+    },
+    {
+      "name": "armored",
+      "bytes": "2000FF78FFF300094438804000F00FFF0000"
+    },
+    {
+      "name": "wings_fenrir",
+      "bytes": "20FFFFFFFFFF000000FA0000F4FFFFFF0101"
+    }
+  ],
+  "appearances_ext": [
+    {
+      "name": "naked_darkknight_ext",
+      "bytes": "0400FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFFFFFF"
+    },
+    {
+      "name": "naked_elf_ext",
+      "bytes": "0800FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFFFFFF"
+    },
+    {
+      "name": "gamemaster_ext",
+      "bytes": "0420FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFFFFFF"
+    },
+    {
+      "name": "armored_ext",
+      "bytes": "040010004CFFFF00FFFF00FFFF00FFFF00FFFF00FFFF00C025D625"
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+D:\MU\MU开源\开源组合\OpenMU\src\Persistence\RepositoryAdapter.cs(41,76): warning CS1066: 为形参“cancellationToken”指定的默认值将不起任何作用，因为它适用于在不允许指定可选实参的上下文中使用的成员 [D:\MU\MU开源\开源组合\OpenMU\src\Persistence\MUnique.OpenMU.Persistence.csproj]
+D:\MU\MU开源\开源组合\OpenMU\src\Persistence\RepositoryAdapter.cs(59,76): warning CS1066: 为形参“cancellationToken”指定的默认值将不起任何作用，因为它适用于在不允许指定可选实参的上下文中使用的成员 [D:\MU\MU开源\开源组合\OpenMU\src\Persistence\MUnique.OpenMU.Persistence.csproj]
+D:\MU\MU开源\开源组合\OpenMU\src\Persistence\BackupService.cs(186,31): warning SA1204: Static members should appear before non-static members (https://github.com/DotNetAnalyzers/StyleCopAnalyzers/blob/master/documentation/SA1204.md) [D:\MU\MU开源\开源组合\OpenMU\src\Persistence\MUnique.OpenMU.Persistence.csproj]
+D:\MU\MU开源\开源组合\OpenMUGo\tools\goldenconfig\Program.cs(51,62): error CS0234: 命名空间“Microsoft.Extensions.Logging”中不存在类型或命名空间名“LoggerFactory”(是否缺少程序集引用?) [D:\MU\MU开源\开源组合\OpenMUGo\tools\goldenconfig\goldenconfig.csproj]
+D:\MU\MU开源\开源组合\OpenMUGo\tools\goldenconfig\Program.cs(52,39): error CS1729: “NullLoggerProvider”不包含采用 0 个参数的构造函数 [D:\MU\MU开源\开源组合\OpenMUGo\tools\goldenconfig\goldenconfig.csproj]
+D:\MU\MU开源\开源组合\OpenMUGo\tools\goldenconfig\Program.cs(99,33): error CS1061: “ConstValueAttribute”未包含“AttributeDefinition”的定义，并且找不到可接受第一个“ConstValueAttribute”类型参数的可访问扩展方法“AttributeDefinition”(是否缺少 using 指令或程序集引用?) [D:\MU\MU开源\开源组合\OpenMUGo\tools\goldenconfig\goldenconfig.csproj]
+
+生成失败。
+
+D:\MU\MU开源\开源组合\OpenMU\src\Persistence\RepositoryAdapter.cs(41,76): warning CS1066: 为形参“cancellationToken”指定的默认值将不起任何作用，因为它适用于在不允许指定可选实参的上下文中使用的成员 [D:\MU\MU开源\开源组合\OpenMU\src\Persistence\MUnique.OpenMU.Persistence.csproj]
+D:\MU\MU开源\开源组合\OpenMU\src\Persistence\RepositoryAdapter.cs(59,76): warning CS1066: 为形参“cancellationToken”指定的默认值将不起任何作用，因为它适用于在不允许指定可选实参的上下文中使用的成员 [D:\MU\MU开源\开源组合\OpenMU\src\Persistence\MUnique.OpenMU.Persistence.csproj]
+D:\MU\MU开源\开源组合\OpenMU\src\Persistence\BackupService.cs(186,31): warning SA1204: Static members should appear before non-static members (https://github.com/DotNetAnalyzers/StyleCopAnalyzers/blob/master/documentation/SA1204.md) [D:\MU\MU开源\开源组合\OpenMU\src\Persistence\MUnique.OpenMU.Persistence.csproj]
+D:\MU\MU开源\开源组合\OpenMUGo\tools\goldenconfig\Program.cs(51,62): error CS0234: 命名空间“Microsoft.Extensions.Logging”中不存在类型或命名空间名“LoggerFactory”(是否缺少程序集引用?) [D:\MU\MU开源\开源组合\OpenMUGo\tools\goldenconfig\goldenconfig.csproj]
+D:\MU\MU开源\开源组合\OpenMUGo\tools\goldenconfig\Program.cs(52,39): error CS1729: “NullLoggerProvider”不包含采用 0 个参数的构造函数 [D:\MU\MU开源\开源组合\OpenMUGo\tools\goldenconfig\goldenconfig.csproj]
+D:\MU\MU开源\开源组合\OpenMUGo\tools\goldenconfig\Program.cs(99,33): error CS1061: “ConstValueAttribute”未包含“AttributeDefinition”的定义，并且找不到可接受第一个“ConstValueAttribute”类型参数的可访问扩展方法“AttributeDefinition”(是否缺少 using 指令或程序集引用?) [D:\MU\MU开源\开源组合\OpenMUGo\tools\goldenconfig\goldenconfig.csproj]
+    3 个警告
+    3 个错误
+
+已用时间 00:01:03.51
